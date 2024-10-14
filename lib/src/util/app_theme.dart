@@ -2,6 +2,19 @@ import 'package:flutter/material.dart';
 
 ThemeData get light => ThemeData(
     scaffoldBackgroundColor: const Color(0xffE8EEF2),
+    textTheme: const TextTheme(
+        titleMedium: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.w700,
+            fontFamily: "Pretendard"),
+        titleSmall: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            fontFamily: "Pretendard"),
+        displayMedium: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            fontFamily: "Pretendard")),
     colorScheme: const ColorScheme.light(
         primary: Color(0xffFF4920),
         secondary: Color(0xff000000),
@@ -9,6 +22,19 @@ ThemeData get light => ThemeData(
         onSecondaryContainer: Color(0xffd7d7d7)));
 
 ThemeData get dark => ThemeData(
+    textTheme: const TextTheme(
+        titleMedium: TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.w700,
+            fontFamily: "Pretendard"),
+        titleSmall: TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            fontFamily: "Pretendard"),
+        displayMedium: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+            fontFamily: "Pretendard")),
     colorScheme: const ColorScheme.dark(
         primary: Color(0xffFF4920),
         secondary: Color(0xffFFFFFF),

@@ -6,11 +6,15 @@ class RefreginatorContainer extends StatefulWidget {
   final List<Ingredient> children;
   final int rowCount;
   final String label;
+  final TextStyle? labelStyle;
+  final TextStyle? itemStyle;
   const RefreginatorContainer({
     super.key,
     required this.children,
     this.rowCount = 2,
     required this.label,
+    required this.labelStyle,
+    required this.itemStyle,
   })  : assert(children.length > 0, "children can not be empty array"),
         assert(rowCount >= 2, "rowCount must bigger than two");
 
@@ -72,6 +76,7 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
     _pageController = PageController();
     _tabController = TabController(length: _totalPage, vsync: this);
     _items = convertTo3D(widget.children);
+
     super.initState();
   }
 
@@ -117,31 +122,34 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
         ),
       ));
 
+  Widget _divider() => Container(
+        height: 15,
+        width: double.infinity,
+        decoration: const BoxDecoration(
+            border: Border(
+              top: BorderSide.none,
+              left: BorderSide(width: 2.0, color: Color(0xffE8EEF2)),
+              right: BorderSide(width: 2.0, color: Color(0xffE8EEF2)),
+              bottom: BorderSide(width: 2.0, color: Color(0xffE8EEF2)),
+            ),
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(12.0))),
+      );
+
   Widget _displayItemRow(List<dynamic> row) => Padding(
         padding: const EdgeInsets.all(4.0),
-        child: Container(
-          width: double.infinity,
-          decoration: const BoxDecoration(
-              border: Border(
-                top: BorderSide.none,
-                left: BorderSide.none,
-                right: BorderSide.none,
-                bottom: BorderSide(width: 2.0, color: Color(0xffE8EEF2)),
+        child: Stack(
+          alignment: Alignment.bottomCenter,
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: List.generate(row.length, (index) => row[index]),
               ),
-              borderRadius:
-                  BorderRadius.vertical(bottom: Radius.circular(12.0))),
-          child: Column(
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: List.generate(row.length, (index) => row[index]),
-                ),
-              ),
-            ],
-          ),
+            ),
+            Align(alignment: Alignment.bottomCenter, child: _divider())
+          ],
         ),
       );
 
@@ -162,51 +170,52 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
         ),
       );
 
-  Widget _generateEmtpy() => Opacity(
-        opacity: 0.0,
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 40,
-                height: 40,
-                color: Colors.grey,
-              ),
+  Widget _generateEmtpy() {
+    return Opacity(
+      opacity: 0.0,
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Container(
+              width: 40,
+              height: 40,
+              color: Colors.grey,
             ),
-            const Text("Item")
-          ],
-        ),
-      );
+          ),
+          Text("Item", style: widget.itemStyle)
+        ],
+      ),
+    );
+  }
 
-  Widget _header() => Align(
-      alignment: Alignment.topLeft,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 4.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              widget.label,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-            GestureDetector(
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.onSecondaryContainer,
-                    borderRadius: BorderRadius.circular(100.0)),
-                width: 50,
-                height: 22,
-                child: const Icon(
-                  Icons.add,
-                  size: 20,
-                  color: Color(0xff323232),
+  Widget _header() {
+    return Align(
+        alignment: Alignment.topLeft,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 4.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(widget.label, style: widget.labelStyle),
+              GestureDetector(
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.onSecondaryContainer,
+                      borderRadius: BorderRadius.circular(100.0)),
+                  width: 50,
+                  height: 22,
+                  child: const Icon(
+                    Icons.add,
+                    size: 20,
+                    color: Color(0xff323232),
+                  ),
                 ),
-              ),
-            )
-          ],
-        ),
-      ));
+              )
+            ],
+          ),
+        ));
+  }
 
   Widget _indicator() => Align(
         alignment: Alignment.bottomCenter,

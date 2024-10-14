@@ -16,52 +16,67 @@ class HomeView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            _header(),
-            _freezer(),
-            _fridge(),
+            _header(context),
+            _freezer(context),
+            _fridge(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _header() => const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
-        child: Row(
-          children: [
-            Text(
-              "나의 냉장고",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.w700),
-            ),
-          ],
-        ),
-      );
+  Widget _header(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
 
-  Widget _freezer() => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: RefreginatorContainer(
-          label: "냉동 보관",
+    return Padding(
+      padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 8.0),
+      child: Row(
+        children: [
+          Text(
+            "나의 냉장고",
+            style: textTheme.titleMedium,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _freezer(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+      child: RefreginatorContainer(
+        labelStyle: textTheme.titleSmall,
+        itemStyle: textTheme.displayMedium,
+        label: "냉동 보관",
+        children: List.generate(
+          22,
+          (index) => Ingredient(
+              name: "name $index",
+              image: Container(),
+              category: IngredientCategory.drink),
+        ),
+      ),
+    );
+  }
+
+  Widget _fridge(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+      child: RefreginatorContainer(
+          labelStyle: textTheme.titleSmall,
+          itemStyle: textTheme.displayMedium,
+          label: "냉장 보관",
+          rowCount: 3,
           children: List.generate(
-            22,
+            40,
             (index) => Ingredient(
                 name: "name $index",
                 image: Container(),
                 category: IngredientCategory.drink),
-          ),
-        ),
-      );
-
-  Widget _fridge() => Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: RefreginatorContainer(
-            label: "냉장 보관",
-            rowCount: 3,
-            children: List.generate(
-              40,
-              (index) => Ingredient(
-                  name: "name $index",
-                  image: Container(),
-                  category: IngredientCategory.drink),
-            )),
-      );
+          )),
+    );
+  }
 }
