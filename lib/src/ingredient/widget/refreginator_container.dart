@@ -68,7 +68,7 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
 
   @override
   void initState() {
-    _totalPage = widget.children.length ~/ 8 + 1;
+    _totalPage = widget.children.length ~/ (4 * widget.rowCount) + 1;
     _pageController = PageController();
     _tabController = TabController(length: _totalPage, vsync: this);
     _items = convertTo3D(widget.children);
@@ -137,7 +137,7 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
                     const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: List.generate(4, (index) => row[index]),
+                  children: List.generate(row.length, (index) => row[index]),
                 ),
               ),
             ],

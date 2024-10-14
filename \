@@ -1,0 +1,10 @@
+냉장고 뷰 위젯에서 냉장칸에서 총 페이지수보다 초과하게 인디케이터가 표시되는 에러를 해결했습니다.
+
+기존에 8로 하드코딩된 값이 rowCount에 따라서 유동적으로 변경되어 총 페이지 수를 결정하게 됩니다.
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch feature/ingredient
+# Changes to be committed:
+#	modified:   lib/src/ingredient/widget/refreginator_container.dart
+#
