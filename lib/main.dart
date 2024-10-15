@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/ingredient/view/home_view.dart';
+import 'package:yum_application/src/ingredient/view/new_ingredient_view.dart';
 import 'package:yum_application/src/util/app_theme.dart';
 
 void main() {
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: light,
       darkTheme: dark,
-      home: const HomeView(),
+      home: const IngredientAddView(),
     );
   }
 }

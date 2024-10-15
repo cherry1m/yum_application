@@ -11,6 +11,10 @@ ThemeData get light => ThemeData(
             fontSize: 18,
             fontWeight: FontWeight.w600,
             fontFamily: "Pretendard"),
+        displayLarge: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+            fontFamily: "Pretendard"),
         displayMedium: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
