@@ -198,20 +198,6 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(widget.label, style: widget.labelStyle),
-              GestureDetector(
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.onSecondaryContainer,
-                      borderRadius: BorderRadius.circular(100.0)),
-                  width: 50,
-                  height: 22,
-                  child: const Icon(
-                    Icons.add,
-                    size: 20,
-                    color: Color(0xff323232),
-                  ),
-                ),
-              )
             ],
           ),
         ));

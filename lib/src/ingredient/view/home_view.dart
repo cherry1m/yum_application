@@ -9,6 +9,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: _fab(context),
       body: SafeArea(
         top: true,
         bottom: false,
@@ -79,4 +80,14 @@ class HomeView extends StatelessWidget {
           )),
     );
   }
+
+  Widget _fab(BuildContext context) => FloatingActionButton(
+        foregroundColor: const Color(0xffffffff),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
+          size: 32,
+        ),
+      );
 }
