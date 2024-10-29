@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: light,
       darkTheme: dark,
-      home: const IngredientAddView(),
+      home: const HomeView(),
     );
   }
 }
