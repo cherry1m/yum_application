@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/ingredient/model/ingredient.dart';
+import 'package:yum_application/src/ingredient/view/ingredient_add_view.dart';
 
 import 'package:yum_application/src/ingredient/widget/refreginator_container.dart';
 
@@ -84,7 +85,10 @@ class HomeView extends StatelessWidget {
   Widget _fab(BuildContext context) => FloatingActionButton(
         foregroundColor: const Color(0xffffffff),
         backgroundColor: Theme.of(context).colorScheme.primary,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => const IngredientAddView()));
+        },
         child: const Icon(
           Icons.add,
           size: 32,
