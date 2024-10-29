@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yum_application/src/common/basic_bottom_sheet.dart';
 import 'package:yum_application/src/common/date_picker_widget.dart';
 
 class IngredientAddView extends StatefulWidget {
@@ -51,7 +52,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
           _toggle(),
           _description(),
           const Spacer(),
-          _botton(),
+          _button(),
         ],
       ),
     );
@@ -201,20 +202,17 @@ class _IngredientAddViewState extends State<IngredientAddView> {
         ),
       ]);
 
-  Widget _botton() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 40),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Theme.of(context).colorScheme.primary,
-          fixedSize: const Size(390, 48),
+  Widget _button() => Padding(
+        padding: const EdgeInsets.only(top: 24.0, bottom: 40.0),
+        child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.primary),
+          onPressed: () {},
+          child: const Text(
+            "등록하기",
+            style: TextStyle(fontSize: 18, color: Colors.black),
+            textAlign: TextAlign.center,
+          ),
         ),
-        onPressed: () {},
-        child: Text(
-          "선택하기",
-          style: Theme.of(context).textTheme.titleSmall,
-        ),
-      ),
-    );
-  }
+      );
 }
