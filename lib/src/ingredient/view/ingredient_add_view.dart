@@ -23,15 +23,15 @@ class _IngredientAddViewState extends State<IngredientAddView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0))),
         title: Text(
           "새로운 식재료",
           style: Theme.of(context).textTheme.titleMedium,
         ),
         bottom: PreferredSize(
-            preferredSize: Size.fromHeight(250),
-            child: Container(
+            preferredSize: const Size.fromHeight(250),
+            child: SizedBox(
               height: 250,
               child: Center(
                 child: GestureDetector(
@@ -50,8 +50,8 @@ class _IngredientAddViewState extends State<IngredientAddView> {
           // _add(),
           _toggle(),
           _description(),
-          Spacer(),
-          _button(),
+          const Spacer(),
+          _botton(),
         ],
       ),
     );
@@ -70,7 +70,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
               style: ElevatedButton.styleFrom(
                 backgroundColor:
                     Theme.of(context).colorScheme.onPrimaryContainer,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(16.0),
                     bottomRight: Radius.circular(16.0),
@@ -118,7 +118,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
           child: TextField(
             decoration: InputDecoration(
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                  const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               filled: true,
               fillColor: Theme.of(context).colorScheme.onPrimaryContainer,
               border: OutlineInputBorder(
@@ -126,7 +126,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
                 borderSide: BorderSide.none,
               ),
             ),
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
         ),
         Row(
@@ -201,17 +201,20 @@ class _IngredientAddViewState extends State<IngredientAddView> {
         ),
       ]);
 
-  Widget _button() => Padding(
-        padding: const EdgeInsets.only(top: 24.0, bottom: 40.0),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary),
-          onPressed: () {},
-          child: Text(
-            "등록하기",
-            style: TextStyle(fontSize: 18, color: Colors.black),
-            textAlign: TextAlign.center,
-          ),
+  Widget _botton() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 40),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          fixedSize: const Size(390, 48),
         ),
-      );
+        onPressed: () {},
+        child: Text(
+          "선택하기",
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+      ),
+    );
+  }
 }
