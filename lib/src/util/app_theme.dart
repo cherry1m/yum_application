@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 ThemeData get light => ThemeData(
+    useMaterial3: false,
     scaffoldBackgroundColor: const Color(0xffE8EEF2),
     textTheme: const TextTheme(
         titleMedium: TextStyle(
@@ -22,6 +23,7 @@ ThemeData get light => ThemeData(
         onSecondaryContainer: Color(0xffd7d7d7)));
 
 ThemeData get dark => ThemeData(
+    useMaterial3: false,
     textTheme: const TextTheme(
         titleMedium: TextStyle(
             fontSize: 32,
