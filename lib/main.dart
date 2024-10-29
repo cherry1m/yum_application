@@ -16,10 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: light,
       darkTheme: dark,
-      home: const Scaffold(
-        backgroundColor: Colors.black,
-        body: Center(child: HomeView()),
-      ),
+      home: const HomeView(),
     );
   }
 }
