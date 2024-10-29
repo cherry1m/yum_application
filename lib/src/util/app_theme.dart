@@ -58,7 +58,8 @@ ThemeData get dark => ThemeData(
         displayMedium: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w400,
-            fontFamily: "Pretendard"),
+            fontFamily: "Pretendard",
+            color: Color(0xffFFFFFF)),
         labelLarge: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w700,

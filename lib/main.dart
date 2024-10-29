@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:yum_application/src/common/scroll_date_dialog_year.dart';
+import 'package:yum_application/src/common/scroll_date_dialog.dart';
 import 'package:yum_application/src/util/app_theme.dart';
 
 void main() {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       darkTheme: dark,
       home: const Scaffold(
         backgroundColor: Colors.black,
-        body: Center(child: ScrollDateDialogYear()),
+        body: Center(child: ScrollDateDialog()),
       ),
     );
   }

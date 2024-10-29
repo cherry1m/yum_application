@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ScrollDateDialogYear extends StatefulWidget {
-  const ScrollDateDialogYear({super.key});
+class ScrollDateDialog extends StatefulWidget {
+  const ScrollDateDialog({super.key});
 
   @override
-  State<ScrollDateDialogYear> createState() => _ScrollDateDialogYearState();
+  State<ScrollDateDialog> createState() => _ScrollDateDialogState();
 }
 
-class _ScrollDateDialogYearState extends State<ScrollDateDialogYear> {
+class _ScrollDateDialogState extends State<ScrollDateDialog> {
   int selectedYear = DateTime.now().year;
   int selectedMonth = DateTime.now().month;
   int selectedDay = DateTime.now().day;
