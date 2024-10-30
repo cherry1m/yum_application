@@ -17,6 +17,8 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
   int daysInMonth =
       DateTime(DateTime.now().year, DateTime.now().month + 1, 0).day;
 
+  bool selectedButton = true;
+
   int getDaysInMonth(int year, int month) {
     return DateTime(year, month + 1, 0).day;
   }
@@ -55,43 +57,65 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
   }
 
   Widget _header() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 10),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(right: 4),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).colorScheme.tertiary,
-                  minimumSize: const Size(80, 26),
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8))),
-              onPressed: () {},
-              child: Text(
-                "구매날짜",
-                style: Theme.of(context).textTheme.displayMedium,
-              ),
-            ),
-          ),
-          ElevatedButton(
+    return Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
+          child: ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.tertiary,
+              backgroundColor: selectedButton
+                  ? Theme.of(context).colorScheme.tertiary
+                  : Theme.of(context).colorScheme.onPrimaryContainer,
               minimumSize: const Size(80, 26),
               elevation: 0,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(8),
               ),
             ),
-            onPressed: () {},
+            onPressed: () {
+              setState(() {
+                selectedButton = true;
+              });
+            },
             child: Text(
-              "소비기한",
-              style: Theme.of(context).textTheme.displayMedium,
+              "구매날짜",
+              style: selectedButton
+                  ? Theme.of(context).textTheme.displayMedium
+                  : Theme.of(context).textTheme.displayMedium!.copyWith(
+                        color: const Color(0xFFD1C6BB), // Inactive color
+                      ),
             ),
           ),
-        ],
-      ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 4, top: 20, bottom: 10),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: !selectedButton
+                  ? Theme.of(context).colorScheme.tertiary
+                  : Theme.of(context).colorScheme.onPrimaryContainer,
+              minimumSize: const Size(80, 26),
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+            onPressed: () {
+              setState(() {
+                selectedButton = false;
+              });
+            },
+            child: Text(
+              "소비기한",
+              style: !selectedButton
+                  ? Theme.of(context).textTheme.displayMedium
+                  : Theme.of(context).textTheme.displayMedium!.copyWith(
+                        color: const Color(0xFFD1C6BB),
+                      ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 
@@ -229,9 +253,11 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
 
   Widget _bottom() {
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, bottom: 40),
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 40),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
           backgroundColor: Theme.of(context).colorScheme.primary,
           fixedSize: const Size(390, 48),
         ),
