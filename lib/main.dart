@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: light,
       darkTheme: dark,
-      home: const ScrollDateDialog(),
+      home: const HomeView(),
     );
   }
 }
