@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/ingredient/model/ingredient.dart';
 import 'package:yum_application/src/ingredient/view/ingredient_add_view.dart';
@@ -55,9 +57,10 @@ class HomeView extends StatelessWidget {
         children: List.generate(
           22,
           (index) => Ingredient(
-              name: "name $index",
-              image: Container(),
-              category: IngredientCategory.drink),
+              isFreezed: true,
+              name: "재료",
+              category: IngredientCategory
+                  .values[Random().nextInt(IngredientCategory.values.length)]),
         ),
       ),
     );
@@ -75,9 +78,10 @@ class HomeView extends StatelessWidget {
           children: List.generate(
             40,
             (index) => Ingredient(
-                name: "name $index",
-                image: Container(),
-                category: IngredientCategory.drink),
+                isFreezed: false,
+                name: "재료",
+                category: IngredientCategory.values[
+                    Random().nextInt(IngredientCategory.values.length)]),
           )),
     );
   }

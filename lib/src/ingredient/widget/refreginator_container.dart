@@ -90,7 +90,7 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints(maxHeight: widget.rowCount * 130),
+      constraints: BoxConstraints(maxHeight: widget.rowCount * 115),
       width: double.infinity,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
@@ -105,25 +105,29 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
     );
   }
 
-  Widget _displayPageView() => PageView(
-      controller: _pageController,
-      onPageChanged: _handlePageViewChanged,
-      children: List.generate(
-        _items.length,
-        (index) => Padding(
-          padding:
-              const EdgeInsets.only(bottom: 20, top: 20, left: 8, right: 8),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: List.generate(widget.rowCount, (jndex) {
-                final rowItem = _items[index][jndex];
-                return _displayItemRow(rowItem);
-              })),
-        ),
-      ));
+  Widget _displayPageView() => Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10.0),
+        child: PageView(
+            controller: _pageController,
+            onPageChanged: _handlePageViewChanged,
+            children: List.generate(
+              _items.length,
+              (index) => Padding(
+                padding: const EdgeInsets.only(
+                    bottom: 20.0, top: 20.0, left: 8, right: 8),
+                child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: List.generate(widget.rowCount, (jndex) {
+                      final rowItem = _items[index][jndex];
+                      return _displayItemRow(rowItem);
+                    })),
+              ),
+            )),
+      );
 
   Widget _divider() => Container(
-        height: 15,
+        height: 10,
         width: double.infinity,
         decoration: const BoxDecoration(
             border: Border(
@@ -135,36 +139,30 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(12.0))),
       );
 
-  Widget _displayItemRow(List<dynamic> row) => Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Stack(
-          alignment: Alignment.bottomCenter,
-          children: [
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: List.generate(row.length, (index) => row[index]),
-              ),
+  Widget _displayItemRow(List<dynamic> row) => Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: List.generate(row.length, (index) => row[index]),
             ),
-            Align(alignment: Alignment.bottomCenter, child: _divider())
-          ],
-        ),
+          ),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: _divider(),
+              ))
+        ],
       );
 
   Widget _buildItem(Ingredient item) => Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(2.0),
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: 40,
-                height: 40,
-                color: Colors.grey,
-              ),
-            ),
+            Padding(padding: const EdgeInsets.all(2.0), child: item.image),
             Text(item.name)
           ],
         ),
@@ -193,11 +191,11 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
     return Align(
         alignment: Alignment.topLeft,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 4.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(widget.label, style: widget.labelStyle),
+              Text(widget.label, style: Theme.of(context).textTheme.labelLarge),
             ],
           ),
         ));

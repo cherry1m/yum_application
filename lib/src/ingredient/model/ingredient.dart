@@ -1,23 +1,60 @@
-import 'package:flutter/material.dart';
+import 'package:yum_application/src/ingredient/widget/ingredient_image.dart';
 
 class Ingredient {
   final String name;
-  final Widget image;
+  final bool isFreezed;
   final IngredientCategory category;
 
   Ingredient({
     required this.name,
-    required this.image,
     required this.category,
+    required this.isFreezed,
   });
+
+  /// 재료 이미지 getter
+  IngredientImage get image {
+    return IngredientImage(isFreezed: isFreezed, path: category.imagePath);
+  }
 }
 
+// 재료 속성 enum
 enum IngredientCategory {
-  meat,
-  seafood,
-  vegatable,
-  fruit,
-  processedFood,
-  diaryProduct,
-  drink
+  beef,
+  beer,
+  bread,
+  broccoli,
+  cabbage,
+  canned_goods,
+  canned_tuna,
+  cheese,
+  chicken_breast,
+  drink,
+  dumpling,
+  egg,
+  fish,
+  fork,
+  garlic,
+  grape,
+  green_onion,
+  ice_cream,
+  instance_noodle,
+  milk,
+  mushroom,
+  noodle,
+  nut,
+  onion,
+  pepper,
+  potato,
+  processed_meat,
+  rice,
+  seaweed,
+  shrimp,
+  soju,
+  tomato,
+  topu,
+  ;
+
+  String get imagePath {
+    return "assets/images/$name.png";
+  }
 }

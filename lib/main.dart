@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:yum_application/src/common/scroll_date_dialog.dart';
 import 'package:yum_application/src/ingredient/view/home_view.dart';
-import 'package:yum_application/src/ingredient/view/ingredient_add_view.dart';
 import 'package:yum_application/src/util/app_theme.dart';
 
 void main() {
