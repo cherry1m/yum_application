@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/common/date_picker_widget.dart';
+import 'package:yum_application/src/common/scroll_date_dialog.dart';
 import 'package:yum_application/src/ingredient/widget/ingredient_add_bottom_sheet.dart';
 
 class IngredientAddView extends StatefulWidget {
@@ -38,16 +39,13 @@ class _IngredientAddViewState extends State<IngredientAddView> {
                   return GestureDetector(
                     onTap: () {
                       showModalBottomSheet(
-                          shape: RoundedRectangleBorder(
+                          backgroundColor: Colors.red,
+                          shape: const RoundedRectangleBorder(
                               borderRadius: BorderRadius.vertical(
                                   top: Radius.circular(32.0))),
                           context: context,
-                          builder: (context) => Theme(
-                                data: Theme.of(context),
-                                child: Builder(builder: (context) {
-                                  return IngredientAddBottomSheet();
-                                }),
-                              ));
+                          builder: (context) =>
+                              const IngredientAddBottomSheet());
                     },
                     child: Container(
                       width: 50,
@@ -141,7 +139,13 @@ class _IngredientAddViewState extends State<IngredientAddView> {
                     children: [
                       DatePickerWidget(
                         onTap: () {
-                          print("hello!");
+                          showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(32.0))),
+                              context: context,
+                              builder: (context) => const ScrollDateDialog());
                         },
                       ),
                       Padding(
