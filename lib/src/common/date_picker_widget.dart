@@ -15,7 +15,7 @@ class DatePickerWidget extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.onPrimaryContainer,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
