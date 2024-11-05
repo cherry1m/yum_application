@@ -4,6 +4,12 @@ ThemeData get light => ThemeData(
     scaffoldBackgroundColor: const Color(0xffE8EEF2),
     useMaterial3: false,
     textTheme: const TextTheme(
+      bodyLarge: TextStyle(
+        color: Color(0xffFCD5C5),
+        fontFamily: "PartialSansKR",
+        fontSize: 64,
+        fontWeight: FontWeight.w400,
+      ),
       titleMedium: TextStyle(
           fontSize: 32, fontWeight: FontWeight.w700, fontFamily: "Pretendard"),
       titleSmall: TextStyle(
@@ -44,6 +50,12 @@ ThemeData get dark => ThemeData(
     useMaterial3: false,
     scaffoldBackgroundColor: const Color(0xff000000),
     textTheme: const TextTheme(
+        bodyLarge: TextStyle(
+          color: Color(0xfff272727),
+          fontFamily: "PartialSansKR",
+          fontSize: 64,
+          fontWeight: FontWeight.w400,
+        ),
         titleMedium: TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.w700,

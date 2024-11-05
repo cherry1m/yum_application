@@ -4,8 +4,12 @@ import 'package:yum_application/src/common/image_widget.dart';
 class IngredientImage extends StatelessWidget {
   final bool isFreezed;
   final String path;
+  final double width;
   const IngredientImage(
-      {super.key, required this.isFreezed, required this.path});
+      {super.key,
+      required this.isFreezed,
+      required this.path,
+      this.width = 110});
 
   @override
   Widget build(BuildContext context) {
@@ -23,5 +27,8 @@ class IngredientImage extends StatelessWidget {
         ],
       );
 
-  Widget _icon() => ImageWidget(path: path);
+  Widget _icon() => ImageWidget(
+        path: path,
+        width: width,
+      );
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yum_application/src/common/basic_bottom_sheet.dart';
 import 'package:yum_application/src/common/ingredient_tile.dart';
 import 'package:yum_application/src/ingredient/model/ingredient.dart';
+import 'package:yum_application/src/ingredient/viewModel/Ingredient_view_model.dart';
 
 class IngredientAddBottomSheet extends StatefulWidget {
   const IngredientAddBottomSheet({super.key});
@@ -157,8 +159,16 @@ class _IngredientAddBottomSheetState extends State<IngredientAddBottomSheet> {
               mainAxisSpacing: 16.0,
               crossAxisSpacing: 16.0,
               children: ingredients
-                  .map((i) => IngredientTile(
-                        ingredient: i,
+                  .map((i) => GestureDetector(
+                        onTap: () {
+                          Provider.of<IngredientViewModel>(context,
+                                  listen: false)
+                              .selectIngredient(i);
+                          Navigator.of(context).pop();
+                        },
+                        child: IngredientTile(
+                          ingredient: i,
+                        ),
                       ))
                   .toList(),
             ),

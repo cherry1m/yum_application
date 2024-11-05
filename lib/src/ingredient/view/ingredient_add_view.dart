@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yum_application/src/common/date_picker_widget.dart';
 import 'package:yum_application/src/common/scroll_date_dialog.dart';
+import 'package:yum_application/src/ingredient/viewModel/Ingredient_view_model.dart';
 import 'package:yum_application/src/ingredient/widget/ingredient_add_bottom_sheet.dart';
+import 'package:yum_application/src/ingredient/widget/ingredient_image.dart';
 
 class IngredientAddView extends StatefulWidget {
   const IngredientAddView({super.key});
@@ -24,6 +27,13 @@ class _IngredientAddViewState extends State<IngredientAddView> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
         foregroundColor: Theme.of(context).colorScheme.onSecondary,
+        leading: GestureDetector(
+          onTap: Navigator.of(context).pop,
+          child: const Icon(
+            Icons.arrow_back_ios,
+          ),
+        ),
+        elevation: 0.0,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0))),
         title: Text(
@@ -35,24 +45,34 @@ class _IngredientAddViewState extends State<IngredientAddView> {
             child: SizedBox(
               height: 250,
               child: Center(
-                child: Builder(builder: (context) {
-                  return GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                          backgroundColor: Colors.red,
-                          shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.vertical(
-                                  top: Radius.circular(32.0))),
-                          context: context,
-                          builder: (context) =>
-                              const IngredientAddBottomSheet());
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      color: Colors.white,
-                    ),
-                  );
+                child: Consumer<IngredientViewModel>(
+                    builder: (context, provider, child) {
+                  return (provider.selectedIngredient == null)
+                      ? GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                                backgroundColor: Colors.red,
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(32.0))),
+                                context: context,
+                                builder: (context) =>
+                                    const IngredientAddBottomSheet());
+                          },
+                          child: Text("+ 아이콘",
+                              style: Theme.of(context).textTheme.bodyLarge))
+                      : GestureDetector(
+                          onTap: () {
+                            Provider.of<IngredientViewModel>(context,
+                                    listen: false)
+                                .cancel();
+                          },
+                          child: IngredientImage(
+                              width: 300,
+                              isFreezed: provider.selectedIngredient!.isFreezed,
+                              path: provider
+                                  .selectedIngredient!.category.imagePath),
+                        );
                 }),
               ),
             )),
