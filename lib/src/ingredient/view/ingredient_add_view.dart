@@ -14,8 +14,6 @@ class IngredientAddView extends StatefulWidget {
 }
 
 class _IngredientAddViewState extends State<IngredientAddView> {
-  bool _isFreezed = false;
-
   @override
   void initState() {
     super.initState();
@@ -94,19 +92,17 @@ class _IngredientAddViewState extends State<IngredientAddView> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "냉장",
+              "냉동",
               style: Theme.of(context).textTheme.displayMedium,
             ),
-            Switch(
-              value: _isFreezed,
-              onChanged: (bool value) {
-                setState(() {
-                  _isFreezed = !_isFreezed;
-                });
-              },
-              activeColor: Colors.grey,
-              inactiveThumbColor: Colors.grey,
-            )
+            Consumer<IngredientViewModel>(builder: (context, provider, child) {
+              return Switch.adaptive(
+                value: provider.isFreezed,
+                onChanged: provider.toggleIsFreezed,
+                activeColor: Theme.of(context).colorScheme.primary,
+                inactiveThumbColor: Colors.grey,
+              );
+            })
           ],
         ),
       );

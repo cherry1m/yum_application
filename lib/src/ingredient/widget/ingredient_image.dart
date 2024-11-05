@@ -19,11 +19,11 @@ class IngredientImage extends StatelessWidget {
   Widget _freezedIcon() => Stack(
         alignment: Alignment.center,
         children: [
-          const ImageWidget(
+          ImageWidget(
             path: "assets/images/freezed.png",
-            width: 150,
+            width: width + 50,
           ),
-          ImageWidget(path: path),
+          _icon(),
         ],
       );
 
