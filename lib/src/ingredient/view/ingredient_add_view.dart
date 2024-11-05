@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/common/date_picker_widget.dart';
+import 'package:yum_application/src/common/scroll_date_dialog.dart';
+import 'package:yum_application/src/ingredient/widget/ingredient_add_bottom_sheet.dart';
 
 class IngredientAddView extends StatefulWidget {
   const IngredientAddView({super.key});
@@ -11,8 +13,6 @@ class IngredientAddView extends StatefulWidget {
 class _IngredientAddViewState extends State<IngredientAddView> {
   bool _isFreezed = false;
 
-  void showBottomSheet() {}
-
   @override
   void initState() {
     super.initState();
@@ -23,6 +23,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+        foregroundColor: Theme.of(context).colorScheme.onSecondary,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0))),
         title: Text(
@@ -34,20 +35,30 @@ class _IngredientAddViewState extends State<IngredientAddView> {
             child: SizedBox(
               height: 250,
               child: Center(
-                child: GestureDetector(
-                  onTap: showBottomSheet,
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    color: Colors.white,
-                  ),
-                ),
+                child: Builder(builder: (context) {
+                  return GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                          backgroundColor: Colors.red,
+                          shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.vertical(
+                                  top: Radius.circular(32.0))),
+                          context: context,
+                          builder: (context) =>
+                              const IngredientAddBottomSheet());
+                    },
+                    child: Container(
+                      width: 50,
+                      height: 50,
+                      color: Colors.white,
+                    ),
+                  );
+                }),
               ),
             )),
       ),
       body: Column(
         children: [
-          // _add(),
           _toggle(),
           _description(),
           const Spacer(),
@@ -56,32 +67,6 @@ class _IngredientAddViewState extends State<IngredientAddView> {
       ),
     );
   }
-
-  Widget _add() => Expanded(
-        child: Padding(
-          padding: const EdgeInsets.only(bottom: 20.0),
-          child: SizedBox(
-            width: double.infinity,
-            height: 400,
-            child: ElevatedButton(
-              onPressed: () {
-                // IngredientBottomBarView(context);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    Theme.of(context).colorScheme.onPrimaryContainer,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(16.0),
-                    bottomRight: Radius.circular(16.0),
-                  ),
-                ),
-              ),
-              child: null,
-            ),
-          ),
-        ),
-      );
 
   Widget _toggle() => Align(
         alignment: Alignment.bottomRight,
@@ -108,25 +93,31 @@ class _IngredientAddViewState extends State<IngredientAddView> {
 
   Widget _description() =>
       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Text(
-          "재료 이름",
-          style: Theme.of(context).textTheme.displayMedium,
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
+          child: Text(
+            "재료 이름",
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
         ),
-        SizedBox(
-          width: 155,
-          height: 44,
-          child: TextField(
-            decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-              filled: true,
-              fillColor: Theme.of(context).colorScheme.onPrimaryContainer,
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12),
-                borderSide: BorderSide.none,
+        Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: SizedBox(
+            width: 155,
+            height: 44,
+            child: TextField(
+              decoration: InputDecoration(
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                filled: true,
+                fillColor: Theme.of(context).colorScheme.onPrimaryContainer,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
               ),
+              style: const TextStyle(color: Colors.white, fontSize: 16.0),
             ),
-            style: const TextStyle(color: Colors.white),
           ),
         ),
         Row(
@@ -136,19 +127,25 @@ class _IngredientAddViewState extends State<IngredientAddView> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
                   child: Text(
                     "구매 날짜",
                     style: Theme.of(context).textTheme.displayMedium,
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
+                  padding: const EdgeInsets.only(left: 10.0),
                   child: Row(
                     children: [
                       DatePickerWidget(
                         onTap: () {
-                          print("hello!");
+                          showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(32.0))),
+                              context: context,
+                              builder: (context) => const ScrollDateDialog());
                         },
                       ),
                       Padding(
@@ -205,8 +202,13 @@ class _IngredientAddViewState extends State<IngredientAddView> {
         padding: const EdgeInsets.only(top: 24.0, bottom: 40.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.primary),
-          onPressed: () {},
+              fixedSize: Size(MediaQuery.of(context).size.width - 20, 40),
+              backgroundColor: Theme.of(context).colorScheme.primary,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0))),
+          onPressed: () {
+            debugPrint("h");
+          },
           child: const Text(
             "등록하기",
             style: TextStyle(fontSize: 18, color: Colors.black),

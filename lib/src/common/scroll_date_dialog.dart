@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yum_application/src/common/basic_bottom_sheet.dart';
 
 class ScrollDateDialog extends StatefulWidget {
   const ScrollDateDialog({super.key});
@@ -35,23 +36,14 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: Center(
-        child: Container(
-          height: 404,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
-          ),
-          child: Column(
-            children: [
-              _header(),
-              _body(),
-              _bottom(),
-            ],
-          ),
-        ),
+    return BasicBottomSheet(
+      height: 400,
+      child: Column(
+        children: [
+          _header(),
+          _body(),
+          _bottom(),
+        ],
       ),
     );
   }

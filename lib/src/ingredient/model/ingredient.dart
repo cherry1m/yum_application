@@ -4,16 +4,22 @@ class Ingredient {
   final String name;
   final bool isFreezed;
   final IngredientCategory category;
+  bool isFavorite;
 
   Ingredient({
     required this.name,
     required this.category,
     required this.isFreezed,
+    this.isFavorite = false,
   });
 
   /// 재료 이미지 getter
   IngredientImage get image {
     return IngredientImage(isFreezed: isFreezed, path: category.imagePath);
+  }
+
+  void updateIsFavorite() {
+    isFavorite = !isFavorite;
   }
 }
 

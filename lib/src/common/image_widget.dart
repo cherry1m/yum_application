@@ -9,6 +9,9 @@ class ImageWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
         width: width / MediaQuery.of(context).devicePixelRatio,
-        child: Image.asset(path));
+        child: Image.asset(
+          path,
+          fit: BoxFit.cover,
+        ));
   }
 }
