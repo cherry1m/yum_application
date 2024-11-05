@@ -35,7 +35,11 @@ class _IngredientTileState extends State<IngredientTile> {
         children: [
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [widget.ingredient.image, Text(widget.ingredient.name)],
+            children: [
+              widget.ingredient.image,
+              Text(widget.ingredient.name,
+                  style: Theme.of(context).textTheme.displaySmall)
+            ],
           ),
           Positioned(
             top: 2.0,
