@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yum_application/src/ingredient/view/home_view.dart';
+import 'package:yum_application/src/ingredient/viewModel/Ingredient_view_model.dart';
 import 'package:yum_application/src/util/app_theme.dart';
 
 void main() {
@@ -11,10 +13,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: light,
-      darkTheme: dark,
-      home: const HomeView(),
-    );
+    return ChangeNotifierProvider(
+        create: (context) => IngredientViewModel(),
+        builder: (context, child) => MaterialApp(
+              theme: light,
+              darkTheme: dark,
+              home: const HomeView(),
+            ));
   }
 }

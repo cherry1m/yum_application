@@ -2,7 +2,7 @@ import 'package:yum_application/src/ingredient/widget/ingredient_image.dart';
 
 class Ingredient {
   final String name;
-  final bool isFreezed;
+  bool isFreezed;
   final IngredientCategory category;
   bool isFavorite;
 

@@ -7,15 +7,11 @@ class RefreginatorContainer extends StatefulWidget {
   final List<Ingredient> children;
   final int rowCount;
   final String label;
-  final TextStyle? labelStyle;
-  final TextStyle? itemStyle;
   const RefreginatorContainer({
     super.key,
     required this.children,
     this.rowCount = 2,
     required this.label,
-    required this.labelStyle,
-    required this.itemStyle,
   })  : assert(children.length > 0, "children can not be empty array"),
         assert(rowCount >= 2, "rowCount must bigger than two");
 
@@ -162,7 +158,7 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
   Widget _buildItem(Ingredient item) => GestureDetector(
         onTap: () {
           showModalBottomSheet(
-              shape: RoundedRectangleBorder(
+              shape: const RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.vertical(top: Radius.circular(32.0))),
               context: context,
@@ -175,7 +171,12 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
           child: Column(
             children: [
               Padding(padding: const EdgeInsets.all(2.0), child: item.image),
-              Text(item.name)
+              Builder(builder: (context) {
+                return Text(
+                  item.name,
+                  style: Theme.of(context).textTheme.displaySmall,
+                );
+              })
             ],
           ),
         ),
@@ -194,7 +195,9 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
               color: Colors.grey,
             ),
           ),
-          Text("Item", style: widget.itemStyle)
+          const Text(
+            "Item",
+          )
         ],
       ),
     );

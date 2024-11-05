@@ -20,39 +20,35 @@ class HomeView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            _header(context),
-            _freezer(context),
-            _fridge(context),
+            _header(),
+            _freezer(),
+            _fridge(),
           ],
         ),
       ),
     );
   }
 
-  Widget _header(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
+  Widget _header() {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 8.0),
-      child: Row(
-        children: [
-          Text(
-            "나의 냉장고",
-            style: textTheme.headlineLarge,
-          ),
-        ],
-      ),
+      child: Builder(builder: (context) {
+        return Row(
+          children: [
+            Text(
+              "나의 냉장고",
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
+          ],
+        );
+      }),
     );
   }
 
-  Widget _freezer(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-
+  Widget _freezer() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
       child: RefreginatorContainer(
-        labelStyle: textTheme.headlineMedium,
-        itemStyle: textTheme.displaySmall,
         label: "냉동 보관",
         children: List.generate(
           22,
@@ -66,13 +62,10 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget _fridge(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+  Widget _fridge() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
       child: RefreginatorContainer(
-          labelStyle: textTheme.headlineMedium,
-          itemStyle: textTheme.displaySmall,
           label: "냉장 보관",
           rowCount: 3,
           children: List.generate(
