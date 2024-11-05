@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/ingredient/model/ingredient.dart';
+import 'package:yum_application/src/ingredient/widget/ingredient_edit_bottom_sheet.dart';
 import 'package:yum_application/src/ingredient/widget/page_indicator.dart';
 
 class RefreginatorContainer extends StatefulWidget {
@@ -158,13 +159,25 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
         ],
       );
 
-  Widget _buildItem(Ingredient item) => Padding(
-        padding: const EdgeInsets.all(2.0),
-        child: Column(
-          children: [
-            Padding(padding: const EdgeInsets.all(2.0), child: item.image),
-            Text(item.name)
-          ],
+  Widget _buildItem(Ingredient item) => GestureDetector(
+        onTap: () {
+          showModalBottomSheet(
+              shape: RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(32.0))),
+              context: context,
+              builder: (context) => IngredientEditBottomSheet(
+                    ingredient: item,
+                  ));
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: Column(
+            children: [
+              Padding(padding: const EdgeInsets.all(2.0), child: item.image),
+              Text(item.name)
+            ],
+          ),
         ),
       );
 
