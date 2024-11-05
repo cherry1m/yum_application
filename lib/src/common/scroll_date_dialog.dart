@@ -56,7 +56,7 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: selectedButton
-                  ? Theme.of(context).colorScheme.tertiary
+                  ? Theme.of(context).colorScheme.secondary
                   : Theme.of(context).colorScheme.onPrimaryContainer,
               minimumSize: const Size(80, 26),
               elevation: 0,
@@ -72,9 +72,9 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
             child: Text(
               "구매날짜",
               style: selectedButton
-                  ? Theme.of(context).textTheme.displayMedium
-                  : Theme.of(context).textTheme.displayMedium!.copyWith(
-                        color: const Color(0xFFD1C6BB), // Inactive color
+                  ? Theme.of(context).textTheme.bodyMedium
+                  : Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: const Color(0xffA2A2A2),
                       ),
             ),
           ),
@@ -84,7 +84,7 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: !selectedButton
-                  ? Theme.of(context).colorScheme.tertiary
+                  ? Theme.of(context).colorScheme.secondary
                   : Theme.of(context).colorScheme.onPrimaryContainer,
               minimumSize: const Size(80, 26),
               elevation: 0,
@@ -100,9 +100,9 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
             child: Text(
               "소비기한",
               style: !selectedButton
-                  ? Theme.of(context).textTheme.displayMedium
-                  : Theme.of(context).textTheme.displayMedium!.copyWith(
-                        color: const Color(0xFFD1C6BB),
+                  ? Theme.of(context).textTheme.bodyMedium
+                  : Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        color: const Color(0xFFA2A2A2),
                       ),
             ),
           ),
@@ -117,7 +117,7 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
         children: [
           Center(
             child: Container(
-              height: 28.0,
+              height: 42.0,
               color: Theme.of(context).colorScheme.tertiary,
             ),
           ),
@@ -160,7 +160,7 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
                   '${2000 + index}년',
                   style: isSelected
                       ? Theme.of(context).textTheme.labelLarge
-                      : Theme.of(context).textTheme.labelMedium,
+                      : Theme.of(context).textTheme.labelSmall,
                 ),
               );
             },
@@ -197,7 +197,7 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
                   '${index + 1}월',
                   style: isSelected
                       ? Theme.of(context).textTheme.labelLarge
-                      : Theme.of(context).textTheme.labelMedium,
+                      : Theme.of(context).textTheme.labelSmall,
                 ),
               );
             },
@@ -233,7 +233,7 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
                   '${index + 1}일',
                   style: isSelected
                       ? Theme.of(context).textTheme.labelLarge
-                      : Theme.of(context).textTheme.labelMedium,
+                      : Theme.of(context).textTheme.labelSmall,
                 ),
               );
             },
@@ -256,7 +256,7 @@ class _ScrollDateDialogState extends State<ScrollDateDialog> {
         onPressed: () {},
         child: Text(
           "선택하기",
-          style: Theme.of(context).textTheme.titleSmall,
+          style: Theme.of(context).textTheme.labelMedium,
         ),
       ),
     );

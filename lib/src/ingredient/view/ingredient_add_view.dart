@@ -28,7 +28,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0))),
         title: Text(
           "새로운 식재료",
-          style: Theme.of(context).textTheme.titleMedium,
+          style: Theme.of(context).textTheme.headlineLarge,
         ),
         bottom: PreferredSize(
             preferredSize: const Size.fromHeight(250),
@@ -50,7 +50,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
                     child: Container(
                       width: 50,
                       height: 50,
-                      color: Colors.white,
+                      color: Colors.orange,
                     ),
                   );
                 }),
@@ -97,7 +97,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
           padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
           child: Text(
             "재료 이름",
-            style: Theme.of(context).textTheme.displayMedium,
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         Padding(
@@ -130,7 +130,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
                   padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
                   child: Text(
                     "구매 날짜",
-                    style: Theme.of(context).textTheme.displayMedium,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
                 Padding(
@@ -152,7 +152,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
                         padding: const EdgeInsets.symmetric(horizontal: 4.0),
                         child: Text(
                           "~",
-                          style: Theme.of(context).textTheme.titleMedium,
+                          style: Theme.of(context).textTheme.displayLarge,
                         ),
                       ),
                     ],
@@ -167,7 +167,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
                   padding: const EdgeInsets.symmetric(vertical: 4.0),
                   child: Text(
                     "소비기한",
-                    style: Theme.of(context).textTheme.displayMedium,
+                    style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
                 Padding(
@@ -176,7 +176,13 @@ class _IngredientAddViewState extends State<IngredientAddView> {
                     children: [
                       DatePickerWidget(
                         onTap: () {
-                          print("hello!");
+                          showModalBottomSheet(
+                              backgroundColor: Colors.transparent,
+                              shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                      top: Radius.circular(32.0))),
+                              context: context,
+                              builder: (context) => const ScrollDateDialog());
                         },
                       ),
                       Opacity(
@@ -185,7 +191,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
                           padding: const EdgeInsets.symmetric(horizontal: 4.0),
                           child: Text(
                             "~",
-                            style: Theme.of(context).textTheme.titleMedium,
+                            style: Theme.of(context).textTheme.displayMedium,
                           ),
                         ),
                       ),
@@ -209,9 +215,9 @@ class _IngredientAddViewState extends State<IngredientAddView> {
           onPressed: () {
             debugPrint("h");
           },
-          child: const Text(
+          child: Text(
             "등록하기",
-            style: TextStyle(fontSize: 18, color: Colors.black),
+            style: Theme.of(context).textTheme.labelMedium,
             textAlign: TextAlign.center,
           ),
         ),
