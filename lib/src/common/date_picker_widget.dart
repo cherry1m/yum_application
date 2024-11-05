@@ -10,8 +10,8 @@ class DatePickerWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding:
-            EdgeInsets.only(top: 10.0, bottom: 10.0, right: 16.0, left: 48.0),
+        padding: const EdgeInsets.only(
+            top: 10.0, bottom: 10.0, right: 16.0, left: 48.0),
         height: 40,
         decoration: BoxDecoration(
           color: Theme.of(context).colorScheme.onPrimaryContainer,
@@ -22,27 +22,27 @@ class DatePickerWidget extends StatelessWidget {
           children: [
             Text(
               "년",
-              style: Theme.of(context).textTheme.displayMedium,
+              style: Theme.of(context).textTheme.labelSmall,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 12.0),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: VerticalDivider(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
             Text(
               "월",
-              style: Theme.of(context).textTheme.displayMedium,
+              style: Theme.of(context).textTheme.labelSmall,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(vertical: 12.0),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: VerticalDivider(
                 color: Theme.of(context).colorScheme.primary,
               ),
             ),
             Text(
               "일",
-              style: Theme.of(context).textTheme.displayMedium,
+              style: Theme.of(context).textTheme.labelSmall,
             ),
             const Icon(
               Icons.arrow_drop_down,
