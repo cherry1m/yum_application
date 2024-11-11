@@ -129,7 +129,7 @@ ThemeData get dark => ThemeData(
           fontSize: 20,
           fontWeight: FontWeight.w500,
           fontFamily: "Pretendard",
-          color: Color(0xff000000),
+          color: Color(0xffFFFFFF),
         ),
         labelSmall: TextStyle(
           fontSize: 16,
@@ -141,7 +141,7 @@ ThemeData get dark => ThemeData(
           fontSize: 16,
           fontWeight: FontWeight.w400,
           fontFamily: "Pretendard",
-          color: Color(0xff000000),
+          color: Color(0xffFFFFFF),
         )),
     colorScheme: const ColorScheme.dark(
         primary: Color(0xffF5713E),
