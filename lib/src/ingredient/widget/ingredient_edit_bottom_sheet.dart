@@ -22,6 +22,7 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
           children: [
             _top(),
             _middle(),
+            Spacer(),
             _bottom(),
           ],
         ));
@@ -32,71 +33,78 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
         child: Column(children: [
           Text(
             "소비기한이 46 일 남았어요!",
-            style: TextStyle(
-                fontSize: 24, color: Colors.black, fontWeight: FontWeight.w700),
+            style: Theme.of(context).textTheme.labelLarge,
             textAlign: TextAlign.center,
           ),
           Text(
             "2024 년 10 월 12 일 ~ 2024 년 12 월 25 일",
-            style: TextStyle(
-                fontSize: 16,
-                // color: Color(0xfd1c6bb),
-                color: Colors.black,
-                fontWeight: FontWeight.w400),
+            style: Theme.of(context).textTheme.labelSmall,
           )
         ]),
       );
 
-  Widget _middle() => Column(children: [
-        IngredientImage(
+  Widget _middle() => Padding(
+        padding: const EdgeInsets.only(top: 33.0),
+        child: Column(children: [
+          IngredientImage(
             isFreezed: widget.ingredient.isFreezed,
-            path: widget.ingredient.category.imagePath),
-        Text(
-          widget.ingredient.name,
-          style: TextStyle(
-              fontSize: 24, color: Colors.black, fontWeight: FontWeight.w500),
-        )
-      ]);
+            path: widget.ingredient.category.imagePath,
+            width: 350,
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Text(widget.ingredient.name,
+              style: Theme.of(context).textTheme.titleLarge)
+        ]),
+      );
 
   Widget _bottom() {
     final ratio = MediaQuery.of(context).devicePixelRatio;
     final height = 130 / ratio;
     final width = height * (10 / 3);
     return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 40),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24)),
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              fixedSize: Size(width, height),
-            ),
-            onPressed: () {},
-            child: Text(
-              "수정하기",
-              style: Theme.of(context).textTheme.titleSmall,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 4.0),
-            child: ElevatedButton(
+      padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
+      child: SafeArea(
+        bottom: true,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ElevatedButton(
               style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(24)),
-                backgroundColor: Theme.of(context).colorScheme.primary,
+                backgroundColor:
+                    Theme.of(context).colorScheme.onSecondaryContainer,
                 fixedSize: Size(width, height),
               ),
               onPressed: () {},
               child: Text(
-                "삭제하기",
-                style: Theme.of(context).textTheme.titleSmall,
+                "수정하기",
+                style: Theme.of(context).textTheme.titleMedium,
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.only(left: 4.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24)),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                  fixedSize: Size(width, height),
+                ),
+                onPressed: () {},
+                child: Text(
+                  "삭제하기",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: Colors.white),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
