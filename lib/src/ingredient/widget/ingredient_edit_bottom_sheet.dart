@@ -37,7 +37,7 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
             textAlign: TextAlign.center,
           ),
           Text(
-            "2024 년 10 월 12 일 ~ 2024 년 12 월 25 일",
+            "2024년 10월 12일 ~ 2024년 12월 25일",
             style: Theme.of(context).textTheme.labelSmall,
           )
         ]),
