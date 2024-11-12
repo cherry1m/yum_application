@@ -33,7 +33,7 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
         child: Column(children: [
           Text(
             "소비기한이 46 일 남았어요!",
-            style: Theme.of(context).textTheme.labelLarge,
+            style: Theme.of(context).textTheme.titleLarge,
             textAlign: TextAlign.center,
           ),
           Text(
