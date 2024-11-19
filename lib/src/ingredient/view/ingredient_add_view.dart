@@ -5,6 +5,7 @@ import 'package:yum_application/src/common/scroll_date_dialog.dart';
 import 'package:yum_application/src/ingredient/viewModel/Ingredient_view_model.dart';
 import 'package:yum_application/src/ingredient/widget/ingredient_add_bottom_sheet.dart';
 import 'package:yum_application/src/ingredient/widget/ingredient_image.dart';
+import 'package:yum_application/src/ingredient/widget/single_button.dart';
 
 class IngredientAddView extends StatefulWidget {
   const IngredientAddView({super.key});
@@ -220,22 +221,7 @@ class _IngredientAddViewState extends State<IngredientAddView> {
         ),
       ]);
 
-  Widget _button() => Padding(
-        padding: const EdgeInsets.only(top: 24.0, bottom: 40.0),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              fixedSize: Size(MediaQuery.of(context).size.width - 20, 40),
-              backgroundColor: Theme.of(context).colorScheme.primary,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20.0))),
-          onPressed: () {
-            debugPrint("h");
-          },
-          child: Text(
-            "등록하기",
-            style: Theme.of(context).textTheme.labelMedium,
-            textAlign: TextAlign.center,
-          ),
-        ),
-      );
+  Widget _button() => const Padding(
+      padding: EdgeInsets.only(top: 24.0, bottom: 40.0),
+      child: SingleButton(text: "등록하기"));
 }
