@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/ingredient/model/ingredient.dart';
 import 'package:yum_application/src/ingredient/widget/ingredient_edit_bottom_sheet.dart';
@@ -94,7 +96,7 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
       child: Stack(
         children: [
           _header(),
-          _displayPageView(),
+          (widget.children.isNotEmpty) ? _displayPageView() : _emptyPageView(),
           _indicator(),
         ],
       ),
@@ -121,6 +123,35 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
               ),
             )),
       );
+
+  /// 재료가 아예 없는 경우에 빌드되는 위젯
+  /// 재료가 없으면 랜덤한 6개의 문자열 중 하나를 선택해서
+  /// 가운데에 빌드
+  Center _emptyPageView() {
+    // 랜덤 글자
+    final _emptyStatusString = <String>[
+      "꼬르륵",
+      "밥꼭챙",
+      "뭐먹지",
+      "냉파하는 날",
+      "청소하는 날",
+      "밥먹어"
+    ];
+
+    // 글자 중 하나를 선택해서 빌드
+    final _randomString =
+        _emptyStatusString[Random().nextInt(_emptyStatusString.length)];
+    return Center(
+      child: FittedBox(
+        fit: BoxFit.scaleDown,
+        child: Text(
+          _randomString,
+          style: Theme.of(context).textTheme.bodyLarge,
+          overflow: TextOverflow.clip,
+        ),
+      ),
+    );
+  }
 
   Widget _divider() => Container(
         height: 10,
