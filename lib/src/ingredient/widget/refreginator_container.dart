@@ -12,8 +12,7 @@ class RefreginatorContainer extends StatefulWidget {
     required this.children,
     this.rowCount = 2,
     required this.label,
-  })  : assert(children.length > 0, "children can not be empty array"),
-        assert(rowCount >= 2, "rowCount must bigger than two");
+  });
 
   @override
   State<RefreginatorContainer> createState() => _RefreginatorContainerState();
