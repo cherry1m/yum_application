@@ -22,7 +22,7 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
           children: [
             _top(),
             _middle(),
-            Spacer(),
+            const Spacer(),
             _bottom(),
           ],
         ));
@@ -51,7 +51,7 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
             path: widget.ingredient.category.imagePath,
             width: 350,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Text(widget.ingredient.name,
