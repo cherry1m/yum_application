@@ -1,8 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yum_application/src/ingredient/model/ingredient.dart';
 import 'package:yum_application/src/ingredient/view/ingredient_add_view.dart';
+import 'package:yum_application/src/ingredient/viewModel/ingredient_view_model.dart';
 
 import 'package:yum_application/src/ingredient/widget/refreginator_container.dart';
 
@@ -12,7 +14,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: _fab(context),
+      floatingActionButton: _fab(),
       body: SafeArea(
         top: true,
         bottom: false,
@@ -48,47 +50,37 @@ class HomeView extends StatelessWidget {
   Widget _freezer() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: RefreginatorContainer(
-        label: "냉동 보관",
-        children: List.generate(
-          22,
-          (index) => Ingredient(
-              isFreezed: true,
-              name: "재료",
-              category: IngredientCategory
-                  .values[Random().nextInt(IngredientCategory.values.length)]),
-        ),
-      ),
+      child: Consumer<IngredientViewModel>(builder: (context, provider, child) {
+        return RefreginatorContainer(
+            label: "냉동 보관", children: provider.myFreezedIngredients);
+      }),
     );
   }
 
   Widget _fridge() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
-      child: RefreginatorContainer(
-          label: "냉장 보관",
-          rowCount: 3,
-          children: List.generate(
-            40,
-            (index) => Ingredient(
-                isFreezed: false,
-                name: "재료",
-                category: IngredientCategory.values[
-                    Random().nextInt(IngredientCategory.values.length)]),
-          )),
+      child: Consumer<IngredientViewModel>(builder: (context, provider, child) {
+        return RefreginatorContainer(
+            label: "냉장 보관",
+            rowCount: 3,
+            children: provider.myUnfreezedIngredients);
+      }),
     );
   }
 
-  Widget _fab(BuildContext context) => FloatingActionButton(
-        foregroundColor: const Color(0xffffffff),
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        onPressed: () {
-          Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const IngredientAddView()));
-        },
-        child: const Icon(
-          Icons.add,
-          size: 32,
-        ),
-      );
+  Widget _fab() => Builder(builder: (context) {
+        return FloatingActionButton(
+          foregroundColor: const Color(0xffffffff),
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const IngredientAddView()));
+          },
+          child: const Icon(
+            Icons.add,
+            size: 32,
+          ),
+        );
+      });
 }

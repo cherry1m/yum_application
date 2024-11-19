@@ -1,12 +1,14 @@
 import 'package:yum_application/src/ingredient/widget/ingredient_image.dart';
 
 class Ingredient {
+  final int? id;
   final String name;
   bool isFreezed;
   final IngredientCategory category;
   bool isFavorite;
 
   Ingredient({
+    this.id,
     required this.name,
     required this.category,
     required this.isFreezed,
@@ -16,6 +18,15 @@ class Ingredient {
   /// 재료 이미지 getter
   IngredientImage get image {
     return IngredientImage(isFreezed: isFreezed, path: category.imagePath);
+  }
+
+  factory Ingredient.fromJson(Map<String, dynamic> json) {
+    return Ingredient(
+        id: json["id"],
+        name: json["name"],
+        category: json["category"],
+        isFreezed: json["isFreezed"],
+        isFavorite: json["isFavorite"]);
   }
 
   void updateIsFavorite() {
