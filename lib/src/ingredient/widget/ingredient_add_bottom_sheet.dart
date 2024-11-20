@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/common/basic_bottom_sheet.dart';
 import 'package:yum_application/src/common/ingredient_tile.dart';
-import 'package:yum_application/src/ingredient/model/ingredient.dart';
-import 'package:yum_application/src/ingredient/viewModel/Ingredient_view_model.dart';
+import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
+import 'package:yum_application/src/ingredient/viewModel/ingredient_view_model.dart';
 
 class IngredientAddBottomSheet extends StatefulWidget {
   const IngredientAddBottomSheet({super.key});

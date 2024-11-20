@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/ingredient/model/ingredient.dart';
+import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
 import 'package:yum_application/src/ingredient/widget/ingredient_edit_bottom_sheet.dart';
 import 'package:yum_application/src/ingredient/widget/page_indicator.dart';
 
