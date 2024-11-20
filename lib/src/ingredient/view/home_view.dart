@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yum_application/src/ingredient/model/ingredient.dart';
+import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
 import 'package:yum_application/src/ingredient/view/ingredient_add_view.dart';
 import 'package:yum_application/src/ingredient/viewModel/ingredient_view_model.dart';
 

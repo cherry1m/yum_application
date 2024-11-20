@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/common/basic_bottom_sheet.dart';
-import 'package:yum_application/src/ingredient/model/ingredient.dart';
+import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
 import 'package:yum_application/src/ingredient/widget/ingredient_image.dart';
 
 class IngredientEditBottomSheet extends StatefulWidget {

@@ -1,23 +1,19 @@
 import 'package:flutter/foundation.dart';
-import 'package:yum_application/src/ingredient/model/ingredient.dart';
-import 'package:yum_application/src/ingredient/repository/ingredient_repository.dart';
+import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
+import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart';
 
 class IngredientViewModel extends ChangeNotifier {
   final IngredientRepository ingredientRepository;
   List<Ingredient> _myIngredients = List.empty();
 
-  /**
-   * 나의 냉동 재료 getter
-   */
+  /// 나의 냉동 재료 getter
   List<Ingredient> get myFreezedIngredients {
     return _myIngredients
         .where((ingredient) => ingredient.isFreezed == true)
         .toList();
   }
 
-  /**
-   * 나의 냉장 재료 getter
-   */
+  /// 나의 냉장 재료 getter
   List<Ingredient> get myUnfreezedIngredients {
     return _myIngredients
         .where((ingredient) => ingredient.isFreezed == false)
