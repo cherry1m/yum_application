@@ -22,7 +22,7 @@ jobs:
 
       # 의존성 추가
       - name: Install dependencies
-        run: dart pub get
+        run: flutter pub get
 
       # 테스트 수행
       - name: Run tests
