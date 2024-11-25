@@ -10,10 +10,9 @@ import 'remote_datasource_test.mocks.dart';
 @GenerateMocks([http.Client])
 void main() async {
   final apiClient = MockClient();
-  await dotenv.load(fileName: ".env");
-  final baseUrl = dotenv.env["BASE_URL"];
-  final RemoteDatasource remoteDatasource = RemoteDatasource(
-      apiClient: apiClient, baseUrl: "${baseUrl!}/api/ingredients");
+  const baseUrl = String.fromEnvironment("BASE_URL");
+  final RemoteDatasource remoteDatasource =
+      RemoteDatasource(apiClient: apiClient, baseUrl: baseUrl);
   group("Ingredient Remote Datasource Unit Test", () {
     test("http 요청이 성공하면 사용자의 재료 데이터를 반환한다", () async {
       when(apiClient.get(Uri.parse("$baseUrl/api/ingredients")))

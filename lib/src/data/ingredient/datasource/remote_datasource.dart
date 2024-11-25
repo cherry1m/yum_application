@@ -10,7 +10,8 @@ class RemoteDatasource {
 
   /// 나의 냉장고 재료 조회 Api
   Future<List<Map<String, dynamic>>> getMyIngredient() async {
-    return apiClient.get(Uri.parse(baseUrl)).then((response) =>
-        List<Map<String, dynamic>>.from(jsonDecode(response.body)));
+    return apiClient.get(Uri.parse("$baseUrl/api/ingredients")).then(
+        (response) =>
+            List<Map<String, dynamic>>.from(jsonDecode(response.body)));
   }
 }

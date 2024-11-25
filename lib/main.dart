@@ -10,7 +10,7 @@ void main() async {
   final providers = getInitProvider();
   runApp(MultiProvider(
     providers: providers,
-    child: const MyApp(),
+    builder: (context, child) => const MyApp(),
   ));
 }
 

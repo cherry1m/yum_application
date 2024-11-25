@@ -6,13 +6,12 @@ import 'package:yum_application/src/ingredient/viewModel/ingredient_view_model.d
 import 'package:http/http.dart' as http;
 
 List<ChangeNotifierProvider> getInitProvider() {
-  final String? baseUrl = dotenv.env["BASE_URL"];
+  final String baseUrl = dotenv.get("BASE_URL");
   return [
-    ChangeNotifierProvider(
+    ChangeNotifierProvider<IngredientViewModel>(
         create: (context) => IngredientViewModel(
             ingredientRepository: IngredientRepository(
                 remoteDatasource: RemoteDatasource(
-                    apiClient: http.Client(),
-                    baseUrl: "${baseUrl!}/api/ingredients"))))
+                    apiClient: http.Client(), baseUrl: baseUrl))))
   ];
 }
