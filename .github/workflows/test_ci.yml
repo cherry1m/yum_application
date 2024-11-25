@@ -26,4 +26,4 @@ jobs:
 
       # 테스트 수행
       - name: Run tests
-        run: flutter test
+        run: flutter test --dart-define=BASE_URL=${{secrets.API_URL}}

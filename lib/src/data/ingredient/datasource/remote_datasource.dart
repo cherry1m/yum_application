@@ -4,11 +4,9 @@ import 'package:http/http.dart' as http;
 
 class RemoteDatasource {
   final http.Client apiClient;
+  final String baseUrl;
 
-  RemoteDatasource({required this.apiClient});
-
-  final String baseUrl =
-      "http://ec2-43-203-35-91.ap-northeast-2.compute.amazonaws.com:8080/api/ingredients";
+  RemoteDatasource({required this.apiClient, required this.baseUrl});
 
   /// 나의 냉장고 재료 조회 Api
   Future<List<Map<String, dynamic>>> getMyIngredient() async {
