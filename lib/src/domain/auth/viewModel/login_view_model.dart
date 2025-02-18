@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/app/page/app_page.dart';
+import 'package:yum_application/src/domain/app/page/app_page.dart';
 import 'package:yum_application/src/util/global_variable.dart';
 
 class LoginViewModel extends ChangeNotifier {

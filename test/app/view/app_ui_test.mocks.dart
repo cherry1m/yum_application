@@ -14,7 +14,7 @@ import 'package:yum_application/src/data/ingredient/model/ingredient.dart'
     as _i5;
 import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart'
     as _i2;
-import 'package:yum_application/src/ingredient/viewModel/ingredient_view_model.dart'
+import 'package:yum_application/src/domain/ingredient/viewModel/ingredient_view_model.dart'
     as _i3;
 
 // ignore_for_file: type=lint
@@ -104,6 +104,13 @@ class MockIngredientViewModelImpl extends _i1.Mock
         returnValue: <_i5.Ingredient>[],
         returnValueForMissingStub: <_i5.Ingredient>[],
       ) as List<_i5.Ingredient>);
+
+  @override
+  bool get notINF => (super.noSuchMethod(
+        Invocation.getter(#notINF),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
 
   @override
   bool get isFreezed => (super.noSuchMethod(
@@ -208,6 +215,15 @@ class MockIngredientViewModelImpl extends _i1.Mock
   void toggleIsFreezed(bool? value) => super.noSuchMethod(
         Invocation.method(
           #toggleIsFreezed,
+          [value],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void toggleNotInfinity(bool? value) => super.noSuchMethod(
+        Invocation.method(
+          #toggleNotInfinity,
           [value],
         ),
         returnValueForMissingStub: null,

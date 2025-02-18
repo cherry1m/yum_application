@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:yum_application/src/challenge/widget/challenge_check_list.dart';
+import 'package:yum_application/src/domain/challenge/widget/challenge_check_list.dart';
 
 class ChallengeCalendar extends StatelessWidget {
   const ChallengeCalendar({super.key});

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/ingredient/widget/single_button.dart';
-import 'package:yum_application/src/recipe/view/recipe_stepper.dart';
+import 'package:yum_application/src/domain/recipe/view/recipe_stepper.dart';
 
 class StepperView extends StatefulWidget {
   final int initStepperCount;
@@ -41,7 +40,7 @@ class _StepperViewState extends State<StepperView> {
 
   Widget _addButton() {
     return Padding(
-        key: Key("Stepper View Button"),
+        key: const Key("Stepper View Button"),
         padding: const EdgeInsets.only(top: 24.0, bottom: 10.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -51,7 +50,7 @@ class _StepperViewState extends State<StepperView> {
                 borderRadius: BorderRadius.circular(20.0)),
           ),
           onPressed: _generateRecipeStepper,
-          child: Icon(
+          child: const Icon(
             Icons.add,
             size: 30,
             color: Colors.grey,

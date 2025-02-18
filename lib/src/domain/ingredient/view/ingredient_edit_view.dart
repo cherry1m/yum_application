@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:yum_application/src/common/widgets/date_picker_widget.dart';
 import 'package:yum_application/src/common/widgets/scroll_date_dialog.dart';
 import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
-import 'package:yum_application/src/ingredient/viewModel/ingredient_view_model.dart';
-import 'package:yum_application/src/ingredient/widget/select_ingredient_image.dart';
-import 'package:yum_application/src/ingredient/widget/single_button.dart';
+import 'package:yum_application/src/domain/ingredient/viewModel/ingredient_view_model.dart';
+import 'package:yum_application/src/domain/ingredient/widget/select_ingredient_image.dart';
+import 'package:yum_application/src/domain/ingredient/widget/single_button.dart';
 
 class IngredientUpdateView extends StatefulWidget {
   final Ingredient currIngredient;

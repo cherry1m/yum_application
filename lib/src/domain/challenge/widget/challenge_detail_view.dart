@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/common/widgets/image_widget.dart';
-import 'package:yum_application/src/ingredient/widget/single_button.dart';
+import 'package:yum_application/src/domain/ingredient/widget/single_button.dart';
 
 class ChallengeDetailView extends StatelessWidget {
   final String imagePath;

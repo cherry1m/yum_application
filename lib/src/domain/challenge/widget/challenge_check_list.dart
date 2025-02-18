@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/challenge/widget/stack_container.dart';
+import 'package:yum_application/src/domain/challenge/widget/stack_container.dart';
 
 class ChallengeCheckList extends StatelessWidget {
   const ChallengeCheckList({super.key});

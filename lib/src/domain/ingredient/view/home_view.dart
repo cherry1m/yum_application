@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/common/enums/status.dart';
 import 'package:yum_application/src/common/widgets/loading_progress_indicator.dart';
-import 'package:yum_application/src/ingredient/view/ingredient_add_view.dart';
-import 'package:yum_application/src/ingredient/viewModel/ingredient_view_model.dart';
-import 'package:yum_application/src/ingredient/widget/ingredient_filter_check_box.dart';
-
-import 'package:yum_application/src/ingredient/widget/refreginator_container.dart';
+import 'package:yum_application/src/domain/ingredient/view/ingredient_add_view.dart';
+import 'package:yum_application/src/domain/ingredient/viewModel/ingredient_view_model.dart';
+import 'package:yum_application/src/domain/ingredient/widget/ingredient_filter_check_box.dart';
+import 'package:yum_application/src/domain/ingredient/widget/refreginator_container.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

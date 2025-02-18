@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/challenge/widget/challenge_reward_card.dart';
+import 'package:yum_application/src/domain/challenge/widget/challenge_reward_card.dart';
 
 class ChallengeCardScroll extends StatefulWidget {
   const ChallengeCardScroll({super.key});

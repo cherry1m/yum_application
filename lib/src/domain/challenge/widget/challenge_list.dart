@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/challenge/widget/challenge_detail_view.dart';
 import 'package:yum_application/src/common/widgets/image_widget.dart';
-import 'package:yum_application/src/challenge/widget/challenge_row.dart';
+import 'package:yum_application/src/domain/challenge/widget/challenge_detail_view.dart';
+import 'package:yum_application/src/domain/challenge/widget/challenge_row.dart';
 
 class ChallengeList extends StatelessWidget {
   const ChallengeList({super.key});

@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:yum_application/src/common/widgets/basic_bottom_sheet.dart';
 import 'package:yum_application/src/common/widgets/delete_dialog.dart';
 import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
-import 'package:yum_application/src/ingredient/view/ingredient_edit_view.dart';
-import 'package:yum_application/src/ingredient/viewModel/ingredient_view_model.dart';
-import 'package:yum_application/src/ingredient/widget/ingredient_expiration_date_chart.dart';
-import 'package:yum_application/src/ingredient/widget/ingredient_image.dart';
+import 'package:yum_application/src/domain/ingredient/view/ingredient_edit_view.dart';
+import 'package:yum_application/src/domain/ingredient/viewModel/ingredient_view_model.dart';
+import 'package:yum_application/src/domain/ingredient/widget/ingredient_expiration_date_chart.dart';
+import 'package:yum_application/src/domain/ingredient/widget/ingredient_image.dart';
 
 class IngredientEditBottomSheet extends StatefulWidget {
   final Ingredient ingredient;

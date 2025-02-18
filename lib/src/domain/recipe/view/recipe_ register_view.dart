@@ -1,9 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/ingredient/widget/single_button.dart';
-import 'package:yum_application/src/recipe/view/recipe_stepper.dart';
-import 'package:yum_application/src/recipe/view/stepper_view.dart';
-import 'package:yum_application/src/recipe/view/summary_view.dart';
+import 'package:yum_application/src/domain/ingredient/widget/single_button.dart';
+import 'package:yum_application/src/domain/recipe/view/recipe_stepper.dart';
+import 'package:yum_application/src/domain/recipe/view/stepper_view.dart';
+import 'package:yum_application/src/domain/recipe/view/summary_view.dart';
 
 class RecipeRegisterView extends StatefulWidget {
   const RecipeRegisterView({super.key});
@@ -13,7 +12,7 @@ class RecipeRegisterView extends StatefulWidget {
 }
 
 class _RecipeRegisterViewState extends State<RecipeRegisterView> {
-  List<Widget> _steps = List.generate(
+  final List<Widget> _steps = List.generate(
       (2), (index) => RecipeStepper(sequence: index + 1),
       growable: true);
 
@@ -37,12 +36,12 @@ class _RecipeRegisterViewState extends State<RecipeRegisterView> {
       body: SingleChildScrollView(
         child: Column(children: [
           Padding(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: "제목을 입력해 주세요.",
                     border: InputBorder.none,
                     enabledBorder: UnderlineInputBorder(
@@ -73,7 +72,7 @@ class _RecipeRegisterViewState extends State<RecipeRegisterView> {
       );
 
   Widget _buttion() => SingleButton(
-        key: Key("recipe register view button view"),
+        key: const Key("recipe register view button view"),
         text: "등록하기",
         onTap: () {},
       );
