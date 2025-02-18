@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/user/view/my_info_view.dart';
+import 'package:yum_application/src/domain/user/view/my_info_view.dart';
 
 class MyPageView extends StatelessWidget {
   const MyPageView({super.key});

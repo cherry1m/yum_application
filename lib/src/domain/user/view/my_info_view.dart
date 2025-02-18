@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/user/widgets/profile_option_button.dart';
-import 'package:yum_application/src/user/widgets/user_info_edit_button.dart';
+import 'package:yum_application/src/domain/user/widgets/profile_option_button.dart';
+import 'package:yum_application/src/domain/user/widgets/user_info_edit_button.dart';
 
 class MyInfoView extends StatelessWidget {
   const MyInfoView({super.key});

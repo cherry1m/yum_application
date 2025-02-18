@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/auth/view/login_button_view.dart';
-import 'package:yum_application/src/auth/view/login_logo_view.dart';
+import 'package:yum_application/src/domain/auth/view/login_button_view.dart';
+import 'package:yum_application/src/domain/auth/view/login_logo_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});

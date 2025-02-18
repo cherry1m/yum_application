@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yum_application/src/auth/viewModel/login_view_model.dart';
-import 'package:yum_application/src/auth/widget/login_button.dart';
+import 'package:yum_application/src/domain/auth/viewModel/login_view_model.dart';
+import 'package:yum_application/src/domain/auth/widget/login_button.dart';
 import 'package:yum_application/src/common/widgets/image_widget.dart';
 
 /// 로그인 화면에서 다양한 로그인 버튼을 지정합니다.

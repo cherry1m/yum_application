@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/main.dart';
-import 'package:yum_application/src/recipe/view/recipe_%20register_view.dart';
-import 'package:yum_application/src/recipe/view/recipe_detail_view.dart';
+import 'package:yum_application/src/domain/recipe/view/recipe_%20register_view.dart';
+import 'package:yum_application/src/domain/recipe/view/recipe_detail_view.dart';
 
 class RecipeView extends StatelessWidget {
   const RecipeView({super.key});
@@ -70,8 +70,8 @@ class RecipeView extends StatelessWidget {
           child: TextField(
               decoration: InputDecoration(
             hintText: "검색어를 입력해 주세요.",
-            contentPadding:
-                EdgeInsetsDirectional.symmetric(vertical: 10, horizontal: 10),
+            contentPadding: const EdgeInsetsDirectional.symmetric(
+                vertical: 10, horizontal: 10),
             hintStyle: Theme.of(context).textTheme.labelMedium,
             border: InputBorder.none,
             suffixIcon:
