@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: GlobalVariable.naviagatorState,
       theme: light,
-      home: const ReviewWriteView(),
+      home: const AppPage(),
     );
   }
 }
