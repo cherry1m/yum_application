@@ -11,9 +11,12 @@ class OptionView extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            "아이디 찾기",
-            style: theme.textTheme.labelMedium,
+          GestureDetector(
+            onTap: () {},
+            child: Text(
+              "아이디 찾기",
+              style: theme.textTheme.labelMedium,
+            ),
           ),
           const SizedBox(
             width: 40,
@@ -23,9 +26,12 @@ class OptionView extends StatelessWidget {
               color: Color(0xffa2a2a2),
             ),
           ),
-          Text(
-            "비밀번호 찾기",
-            style: theme.textTheme.labelMedium,
+          GestureDetector(
+            onTap: () {},
+            child: Text(
+              "비밀번호 찾기",
+              style: theme.textTheme.labelMedium,
+            ),
           ),
         ],
       ),

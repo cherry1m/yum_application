@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
 import 'package:yum_application/src/ui/ingredient/view/ingredient_add_view.dart';
 import 'package:yum_application/src/ui/recipe/view/recipe_%20register_view.dart';
-import 'package:yum_application/src/core/utils/variable/global_variable.dart';
+import 'package:yum_application/src/core/utils/global_variable.dart';
 
 enum Page { ingredient, recipe, challenge, mypage }
 

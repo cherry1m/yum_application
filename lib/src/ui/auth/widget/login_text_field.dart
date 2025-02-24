@@ -5,22 +5,25 @@ class LoginTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;
   final bool obscureText;
+  final void Function(String) onChanged;
   const LoginTextField(
       {super.key,
       this.keyboardType,
       this.controller,
       this.hintText,
-      this.obscureText = false});
+      this.obscureText = false,
+      required this.onChanged});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return TextFormField(
+    return TextField(
       obscureText: obscureText,
       controller: controller,
       style: const TextStyle(
           color: Color(0xff1f1e1c), fontSize: 16, fontWeight: FontWeight.w400),
       keyboardType: keyboardType,
+      onChanged: onChanged,
       decoration: InputDecoration(
         constraints: BoxConstraints.tight(const Size(350, 48)),
         filled: true,
