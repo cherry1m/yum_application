@@ -4,7 +4,7 @@ import 'package:yum_application/src/ui/common/enums/status.dart';
 import 'package:yum_application/src/ui/ingredient/model/basic_ingredient.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
 import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart';
-import 'package:yum_application/src/core/utils/variable/global_variable.dart';
+import 'package:yum_application/src/core/utils/global_variable.dart';
 
 class RefreginatorIngredientViewModel extends ChangeNotifier {
   final IngredientRepository ingredientRepository;

@@ -41,7 +41,8 @@ class LoginButtonView extends StatelessWidget {
   /// 디자인 가이드가 변경될 수 있기에 직접 TextStyle을 지정하였습니다.
   Widget _googleLoginButton() => Builder(builder: (context) {
         return LoginButton(
-            onTap: context.read<LoginViewModel>().signIn,
+            onTap: () =>
+                context.read<LoginViewModel>().signIn(LoginType.google),
             path: LoginImagePath.google,
             label: "Google로 로그인",
             backgroundColor: const Color(0xffF2F2F2),
@@ -56,7 +57,7 @@ class LoginButtonView extends StatelessWidget {
   /// 디자인 가이드가 변경될 수 있기에 직접 TextStyle을 지정하였습니다.
   Widget _appleLoginButton() => Builder(builder: (context) {
         return LoginButton(
-            onTap: context.read<LoginViewModel>().signIn,
+            onTap: () => context.read<LoginViewModel>().signIn(LoginType.apple),
             path: LoginImagePath.apple,
             label: "Apple로 로그인",
             backgroundColor: const Color(0xff000000),
@@ -71,7 +72,7 @@ class LoginButtonView extends StatelessWidget {
   /// 디자인 가이드가 변경될 수 있기에 직접 TextStyle을 지정하였습니다.
   Widget _kakaoLoginButton() => Builder(builder: (context) {
         return LoginButton(
-            onTap: context.read<LoginViewModel>().signIn,
+            onTap: () => context.read<LoginViewModel>().signIn(LoginType.kakao),
             path: LoginImagePath.kakao,
             label: "카카오로 로그인",
             backgroundColor: const Color(0xffFEE500),
@@ -88,7 +89,7 @@ class LoginButtonView extends StatelessWidget {
   Widget _emailLoginButtion() => Builder(builder: (context) {
         final theme = Theme.of(context);
         return LoginButton(
-            onTap: context.read<LoginViewModel>().signIn,
+            onTap: () => context.read<LoginViewModel>().signIn(LoginType.email),
             path: LoginImagePath.auth,
             label: "이메일로 로그인",
             backgroundColor: theme.colorScheme.primary,

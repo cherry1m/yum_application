@@ -41,9 +41,9 @@ class IngredientTile extends StatelessWidget {
             child: GestureDetector(
                 onTap: onTap,
                 child: (ingredient.isFavorite)
-                    ? const Icon(
+                    ? Icon(
                         Icons.favorite,
-                        color: Color(0xffF5713E),
+                        color: Theme.of(context).colorScheme.secondary,
                       )
                     : Icon(
                         Icons.favorite_outline,

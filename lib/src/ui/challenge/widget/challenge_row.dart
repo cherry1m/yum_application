@@ -4,7 +4,6 @@ import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
 // Challenge List ( 도전하기 )
 // Challenge List를 구성해주는 위젯.
 // 최초 여부도 판단해줌.
-
 class ChallengeRow extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -19,12 +18,10 @@ class ChallengeRow extends StatelessWidget {
     required this.subtitle,
     required this.imagePath,
     required this.onTap,
-    this.isFirst = false, // True이면 앞에 '최초' 컨테이너가 생성.
+    this.isFirst = false,
     super.key,
   });
 
-// 이미지와 title, subtitle, isFrist의 여부를 입력받아 하나의 Challenge Row를 생성.
-// 도전하기에는 5개의 Challenge Row가 존재.
   @override
   Widget build(BuildContext context) {
     return Padding(
