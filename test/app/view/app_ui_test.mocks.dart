@@ -7,14 +7,14 @@ import 'dart:async' as _i6;
 import 'dart:ui' as _i8;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:yum_application/src/common/enums/status.dart' as _i4;
-import 'package:yum_application/src/data/ingredient/model/basic_ingredient.dart'
-    as _i7;
-import 'package:yum_application/src/data/ingredient/model/ingredient.dart'
+import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart'
     as _i5;
 import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart'
     as _i2;
-import 'package:yum_application/src/domain/ingredient/viewModel/ingredient_view_model.dart'
+import 'package:yum_application/src/ui/common/enums/status.dart' as _i4;
+import 'package:yum_application/src/ui/ingredient/model/basic_ingredient.dart'
+    as _i7;
+import 'package:yum_application/src/ui/ingredient/viewModel/ingredient_view_model.dart'
     as _i3;
 
 // ignore_for_file: type=lint
@@ -41,11 +41,11 @@ class _FakeIngredientRepository_0 extends _i1.SmartFake
         );
 }
 
-/// A class which mocks [IngredientViewModelImpl].
+/// A class which mocks [RefreginatorIngredientViewModel].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIngredientViewModelImpl extends _i1.Mock
-    implements _i3.IngredientViewModelImpl {
+class MockRefreginatorIngredientViewModel extends _i1.Mock
+    implements _i3.RefreginatorIngredientViewModel {
   @override
   _i2.IngredientRepository get ingredientRepository => (super.noSuchMethod(
         Invocation.getter(#ingredientRepository),
@@ -92,18 +92,20 @@ class MockIngredientViewModelImpl extends _i1.Mock
       );
 
   @override
-  List<_i5.Ingredient> get myFreezedIngredients => (super.noSuchMethod(
+  List<_i5.RefreginatorIngredient> get myFreezedIngredients =>
+      (super.noSuchMethod(
         Invocation.getter(#myFreezedIngredients),
-        returnValue: <_i5.Ingredient>[],
-        returnValueForMissingStub: <_i5.Ingredient>[],
-      ) as List<_i5.Ingredient>);
+        returnValue: <_i5.RefreginatorIngredient>[],
+        returnValueForMissingStub: <_i5.RefreginatorIngredient>[],
+      ) as List<_i5.RefreginatorIngredient>);
 
   @override
-  List<_i5.Ingredient> get myUnfreezedIngredients => (super.noSuchMethod(
+  List<_i5.RefreginatorIngredient> get myUnfreezedIngredients =>
+      (super.noSuchMethod(
         Invocation.getter(#myUnfreezedIngredients),
-        returnValue: <_i5.Ingredient>[],
-        returnValueForMissingStub: <_i5.Ingredient>[],
-      ) as List<_i5.Ingredient>);
+        returnValue: <_i5.RefreginatorIngredient>[],
+        returnValueForMissingStub: <_i5.RefreginatorIngredient>[],
+      ) as List<_i5.RefreginatorIngredient>);
 
   @override
   bool get notINF => (super.noSuchMethod(
@@ -137,7 +139,7 @@ class MockIngredientViewModelImpl extends _i1.Mock
       ) as _i6.Future<void>);
 
   @override
-  void toggleWarning(bool? value) => super.noSuchMethod(
+  dynamic toggleWarning(bool? value) => super.noSuchMethod(
         Invocation.method(
           #toggleWarning,
           [value],
@@ -175,7 +177,8 @@ class MockIngredientViewModelImpl extends _i1.Mock
       ) as _i6.Future<void>);
 
   @override
-  void deleteIngredient(_i5.Ingredient? ingredient) => super.noSuchMethod(
+  void deleteIngredient(_i5.RefreginatorIngredient? ingredient) =>
+      super.noSuchMethod(
         Invocation.method(
           #deleteIngredient,
           [ingredient],
@@ -193,20 +196,11 @@ class MockIngredientViewModelImpl extends _i1.Mock
       );
 
   @override
-  void selectPrevIngredient(_i5.Ingredient? prevIngredient) =>
+  void selectPrevIngredient(_i5.RefreginatorIngredient? prevIngredient) =>
       super.noSuchMethod(
         Invocation.method(
           #selectPrevIngredient,
           [prevIngredient],
-        ),
-        returnValueForMissingStub: null,
-      );
-
-  @override
-  void cancel() => super.noSuchMethod(
-        Invocation.method(
-          #cancel,
-          [],
         ),
         returnValueForMissingStub: null,
       );
@@ -243,6 +237,15 @@ class MockIngredientViewModelImpl extends _i1.Mock
         Invocation.method(
           #updateEndAt,
           [newEndAt],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
+  void resetSelectIngredient() => super.noSuchMethod(
+        Invocation.method(
+          #resetSelectIngredient,
+          [],
         ),
         returnValueForMissingStub: null,
       );

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yum_application/src/domain/recipe/view/recipe_%20register_view.dart';
-import 'package:yum_application/src/domain/recipe/view/summary_view.dart';
+import 'package:yum_application/src/ui/recipe/view/recipe_%20register_view.dart';
+import 'package:yum_application/src/ui/recipe/view/summary_view.dart';
 
 void main() {
   late final MaterialApp widget;
