@@ -3,6 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:yum_application/src/ui/auth/page/login_page.dart';
 import 'package:yum_application/src/core/utils/theme/app_theme.dart';
 import 'package:yum_application/src/core/utils/variable/global_variable.dart';
+import 'package:yum_application/src/ui/auth/view/email_login_view.dart';
 
 import 'src/core/providers/app/app_provider.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: GlobalVariable.naviagatorState,
       theme: light,
-      home: const LoginPage(),
+      home: const EmailLoginView(),
     );
   }
 }
