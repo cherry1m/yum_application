@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yum_application/src/ui/auth/view/email_login_view.dart';
+import 'package:yum_application/src/ui/auth/page/email_login_page.dart';
 
 void main() {
   late final MaterialApp widget;
@@ -8,7 +8,7 @@ void main() {
   group("Login View UI 테스트", () {
     setUp(() {
       widget = const MaterialApp(
-        home: EmailLoginView(),
+        home: EmailLoginPage(),
       );
     });
 
