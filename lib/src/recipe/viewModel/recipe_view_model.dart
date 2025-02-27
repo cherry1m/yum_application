@@ -1,18 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
+import 'package:yum_application/src/data/recipe/model/recipe.dart';
+import 'package:yum_application/src/data/recipe/repository/recipe_respository.dart';
 
 class RecipeViewModel extends ChangeNotifier {
-  final List<Ingredient> initIngredient;
+  final RecipeRepository recipeRepository;
+  List<Recipe> _recipes = List.empty(growable: true);
 
-  List<Ingredient> _selectedIngredient = List.empty(growable: true);
+  RecipeViewModel({required this.recipeRepository});
 
-  List<Ingredient> get selectedIngredient => _selectedIngredient;
-
-  RecipeViewModel({required this.initIngredient}) {
-    _initSelectedIngredient(initIngredient);
-  }
-
-  void _initSelectedIngredient(List<Ingredient> initIngredient) {
-    _selectedIngredient.addAll(initIngredient);
+  void _fetchData() {
+    // api 요청
   }
 }
