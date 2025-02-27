@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
 import 'package:yum_application/src/data/recipe/model/recipe.dart';
 import 'package:yum_application/src/data/recipe/repository/recipe_respository.dart';
 

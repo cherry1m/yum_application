@@ -1,5 +1,3 @@
-import 'package:yum_application/src/data/ingredient/model/ingredient.dart';
-
 class Ingredient {
   final String name;
   final String ea;

@@ -3,22 +3,23 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart';
-import 'package:yum_application/src/challenge/widget/challenge_list.dart';
-import 'package:yum_application/src/ingredient/viewModel/ingredient_view_model.dart';
+import 'package:yum_application/src/ui/challenge/widget/challenge_list.dart';
+import 'package:yum_application/src/ui/ingredient/viewModel/ingredient_view_model.dart';
 import '../../common/mock_navigator_observer.dart';
 import '../../ingredient/view/home_view_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<IngredientRepository>()])
 void main() {
   late IngredientRepository repository;
-  late IngredientViewModelImpl viewModel;
+  late RefreginatorIngredientViewModel viewModel;
   late Widget challengeListView;
 
   setUp(() {
     repository = MockIngredientRepository();
-    viewModel = IngredientViewModelImpl(ingredientRepository: repository);
+    viewModel =
+        RefreginatorIngredientViewModel(ingredientRepository: repository);
     final observer = MockNavigatorObserver();
-    challengeListView = ChangeNotifierProvider<IngredientViewModelImpl>(
+    challengeListView = ChangeNotifierProvider<RefreginatorIngredientViewModel>(
       create: (_) => viewModel,
       builder: (_, __) => MaterialApp(
         navigatorObservers: [observer],
