@@ -1,7 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yum_application/main.dart';
+import 'package:yum_application/src/data/recipe/model/recipe.dart';
 import 'package:yum_application/src/ui/recipe/view/recipe_%20register_view.dart';
 import 'package:yum_application/src/ui/recipe/view/recipe_detail_view.dart';
+import 'package:yum_application/src/ui/recipe/viewModel/recipe_view_model.dart';
 
 class RecipeView extends StatefulWidget {
   const RecipeView({super.key});
@@ -195,9 +199,12 @@ class _RecipeViewState extends State<RecipeView> {
         );
       });
 
-  Widget _menu() => Builder(builder: (context) {
+  Widget _menu() =>
+      Consumer<RecipeViewModel>(builder: (context, provider, child) {
+        final recipes = provider.recipes;
         return Column(
-          children: List.generate(30, (index) {
+          children: List.generate(recipes.length, (index) {
+            final Recipe recipe = recipes[index];
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
@@ -222,6 +229,13 @@ class _RecipeViewState extends State<RecipeView> {
                           decoration: BoxDecoration(
                               color: const Color((0xFFEEEEEE)),
                               borderRadius: BorderRadius.circular(16)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: CachedNetworkImage(
+                              imageUrl: recipe.imageUrl,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
                       ),
                       Expanded(
@@ -231,16 +245,18 @@ class _RecipeViewState extends State<RecipeView> {
                             Padding(
                               padding: const EdgeInsets.only(top: 20, left: 20),
                               child: Text(
-                                "토마토 스프",
+                                recipe.name,
                                 style:
                                     Theme.of(context).textTheme.headlineSmall,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(top: 10, left: 20),
                               child: Text(
-                                "깨끗이 씻은 토마토는 4~6 등분으로...",
+                                recipe.description,
                                 style: Theme.of(context).textTheme.labelSmall,
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             Row(
@@ -279,23 +295,6 @@ class _RecipeViewState extends State<RecipeView> {
               ),
             );
           }),
-        );
-      });
-
-  Widget _floating() => Builder(builder: (context) {
-        return FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const RecipeRegisterView()));
-          },
-          backgroundColor: const Color(0xffFFB300),
-          child: Image.asset(
-            'assets/images/floating.png',
-            width: 33,
-            height: 28,
-          ),
         );
       });
 

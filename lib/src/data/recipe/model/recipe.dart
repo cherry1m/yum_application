@@ -12,14 +12,14 @@ class Ingredient {
 
 class Steps {
   final String text;
-  final String imageUrl;
+  final String? imageUrl;
 
   Steps({required this.text, required this.imageUrl});
   factory Steps.fromJson(Map<String, dynamic> json) {
-    return Steps(text: json['text'], imageUrl: json['imageUrl']);
+    return Steps(text: json['text'], imageUrl: json['image_url']);
   }
 
-  Map<String, dynamic> toJson() => {'text': text, 'imageUrl': imageUrl};
+  Map<String, dynamic> toJson() => {'text': text, 'image_url': imageUrl};
 }
 
 class Recipe {
@@ -43,16 +43,16 @@ class Recipe {
       required this.steps});
 
   factory Recipe.fromJson(Map<String, dynamic> json) {
-    var ingredientList = json['ingredient'] as List;
-    var stepsList = json['steps'] as List;
+    final ingredientList = List<Map<String, dynamic>>.from(json['ingredients']);
+    final stepsList = List<Map<String, dynamic>>.from(json['steps']);
 
     return Recipe(
         id: json['id'],
-        name: json['name'],
+        name: json['title'],
         description: json['description'],
         amount: json['amount'],
-        cookTime: json['cookTime'],
-        imageUrl: json['imageUrl'],
+        cookTime: json['cook_time'],
+        imageUrl: json['image_url'],
         ingredient:
             ingredientList.map((item) => Ingredient.fromJson(item)).toList(),
         steps: stepsList.map((item) => Steps.fromJson(item)).toList());

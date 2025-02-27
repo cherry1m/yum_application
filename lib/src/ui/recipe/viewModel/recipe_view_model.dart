@@ -6,9 +6,18 @@ class RecipeViewModel extends ChangeNotifier {
   final RecipeRepository recipeRepository;
   List<Recipe> _recipes = List.empty(growable: true);
 
-  RecipeViewModel({required this.recipeRepository});
+  List<Recipe> get recipes => _recipes;
 
-  void _fetchData() {
-    // api 요청
+  RecipeViewModel({required this.recipeRepository}) {
+    _fetchData();
+    print("레시피 뷰모델 생성");
+  }
+
+  void _fetchData() async {
+    final result = await recipeRepository.getAllRecipes();
+    print(result);
+    _recipes.clear();
+    _recipes.addAll(result);
+    notifyListeners();
   }
 }
