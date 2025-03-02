@@ -1,14 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
-import 'package:yum_application/src/data/ingredient/entity/ingredient.dart';
 import 'package:yum_application/src/data/ingredient/entity/ingredient_category.dart';
 
-final class RefreginatorIngredient extends Ingredient with EquatableMixin {
+final class RefreginatorIngredient extends Equatable {
   /// [RefreginatorIngredient]의 식별자입니다.
   ///
   /// id는 사용자가 생성하는 경우에만 null이며,
   /// 서버로부터 불러온 재료는 모두 null이 될 수 없습니다.
   final int? id;
+
+  /// [RefreginatorIngredient]의 재료이름입니다.
+  final String name;
 
   /// [RefreginatorIngredient]의 재료의 냉동 여부입니다.
   ///
@@ -35,7 +37,7 @@ final class RefreginatorIngredient extends Ingredient with EquatableMixin {
   /// 재료 생성 중에 사용되는 생성자입니다.
   RefreginatorIngredient({
     this.id,
-    required super.name,
+    required this.name,
     required this.category,
     required this.isFreezed,
     DateTime? startAt,

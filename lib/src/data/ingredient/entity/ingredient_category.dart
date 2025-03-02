@@ -49,6 +49,11 @@ enum IngredientCategory {
     return IngredientCategory.fromString(json["category"]);
   }
 
+  /// [IngredientCategory]의 직렬화 메소드입니다.
+  Map<String, dynamic> toJson() => {
+        "category": name,
+      };
+
   /// [IngredientCategory]의 String 생성자입니다.
   ///
   /// 사용자는 String 값을 통해서 [IngredientCategory]를 반환할 수 있습니다.
@@ -56,9 +61,4 @@ enum IngredientCategory {
     return IngredientCategory.values
         .firstWhere((category) => category.name == name);
   }
-
-  /// [IngredientCategory]의 직렬화 메소드입니다.
-  Map<String, dynamic> toJson() => {
-        "category": name,
-      };
 }
