@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/auth/view/login_button_view.dart';
 import 'package:yum_application/src/ui/auth/view/login_logo_view.dart';
+import 'package:yum_application/src/ui/auth/viewModel/login_view_model.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -50,7 +52,7 @@ class LoginView extends StatelessWidget {
               GestureDetector(
                 /// 사용자가 위젯을 탭하면
                 /// 회원가입 UI로 이동합니다.
-                onTap: () {},
+                onTap: context.read<LoginViewModel>().moveToSignUp,
                 child: Text(
                   "회원 가입",
                   style: textTheme,
