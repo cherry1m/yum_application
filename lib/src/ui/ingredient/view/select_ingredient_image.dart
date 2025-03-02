@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
-import 'package:yum_application/src/ui/ingredient/viewModel/ingredient_view_model.dart';
+import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_add_bottom_sheet.dart';
 
 /// 사용자가 재료 생성과정에서 선택한 재료를 보여주는 뷰

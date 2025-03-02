@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/ingredient_tile.dart';
 import 'package:yum_application/src/ui/ingredient/model/model.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/basic_ingredient_view_model.dart';
-import 'package:yum_application/src/ui/ingredient/viewModel/ingredient_view_model.dart';
+import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 
 /// 사용자의 재료 그리드 뷰
 ///

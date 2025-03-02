@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/date_picker_widget.dart';
 import 'package:yum_application/src/ui/common/widgets/scroll_date_dialog.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
-import 'package:yum_application/src/ui/ingredient/viewModel/ingredient_view_model.dart';
+import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/view/select_ingredient_image.dart';
 import 'package:yum_application/src/ui/ingredient/widget/single_button.dart';
 

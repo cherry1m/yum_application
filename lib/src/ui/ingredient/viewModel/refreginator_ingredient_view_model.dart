@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:yum_application/src/core/extensions/refreginator_is_warning_extension.dart';
 import 'package:yum_application/src/ui/common/enums/status.dart';
 import 'package:yum_application/src/ui/ingredient/model/basic_ingredient.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
@@ -77,6 +78,8 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
   /// 나의 냉동 재료 getter
   /// [isWarningFilterOn]이 활성화되면 기간이 임박한
   /// 냉동 식재료만을 반환합니다.
+  ///
+  /// [isWarningExtension]을 참조합니다.
   List<RefreginatorIngredient> get myFreezedIngredients {
     return _myIngredients
         .where((ingredient) => ingredient.isFreezed == true)

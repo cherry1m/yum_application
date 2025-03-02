@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:yum_application/src/core/extensions/refreginator_is_warning_extension.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_edit_bottom_sheet.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_image.dart';
@@ -367,6 +368,11 @@ class _AnimatedRefreginatorItemState extends State<AnimatedRefreginatorItem>
   }
 }
 
+/// [RefreginatorItem]은 현재 사용자의 재료를 렌더링합니다.
+/// isWarning은 사용자의 재료의 유통기한 임박기간이며, 3일 이전이나 이미 넘긴 아이템들은
+/// 경고가 우측 상단에 렌더링됩니다.
+///
+/// [IsWarningExtension]을 참조합니다.
 class RefreginatorItem extends StatelessWidget {
   final RefreginatorIngredient item;
 

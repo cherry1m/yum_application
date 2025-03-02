@@ -18,7 +18,7 @@ import 'package:yum_application/src/data/recipe/repository/recipe_respository.da
 import 'package:yum_application/src/ui/common/enums/status.dart' as _i5;
 import 'package:yum_application/src/ui/ingredient/model/basic_ingredient.dart'
     as _i9;
-import 'package:yum_application/src/ui/ingredient/viewModel/ingredient_view_model.dart'
+import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart'
     as _i4;
 import 'package:yum_application/src/ui/recipe/viewModel/recipe_view_model.dart'
     as _i11;
