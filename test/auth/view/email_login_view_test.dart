@@ -8,7 +8,7 @@ void main() {
   late final MaterialApp widget;
 
   group("Login View UI 테스트", () {
-    setUp(() {
+    setUpAll(() {
       widget = const MaterialApp(
         home: EmailLoginPage(),
       );

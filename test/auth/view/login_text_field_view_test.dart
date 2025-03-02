@@ -7,16 +7,15 @@ import 'package:yum_application/src/ui/auth/viewModel/email_login_view_model.dar
 void main() {
   late final MaterialApp widget;
 
-  setUp(() {
-    widget = MaterialApp(
-      home: ChangeNotifierProvider(
-        create: (context) => EmailLoginViewModel(),
-        child: const Scaffold(body: LoginTextFieldView()),
-      ),
-    );
-  });
-
   group("LoginTextFieldView UI Test", () {
+    setUpAll(() {
+      widget = MaterialApp(
+        home: ChangeNotifierProvider(
+          create: (context) => EmailLoginViewModel(),
+          child: const Scaffold(body: LoginTextFieldView()),
+        ),
+      );
+    });
     testWidgets("사용자의 초기 Validation 문구는 비어있다.", (tester) async {
       await tester.pumpWidget(widget);
       // expect(find.byKey(const Key("email-login-view-email-textfield")),
