@@ -27,6 +27,10 @@ extension LoginValidator on String {
     return null;
   }
 
+  /// 사용자의 비밀번호 확인 Validation을 수행합니다.
+  ///
+  /// 전달받은 비밀번호와 입력되는 비밀번호가 다른 경우
+  /// 메시지를 출력합니다. 또한, 입력이 없는 경우에도 메시지가 출력됩니다.
   String? validatePasswordAgain(password) {
     if (isEmpty) {
       return "비밀번호 확인을 입력하세요.";
