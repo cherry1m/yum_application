@@ -18,6 +18,7 @@ class LoginTextFieldView extends StatelessWidget {
         children: [
           // 이메일
           LoginTextField(
+            key: const Key("email-login-view-email-textfield"),
             controller: provider.emailController,
             hintText: "이메일을 입력해주세요",
             keyboardType: TextInputType.emailAddress,
@@ -38,6 +39,7 @@ class LoginTextFieldView extends StatelessWidget {
 
           // 비밀번호
           LoginTextField(
+            key: const Key("email-login-view-password-textfield"),
             controller: provider.passwordController,
             hintText: "비밀번호를 입력해주세요",
             obscureText: true,
