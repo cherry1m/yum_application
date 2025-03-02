@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
-import 'package:yum_application/src/core/utils/login_validator.dart';
+import 'package:yum_application/src/core/extensions/login_validator.dart';
 import 'package:yum_application/src/ui/app/page/app_page.dart';
 
 class EmailLoginViewModel extends ChangeNotifier {
