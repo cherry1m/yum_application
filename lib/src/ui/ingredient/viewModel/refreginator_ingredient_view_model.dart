@@ -21,6 +21,7 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
 
   RefreginatorIngredientViewModel({required this.ingredientRepository}) {
     fetchData();
+    print("재료 뷰모델 생성");
   }
 
   /// 사용자가 자신의 모든 재료를 READ하는 메소드

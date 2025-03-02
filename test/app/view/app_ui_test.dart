@@ -4,18 +4,25 @@ import 'package:mockito/annotations.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/app/page/app_page.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
+import 'package:yum_application/src/ui/recipe/viewModel/recipe_view_model.dart';
 
 import 'app_ui_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<RefreginatorIngredientViewModel>()])
+@GenerateNiceMocks(
+    [MockSpec<RefreginatorIngredientViewModel>(), MockSpec<RecipeViewModel>()])
 void main() {
   late RefreginatorIngredientViewModel ingredientViewModel;
+  late RecipeViewModel recipeViewModel;
   late Widget widget;
   group("App UI Test", () {
     ingredientViewModel = MockRefreginatorIngredientViewModel();
+    recipeViewModel = MockRecipeViewModel();
     setUpAll(() {
-      widget = ChangeNotifierProvider(
-        create: (context) => ingredientViewModel,
+      widget = MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (context) => ingredientViewModel),
+          ChangeNotifierProvider(create: (context) => recipeViewModel)
+        ],
         child: const MaterialApp(home: AppPage()),
       );
     });
