@@ -45,20 +45,20 @@ final class RefreginatorIngredient extends Equatable {
   })  : startAt = startAt ?? DateTime.now(),
         endAt = endAt ?? DateTime.now();
 
-  /// [Ingredient]의 유통기한 임박 관련 bool getter입니다.
-  ///
-  /// 유통기한이 3일 이하로 남은 경우에는 true가 반환됩니다.
-  /// 그렇지 않은 경우에는 false가 반환됩니다.
-  bool get isWarning {
-    final now = DateTime.now();
-    final th = DateTime(now.year, now.month, now.day);
-    final diff = endAt.difference(th).inDays;
-    if (diff <= 3) {
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // /// [Ingredient]의 유통기한 임박 관련 bool getter입니다.
+  // ///
+  // /// 유통기한이 3일 이하로 남은 경우에는 true가 반환됩니다.
+  // /// 그렇지 않은 경우에는 false가 반환됩니다.
+  // bool get isWarning {
+  //   final now = DateTime.now();
+  //   final th = DateTime(now.year, now.month, now.day);
+  //   final diff = endAt.difference(th).inDays;
+  //   if (diff <= 3) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 
   /// [Ingredient]의 Deserializes 메소드입니다.
   ///
