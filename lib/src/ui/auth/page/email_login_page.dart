@@ -11,12 +11,8 @@ class EmailLoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(
-          create: (context) => LoginValidator(),
-        ),
         ChangeNotifierProvider<EmailLoginViewModel>(
-          create: (context) =>
-              EmailLoginViewModel(validator: context.read<LoginValidator>()),
+          create: (context) => EmailLoginViewModel(),
         ),
       ],
       child: const EmailLoginView(),
