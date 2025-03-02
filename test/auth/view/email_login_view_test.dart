@@ -24,9 +24,5 @@ void main() {
       expect(find.byKey(const Key("email-login-view-next-button")),
           findsOneWidget);
     });
-
-    testWidgets("이메일 validation을 통과하지 못하면 validLabel이 렌더링된다.", (tester) async {
-      await tester.pumpWidget(widget);
-    });
   });
 }
