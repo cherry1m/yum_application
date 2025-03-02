@@ -5,21 +5,14 @@ import 'package:yum_application/src/core/extensions/login_validator.dart';
 import 'package:yum_application/src/ui/app/page/app_page.dart';
 
 class EmailLoginViewModel extends ChangeNotifier {
-  final _formKey = GlobalKey<FormState>();
-
-  GlobalKey<FormState> get formKey => _formKey;
-
+  // 이메일
   String email = "";
-
-  late final TextEditingController _emailController = TextEditingController();
-
+  final TextEditingController _emailController = TextEditingController();
   TextEditingController get emailController => _emailController;
 
+  // 비밀번호
   String password = "";
-
-  late final TextEditingController _passwordController =
-      TextEditingController();
-
+  final TextEditingController _passwordController = TextEditingController();
   TextEditingController get passwordController => _passwordController;
 
   // 이메일 검증 결과 메시지

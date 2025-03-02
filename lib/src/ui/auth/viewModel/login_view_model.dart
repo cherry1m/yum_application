@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/ui/app/page/app_page.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
 import 'package:yum_application/src/ui/auth/page/email_login_page.dart';
-import 'package:yum_application/src/ui/auth/view/resister_view.dart';
+import 'package:yum_application/src/ui/auth/page/resister_page.dart';
 
 enum LoginType { google, apple, kakao, email }
 
@@ -26,7 +26,7 @@ class LoginViewModel extends ChangeNotifier {
   }
 
   void moveToSignUp() {
-    moveTo(const ResisterView());
+    moveTo(const ResisterPage());
     notifyListeners();
   }
 

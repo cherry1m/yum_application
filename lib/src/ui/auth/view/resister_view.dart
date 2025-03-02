@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/auth/view/resisiter_logo_view.dart';
-import 'package:yum_application/src/ui/auth/view/resister_email_view.dart';
+import 'package:yum_application/src/ui/auth/view/resister_textfield_view.dart';
+import 'package:yum_application/src/ui/auth/viewModel/resister_view_model.dart';
 import 'package:yum_application/src/ui/auth/widget/next_button.dart';
 
 /// 사용자 회원가입 UI입니다.
@@ -48,5 +50,9 @@ class ResisterView extends StatelessWidget {
 
   Widget _resisterTextFieldView() => const ResisterTextFieldView();
 
-  Widget _button() => const NextButton();
+  Widget _button() => Builder(builder: (context) {
+        return NextButton(
+          onTap: context.read<ResisterViewModel>().moveToNext,
+        );
+      });
 }

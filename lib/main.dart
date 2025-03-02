@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:yum_application/src/ui/auth/model/sign_up.dart';
 import 'package:yum_application/src/ui/auth/page/email_login_page.dart';
 import 'package:yum_application/src/ui/auth/page/login_page.dart';
 import 'package:yum_application/src/core/theme/app_theme.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
+import 'package:yum_application/src/ui/auth/page/resister_complete_page.dart';
 import 'package:yum_application/src/ui/auth/view/email_login_view.dart';
+import 'package:yum_application/src/ui/auth/view/resister_complete_view.dart';
 
 import 'src/core/providers/app/app_provider.dart';
 
@@ -22,9 +25,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      navigatorKey: GlobalVariable.naviagatorState,
-      theme: light,
-      home: const LoginPage(),
-    );
+        navigatorKey: GlobalVariable.naviagatorState,
+        theme: light,
+        home: const LoginPage());
   }
 }
