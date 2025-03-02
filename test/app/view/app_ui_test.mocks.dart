@@ -15,7 +15,7 @@ import 'package:yum_application/src/data/ingredient/repository/ingredient_reposi
 import 'package:yum_application/src/ui/common/enums/status.dart' as _i4;
 import 'package:yum_application/src/ui/ingredient/model/basic_ingredient.dart'
     as _i8;
-import 'package:yum_application/src/ui/ingredient/viewModel/ingredient_view_model.dart'
+import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart'
     as _i3;
 
 // ignore_for_file: type=lint

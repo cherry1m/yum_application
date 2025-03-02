@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart';
 import 'package:yum_application/src/ui/ingredient/model/model.dart';
 import 'package:yum_application/src/ui/ingredient/view/home_view.dart';
-import 'package:yum_application/src/ui/ingredient/viewModel/ingredient_view_model.dart';
+import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_image.dart';
 
 import '../../common/mock_navigator_observer.dart';
