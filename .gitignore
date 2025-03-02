@@ -46,3 +46,6 @@ app.*.map.json
 
 # ignore .env
 .env
+
+# ignore coverage
+/coverage

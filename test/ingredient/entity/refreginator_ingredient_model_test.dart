@@ -23,8 +23,17 @@ void main() {
     test("copy함수를 실행하면 새로운 재료 인스턴스가 갱신된다.", () {
       final ingredient = RefreginatorIngredient(
           name: "egg", category: IngredientCategory.egg, isFreezed: false);
-      final newIngredient = ingredient.copy(startAt: DateTime(2024, 11, 12));
+      final newIngredient = ingredient.copy(
+          name: "beef",
+          category: IngredientCategory.beef,
+          isFreezed: true,
+          startAt: DateTime(2024, 11, 12),
+          endAt: DateTime(2024, 11, 19));
+      expect(newIngredient.name, "beef");
+      expect(newIngredient.category, IngredientCategory.beef);
+      expect(newIngredient.isFreezed, true);
       expect(newIngredient.startAt, DateTime(2024, 11, 12));
+      expect(newIngredient.endAt, DateTime(2024, 11, 19));
     });
 
     test("fromJson() 테스트", () {
@@ -63,6 +72,26 @@ void main() {
         "startAt": "2024-11-12",
         "endAt": "2024-11-17"
       });
+    });
+
+    test("두 재료가 id를 포함하여 모든 속성이 같다면 동일한 냉장고 재료이다.", () {
+      final ingredient1 = RefreginatorIngredient(
+          id: 1,
+          name: "egg",
+          category: IngredientCategory.egg,
+          startAt: DateTime(2024, 11, 12),
+          endAt: DateTime(2024, 11, 19),
+          isFreezed: false);
+
+      final ingredient2 = RefreginatorIngredient(
+          id: 1,
+          name: "egg",
+          category: IngredientCategory.egg,
+          startAt: DateTime(2024, 11, 12),
+          endAt: DateTime(2024, 11, 19),
+          isFreezed: false);
+
+      expect(ingredient1 == ingredient2, true);
     });
   });
 }
