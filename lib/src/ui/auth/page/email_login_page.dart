@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yum_application/src/core/extensions/login_validator.dart';
 import 'package:yum_application/src/ui/auth/view/email_login_view.dart';
 import 'package:yum_application/src/ui/auth/viewModel/email_login_view_model.dart';
 

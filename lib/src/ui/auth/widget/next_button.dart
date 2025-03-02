@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class NextButton extends StatelessWidget {
   final void Function()? onTap;
-  const NextButton({super.key, this.onTap});
+  final String label;
+  const NextButton({super.key, this.onTap, this.label = "다음"});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class NextButton extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16.0),
             color: theme.colorScheme.primary),
-        child: Text("다음", style: theme.textTheme.bodyLarge),
+        child: Text(label, style: theme.textTheme.bodyLarge),
       ),
     );
   }

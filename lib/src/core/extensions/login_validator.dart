@@ -26,4 +26,25 @@ extension LoginValidator on String {
     }
     return null;
   }
+
+  String? validatePasswordAgain(password) {
+    if (isEmpty) {
+      return "비밀번호 확인을 입력하세요.";
+    } else if (password != this) {
+      return "비밀번호가 서로 다릅니다.";
+    }
+    return null;
+  }
+
+  /// 사용자 닉네임 Validation을 수행합니다.
+  ///
+  /// 사용자의 닉네임은 공백이 될 수 없습니다.
+  String? validateNickName() {
+    if (isEmpty) {
+      return "닉네임을 입력하세요.";
+    } else if (RegExp(r'\s').hasMatch(this)) {
+      return "닉네임에 공백은 사용할 수 없습니다.";
+    }
+    return null;
+  }
 }
