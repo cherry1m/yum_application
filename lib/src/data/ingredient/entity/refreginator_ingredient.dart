@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:intl/intl.dart';
+import 'package:yum_application/src/core/extensions/date_format_extension.dart';
 import 'package:yum_application/src/data/ingredient/entity/ingredient_category.dart';
 
 final class RefreginatorIngredient extends Equatable {
@@ -45,21 +45,6 @@ final class RefreginatorIngredient extends Equatable {
   })  : startAt = startAt ?? DateTime.now(),
         endAt = endAt ?? DateTime.now();
 
-  // /// [Ingredient]의 유통기한 임박 관련 bool getter입니다.
-  // ///
-  // /// 유통기한이 3일 이하로 남은 경우에는 true가 반환됩니다.
-  // /// 그렇지 않은 경우에는 false가 반환됩니다.
-  // bool get isWarning {
-  //   final now = DateTime.now();
-  //   final th = DateTime(now.year, now.month, now.day);
-  //   final diff = endAt.difference(th).inDays;
-  //   if (diff <= 3) {
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
-
   /// [Ingredient]의 Deserializes 메소드입니다.
   ///
   /// JSON 데이터를 [Ingredient]로 역직렬화합니다.
@@ -84,8 +69,8 @@ final class RefreginatorIngredient extends Equatable {
         "name": name,
         "isFreezed": isFreezed,
         "category": category.name,
-        "startAt": DateFormat("yyyy-MM-dd").format(startAt),
-        "endAt": DateFormat("yyyy-MM-dd").format(endAt),
+        "startAt": startAt.toyyyyMMdd(),
+        "endAt": endAt.toyyyyMMdd(),
       };
 
   /// [Ingredient]의 copy를 반환하는 메소드입니다.
