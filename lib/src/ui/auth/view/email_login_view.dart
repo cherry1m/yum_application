@@ -18,30 +18,33 @@ class EmailLoginView extends StatelessWidget {
       child: Scaffold(
         backgroundColor: Colors.white,
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // 로그인 로고
-              _loginLogo(),
-              const SizedBox(
-                height: 68,
-              ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // 로그인 로고
+                _loginLogo(),
+                const SizedBox(
+                  height: 68,
+                ),
 
-              // 사용자 계정 정보 입력 필드
-              _loginTextFields(),
-              const SizedBox(
-                height: 39,
-              ),
+                // 사용자 계정 정보 입력 필드
+                _loginTextFields(),
+                const SizedBox(
+                  height: 23,
+                ),
 
-              // 아이디 찾기, 비밀번호 찾기
-              _options(),
-              const SizedBox(
-                height: 58,
-              ),
+                // 아이디 찾기, 비밀번호 찾기
+                _options(),
+                const SizedBox(
+                  height: 74,
+                ),
 
-              // 로그인 버튼
-              _button(),
-            ],
+                // 로그인 버튼
+                _button(),
+              ],
+            ),
           ),
         ),
       ),

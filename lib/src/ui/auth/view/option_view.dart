@@ -10,32 +10,15 @@ class OptionView extends StatelessWidget {
     final theme = Theme.of(context);
     return IntrinsicHeight(
       child: Row(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          // 아이디 찾기
-          GestureDetector(
-            // 아이디 찾기 UI로 이동
-            onTap: () {},
-            child: Text(
-              "아이디 찾기",
-              style: theme.textTheme.labelMedium,
-            ),
-          ),
-          const SizedBox(
-            width: 40,
-            child: VerticalDivider(
-              width: 16,
-              thickness: 1,
-              color: Color(0xffa2a2a2),
-            ),
-          ),
           // 비밀번호 찾기
           GestureDetector(
             // 비밀번호 찾기 UI로 이동
             onTap: () {},
             child: Text(
-              "비밀번호 찾기",
+              "비밀번호 재설정",
               style: theme.textTheme.labelMedium,
             ),
           ),
