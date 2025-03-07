@@ -5,27 +5,40 @@ import 'package:yum_application/src/ui/challenge/widget/challenge_check_list.dar
 // Challenge Storage ( 보관함 )
 // Git의 잔디 심기처럼 이 앱을 사용했던 기록을 기반해 점점 진해지는 컨테이너를 달력 형식으로 보여줌.
 
-class ChallengeCalendar extends StatelessWidget {
+class ChallengeCalendar extends StatefulWidget {
   const ChallengeCalendar({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
-    int daysInMonth = DateTime(now.year, now.month + 1, 0).day;
-    int startWeekday = DateTime(now.year, now.month, 1).weekday % 7;
-    String currentMonth = DateFormat('yyyy년 M월').format(now);
+  State<ChallengeCalendar> createState() => _ChallengeCalendarState();
+}
 
+class _ChallengeCalendarState extends State<ChallengeCalendar> {
+  DateTime _currentDate = DateTime.now();
+
+  // 이전 달로 이동하는 함수
+  void _previousMonth() {
+    setState(() {
+      _currentDate = DateTime(_currentDate.year, _currentDate.month - 1, 1);
+    });
+  }
+
+  // 다음 달로 이동하는 함수
+  void _nextMonth() {
+    setState(() {
+      _currentDate = DateTime(_currentDate.year, _currentDate.month + 1, 1);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    int daysInMonth =
+        DateTime(_currentDate.year, _currentDate.month + 1, 0).day;
+    int startWeekday =
+        DateTime(_currentDate.year, _currentDate.month, 1).weekday % 7;
+    String currentMonth = DateFormat('yyyy년 M월').format(_currentDate);
     List<bool> dayCompletion =
         List.generate(daysInMonth, (index) => index % 2 == 0);
-
-// Figma에 생성된 컨테이너 투명도
-    List<double> opacities = [
-      0.23,
-      0.51,
-      0.96,
-      1.0,
-      0.75,
-    ];
+    List<double> opacities = [0.23, 0.51, 0.96, 1.0, 0.75];
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -41,7 +54,7 @@ class ChallengeCalendar extends StatelessWidget {
               ),
             ),
           ),
-          // 오늘의 챌린지 컨테이너 생성.
+          // 챌린지 달력 컨테이너
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
@@ -52,13 +65,34 @@ class ChallengeCalendar extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                // 월 변경을 위한 네비게이션 바
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 40),
-                  child: Text(
-                    currentMonth,
-                    style: Theme.of(context).textTheme.headlineMedium,
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: Theme.of(context).colorScheme.onTertiary,
+                        ),
+                        onPressed: _previousMonth,
+                      ),
+                      Text(
+                        currentMonth,
+                        style: Theme.of(context).textTheme.headlineMedium,
+                      ),
+                      IconButton(
+                        icon: Icon(
+                          Icons.arrow_forward_ios,
+                          color: Theme.of(context).colorScheme.onTertiary,
+                        ),
+                        onPressed: _nextMonth,
+                      ),
+                    ],
                   ),
                 ),
+                // 캘린더 그리드
                 GridView.builder(
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
@@ -70,6 +104,7 @@ class ChallengeCalendar extends StatelessWidget {
                   ),
                   itemCount: 7 + daysInMonth + startWeekday,
                   itemBuilder: (context, index) {
+                    // 요일 헤더 생성
                     if (index < 7) {
                       List<String> weekdays = [
                         "일",
@@ -80,7 +115,6 @@ class ChallengeCalendar extends StatelessWidget {
                         "금",
                         "토"
                       ];
-                      // 요일을 크기에 맞춰 배치해줌.
                       return Center(
                         child: Text(
                           weekdays[index],
@@ -92,12 +126,14 @@ class ChallengeCalendar extends StatelessWidget {
                       if (dayIndex < 0 || dayIndex >= daysInMonth) {
                         return const SizedBox();
                       }
-                      // 컨테이너의 개수.
                       int day = dayIndex + 1;
-                      bool isToday = (day == now.day);
-
+                      bool isToday =
+                          (_currentDate.year == DateTime.now().year &&
+                              _currentDate.month == DateTime.now().month &&
+                              day == DateTime.now().day);
                       double opacity = opacities[dayIndex % opacities.length];
 
+                      // 날짜별 컨테이너 스타일링
                       return Container(
                         decoration: BoxDecoration(
                           color: isToday
@@ -109,7 +145,6 @@ class ChallengeCalendar extends StatelessWidget {
                                       .withOpacity(opacity)
                                   : Theme.of(context).colorScheme.scrim,
                           borderRadius: BorderRadius.circular(5),
-                          // 현재 날짜를 표시해주는 컨테이너는 배경이 흰색, 테두리 적용, 현재 날짜 보여주기.
                           border: isToday
                               ? Border.all(
                                   color:
@@ -130,9 +165,10 @@ class ChallengeCalendar extends StatelessWidget {
               ],
             ),
           ),
+          // 챌린지 체크리스트 추가
           const Padding(
             padding: EdgeInsets.only(top: 20),
-            child: ChallengeCheckList(), // 잔디 밑 예시 부분.
+            child: ChallengeCheckList(),
           ),
         ],
       ),
