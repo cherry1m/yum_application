@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
-import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
-import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
+import 'package:yum_application/src/ui/ingredient/model/model.dart';
+import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
+import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_add_bottom_sheet.dart';
 
 /// 사용자가 재료 생성과정에서 선택한 재료를 보여주는 뷰
@@ -10,7 +11,7 @@ import 'package:yum_application/src/ui/ingredient/widget/ingredient_add_bottom_s
 /// 선택된 재료의 유무에 따라서 각기 다른 화면을 렌더링함.
 /// 또한, 선택된 재료의 냉동 냉장 토글링 애니메이션을 수행함.
 class SelectIngredientImage extends StatefulWidget {
-  final RefreginatorIngredient? ingredient;
+  final BasicIngredient? ingredient;
   final double width;
   const SelectIngredientImage(
       {super.key, this.width = 110, required this.ingredient});
@@ -46,13 +47,9 @@ class _SelectIngredientImageState extends State<SelectIngredientImage>
 
   @override
   void didUpdateWidget(covariant SelectIngredientImage oldWidget) {
-    /// 이전 위젯과 다른 재료를 선택한 경우에는 애니메이션이 발생하지 않음.
-    if (widget.ingredient == oldWidget.ingredient) {
-      return;
-    }
-
     /// isFreezed의 옵셔널 체이닝을 통해서 null 방지 -> false 부여
-    final isFreezed = widget.ingredient?.isFreezed ?? false;
+    final isFreezed =
+        (context.read<NewRefreginatorIngredientViewModel>().state).isFreezed;
     if (isFreezed) {
       _backgroundAnimationController.forward().then((_) {
         _foregroundAnimationController.forward();
@@ -76,12 +73,12 @@ class _SelectIngredientImageState extends State<SelectIngredientImage>
   ///
   /// 사용자는 선택된 재료에 따라서 각각 다른 액션을 실행할 수 있습니다.
   void onTap() {
-    final viewModel = context.read<RefreginatorIngredientViewModel>();
+    final viewModel = context.read<NewRefreginatorIngredientViewModel>();
 
     /// 선택된 재료가 있는 경우
     if (viewModel.selectedIngredient != null) {
       // 선택된 재료 초기화
-      viewModel.resetSelectIngredient();
+      viewModel.onEvent(UnSelectedNewIngredientEvent());
 
       /// 선택된 재료가 없는 경우
     } else {

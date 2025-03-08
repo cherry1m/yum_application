@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/ingredient_tile.dart';
 import 'package:yum_application/src/ui/ingredient/model/model.dart';
+import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/basic_ingredient_view_model.dart';
+import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 
 /// 사용자의 재료 그리드 뷰
@@ -39,8 +41,9 @@ class IngredientGridView extends StatelessWidget {
                         /// [RefreginatorIngredientViewModel] 에서 해당 재료를 기본 재료로
                         /// 선택하게 됨.
                         context
-                            .read<RefreginatorIngredientViewModel>()
-                            .selectIngredient(i);
+                            .read<NewRefreginatorIngredientViewModel>()
+                            .onEvent(
+                                SelectNewIngredientEvent(selectIngredient: i));
 
                         /// 이후 시트를 닫음.
                         Navigator.of(context).pop();

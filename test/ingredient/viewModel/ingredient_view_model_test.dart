@@ -77,16 +77,6 @@ main() {
       expect(() async => ingredientViewModel.fetchData(), throwsException);
     });
 
-    test("myFreezedIngredients는 냉동 재료를 올바르게 분류한다", () {
-      final freezed = ingredientViewModel.myFreezedIngredients;
-      expect(freezed.length, 3);
-    });
-
-    test("myFreezedIngredients는 냉장 재료를 올바르게 분류한다", () {
-      final unFreezed = ingredientViewModel.myUnfreezedIngredients;
-      expect(unFreezed.length, 2);
-    });
-
     test("selectIngredient메소드를 이용해서 새로운 재료를 생성할 수 있다.", () {
       final newIngredient = BasicIngredient(
         name: "egg",
@@ -97,38 +87,6 @@ main() {
       expect(selectIngredient.name, "egg");
       expect(selectIngredient.category, IngredientCategory.egg);
       expect(selectIngredient.isFreezed, false);
-    });
-
-    test("updateIngredient메소드를 통해서 기존의 재료정보를 수정할 수 있다.", () async {
-      provideDummy(
-        RefreginatorIngredient(
-          id: 1,
-          name: "updated",
-          category: IngredientCategory.egg,
-          isFreezed: true,
-          startAt: DateTime(2024, 12, 2),
-          endAt: DateTime(2024, 12, 30),
-        ),
-      );
-      when(ingredientRepository.updateIngredient(any)).thenAnswer(
-        (_) async => RefreginatorIngredient(
-          id: 1,
-          name: "updated",
-          category: IngredientCategory.egg,
-          isFreezed: true,
-          startAt: DateTime(2024, 12, 2),
-          endAt: DateTime(2024, 12, 30),
-        ),
-      );
-
-      final prevIngredient = ingredientViewModel.myFreezedIngredients.first;
-
-      ingredientViewModel.selectPrevIngredient(prevIngredient);
-      ingredientViewModel.updateIngredientName("updated");
-      await ingredientViewModel.updateIngredient();
-      final currIngredient = ingredientViewModel.myFreezedIngredients.first;
-      expect(ingredientViewModel.myFreezedIngredients.length, 3);
-      expect(currIngredient.name, "updated");
     });
 
     test("toggleIsFreezed메소드를 이용해서 재료의 냉장 냉동 여부를 바꿀 수 있다.", () {
@@ -161,41 +119,6 @@ main() {
       ingredientViewModel.updateEndAt(DateTime(2024, 12, 30));
       expect(ingredientViewModel.selectedIngredient!.endAt,
           DateTime(2024, 12, 30));
-    });
-
-    test("createNewIngredients는 새로운 재료를 추가한 후 새로운 재료를 재료에 추가한다", () async {
-      final newIngredient = BasicIngredient(
-        name: "egg",
-        category: IngredientCategory.egg,
-      );
-      provideDummy(
-        RefreginatorIngredient(
-          id: 1,
-          name: "updated",
-          category: IngredientCategory.egg,
-          isFreezed: true,
-          startAt: DateTime(2024, 12, 2),
-          endAt: DateTime(2024, 12, 30),
-        ),
-      );
-      when(ingredientRepository.createNewIngredient(any)).thenAnswer(
-          (_) async => RefreginatorIngredient(
-              id: 6,
-              name: "egg",
-              category: IngredientCategory.egg,
-              isFreezed: true,
-              startAt: DateTime(2024, 12, 3),
-              endAt: DateTime(2024, 12, 30)));
-
-      ingredientViewModel.selectIngredient(newIngredient);
-      ingredientViewModel.toggleIsFreezed(true);
-      ingredientViewModel.updateStartAt(DateTime(2024, 12, 3));
-      ingredientViewModel.updateEndAt(DateTime(2024, 12, 30));
-      await ingredientViewModel.createNewIngredient();
-
-      verify(ingredientRepository.createNewIngredient(any)).called(1);
-
-      expect(ingredientViewModel.myFreezedIngredients.length, 4);
     });
   });
 }

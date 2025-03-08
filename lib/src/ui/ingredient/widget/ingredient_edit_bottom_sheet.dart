@@ -112,13 +112,13 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
                 fixedSize: Size(width, height),
               ),
               onPressed: () {
-                Provider.of<RefreginatorIngredientViewModel>(context,
-                        listen: false)
-                    .selectPrevIngredient(widget.ingredient);
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => IngredientUpdateView(
-                          currIngredient: widget.ingredient,
-                        )));
+                // Provider.of<RefreginatorIngredientViewModel>(context,
+                //         listen: false)
+                //     .selectPrevIngredient(widget.ingredient);
+                // Navigator.of(context).pushReplacement(MaterialPageRoute(
+                //     builder: (context) => IngredientUpdateView(
+                //           currIngredient: widget.ingredient,
+                //         )));
               },
               child: Text(
                 "수정하기",

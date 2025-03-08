@@ -33,7 +33,7 @@ class _IngredientUpdateViewState extends State<IngredientUpdateView> {
         foregroundColor: Theme.of(context).colorScheme.onSecondary,
         leading: GestureDetector(
           onTap: () {
-            _ingredientViewModel.resetSelectIngredient();
+            // _ingredientViewModel.resetSelectIngredient();
             Navigator.of(context).pop();
           },
           child: const Icon(
@@ -56,10 +56,10 @@ class _IngredientUpdateViewState extends State<IngredientUpdateView> {
                     builder: (context, provider, child) {
                   return GestureDetector(
                     onTap: () {
-                      provider.resetSelectIngredient();
+                      // provider.resetSelectIngredient();
                     },
-                    child: SelectIngredientImage(
-                      ingredient: provider.selectedIngredient,
+                    child: const SelectIngredientImage(
+                      ingredient: null,
                       width: 300,
                     ),
                   );
@@ -72,11 +72,11 @@ class _IngredientUpdateViewState extends State<IngredientUpdateView> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             _toggle(),
-            _description(),
+            // _description(),
           ],
         ),
       ),
-      bottomNavigationBar: _button(),
+      // bottomNavigationBar: _button(),
     );
   }
 
@@ -90,181 +90,181 @@ class _IngredientUpdateViewState extends State<IngredientUpdateView> {
               "냉동",
               style: Theme.of(context).textTheme.bodyMedium,
             ),
-            Consumer<RefreginatorIngredientViewModel>(
-                builder: (context, provider, child) {
-              return Switch.adaptive(
-                value: provider.isFreezed,
-                onChanged: provider.toggleIsFreezed,
-                activeColor: Theme.of(context).colorScheme.secondary,
-                inactiveThumbColor: Colors.grey,
-              );
-            })
+            // Consumer<RefreginatorIngredientViewModel>(
+            //     builder: (context, provider, child) {
+            //   return Switch.adaptive(
+            //     value: provider.isFreezed,
+            //     onChanged: provider.toggleIsFreezed,
+            //     activeColor: Theme.of(context).colorScheme.secondary,
+            //     inactiveThumbColor: Colors.grey,
+            //   );
+            // })
           ],
         ),
       );
 
-  Widget _description() =>
-      Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
-          child: Text(
-            "재료 이름",
-            style: Theme.of(context).textTheme.headlineSmall,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(left: 10.0),
-          child: SizedBox(
-            width: 155,
-            height: 44,
-            child: TextField(
-              onChanged: Provider.of<RefreginatorIngredientViewModel>(context,
-                      listen: false)
-                  .updateIngredientName,
-              decoration: InputDecoration(
-                contentPadding:
-                    const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                filled: true,
-                fillColor: Theme.of(context).colorScheme.onPrimaryContainer,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
-                  child: Text(
-                    "구매 날짜",
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
-                  child: Row(
-                    children: [
-                      Consumer<RefreginatorIngredientViewModel>(
-                          builder: (context, provider, child) {
-                        return DatePickerWidget(
-                          time: provider.selectedIngredient?.startAt,
-                          onTap: () {
-                            showModalBottomSheet(
-                                isDismissible: false,
-                                backgroundColor: Colors.transparent,
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(32.0))),
-                                context: context,
-                                builder: (context) => ScrollDateDialog(
-                                      onStartAtComp:
-                                          _ingredientViewModel.updateStartAt,
-                                      onEndAtComp:
-                                          _ingredientViewModel.updateEndAt,
-                                    ));
-                          },
-                        );
-                      }),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Text(
-                          "~",
-                          style: Theme.of(context).textTheme.headlineMedium,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Builder(
-                  builder: (context) {
-                    return SizedBox(
-                      height: 30,
-                      child: Row(
-                        children: [
-                          Text(
-                            "소비기한",
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          ),
-                          Consumer<RefreginatorIngredientViewModel>(
-                            builder: (context, provider, child) {
-                              return Switch(
-                                // value: false,
-                                value: provider.notINF &&
-                                    provider.selectedIngredient != null,
-                                onChanged: provider.toggleNotInfinity,
-                                activeColor:
-                                    Theme.of(context).colorScheme.secondary,
-                                inactiveThumbColor: Colors.grey,
-                              );
-                            },
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                  child: Row(
-                    children: [
-                      Consumer<RefreginatorIngredientViewModel>(
-                          builder: (context, provider, child) {
-                        // if (provider.notInfinity) {
-                        return DatePickerWidget(
-                          time: provider.selectedIngredient?.endAt,
-                          notINF: provider.notINF,
-                          onTap: () {
-                            showModalBottomSheet(
-                              isDismissible: false,
-                              backgroundColor: Colors.transparent,
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(32.0))),
-                              context: context,
-                              builder: (context) => ScrollDateDialog(
-                                  initialStatus: false,
-                                  onStartAtComp: provider.updateStartAt,
-                                  onEndAtComp: provider.updateEndAt),
-                            );
-                          },
-                        );
-                      }),
-                      Opacity(
-                        opacity: 0.0,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                          child: Text(
-                            "~",
-                            style: Theme.of(context).textTheme.headlineSmall,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ]);
+  // Widget _description() =>
+  //     Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+  //       Padding(
+  //         padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
+  //         child: Text(
+  //           "재료 이름",
+  //           style: Theme.of(context).textTheme.headlineSmall,
+  //         ),
+  //       ),
+  //       Padding(
+  //         padding: const EdgeInsets.only(left: 10.0),
+  //         child: SizedBox(
+  //           width: 155,
+  //           height: 44,
+  //           child: TextField(
+  //             onChanged: Provider.of<RefreginatorIngredientViewModel>(context,
+  //                     listen: false)
+  //                 .updateIngredientName,
+  //             decoration: InputDecoration(
+  //               contentPadding:
+  //                   const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+  //               filled: true,
+  //               fillColor: Theme.of(context).colorScheme.onPrimaryContainer,
+  //               border: OutlineInputBorder(
+  //                 borderRadius: BorderRadius.circular(12),
+  //                 borderSide: BorderSide.none,
+  //               ),
+  //             ),
+  //             style: Theme.of(context).textTheme.bodyMedium,
+  //           ),
+  //         ),
+  //       ),
+  //       Row(
+  //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  //         children: [
+  //           Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             children: [
+  //               Padding(
+  //                 padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
+  //                 child: Text(
+  //                   "구매 날짜",
+  //                   style: Theme.of(context).textTheme.headlineSmall,
+  //                 ),
+  //               ),
+  //               Padding(
+  //                 padding: const EdgeInsets.only(left: 10.0),
+  //                 child: Row(
+  //                   children: [
+  //                     Consumer<RefreginatorIngredientViewModel>(
+  //                         builder: (context, provider, child) {
+  //                       return DatePickerWidget(
+  //                         time: provider.selectedIngredient?.startAt,
+  //                         onTap: () {
+  //                           showModalBottomSheet(
+  //                               isDismissible: false,
+  //                               backgroundColor: Colors.transparent,
+  //                               shape: const RoundedRectangleBorder(
+  //                                   borderRadius: BorderRadius.vertical(
+  //                                       top: Radius.circular(32.0))),
+  //                               context: context,
+  //                               builder: (context) => ScrollDateDialog(
+  //                                     onStartAtComp:
+  //                                         _ingredientViewModel.updateStartAt,
+  //                                     onEndAtComp:
+  //                                         _ingredientViewModel.updateEndAt,
+  //                                   ));
+  //                         },
+  //                       );
+  //                     }),
+  //                     Padding(
+  //                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
+  //                       child: Text(
+  //                         "~",
+  //                         style: Theme.of(context).textTheme.headlineMedium,
+  //                       ),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //           Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             children: [
+  //               Builder(
+  //                 builder: (context) {
+  //                   return SizedBox(
+  //                     height: 30,
+  //                     child: Row(
+  //                       children: [
+  //                         Text(
+  //                           "소비기한",
+  //                           style: Theme.of(context).textTheme.headlineSmall,
+  //                         ),
+  //                         Consumer<RefreginatorIngredientViewModel>(
+  //                           builder: (context, provider, child) {
+  //                             return Switch(
+  //                               // value: false,
+  //                               value: provider.notINF &&
+  //                                   provider.selectedIngredient != null,
+  //                               onChanged: provider.toggleNotInfinity,
+  //                               activeColor:
+  //                                   Theme.of(context).colorScheme.secondary,
+  //                               inactiveThumbColor: Colors.grey,
+  //                             );
+  //                           },
+  //                         ),
+  //                       ],
+  //                     ),
+  //                   );
+  //                 },
+  //               ),
+  //               Padding(
+  //                 padding: const EdgeInsets.symmetric(vertical: 4.0),
+  //                 child: Row(
+  //                   children: [
+  //                     Consumer<RefreginatorIngredientViewModel>(
+  //                         builder: (context, provider, child) {
+  //                       // if (provider.notInfinity) {
+  //                       return DatePickerWidget(
+  //                         time: provider.selectedIngredient?.endAt,
+  //                         notINF: provider.notINF,
+  //                         onTap: () {
+  //                           showModalBottomSheet(
+  //                             isDismissible: false,
+  //                             backgroundColor: Colors.transparent,
+  //                             shape: const RoundedRectangleBorder(
+  //                                 borderRadius: BorderRadius.vertical(
+  //                                     top: Radius.circular(32.0))),
+  //                             context: context,
+  //                             builder: (context) => ScrollDateDialog(
+  //                                 initialStatus: false,
+  //                                 onStartAtComp: provider.updateStartAt,
+  //                                 onEndAtComp: provider.updateEndAt),
+  //                           );
+  //                         },
+  //                       );
+  //                     }),
+  //                     Opacity(
+  //                       opacity: 0.0,
+  //                       child: Padding(
+  //                         padding: const EdgeInsets.symmetric(horizontal: 4.0),
+  //                         child: Text(
+  //                           "~",
+  //                           style: Theme.of(context).textTheme.headlineSmall,
+  //                         ),
+  //                       ),
+  //                     ),
+  //                   ],
+  //                 ),
+  //               ),
+  //             ],
+  //           ),
+  //         ],
+  //       ),
+  //     ]);
 
-  Widget _button() => Padding(
-      padding: const EdgeInsets.only(top: 24.0, bottom: 40.0),
-      child: SingleButton(
-        text: "등록하기",
-        onTap: _ingredientViewModel.updateIngredient,
-      ));
+  // Widget _button() => Padding(
+  //     padding: const EdgeInsets.only(top: 24.0, bottom: 40.0),
+  //     child: SingleButton(
+  //       text: "등록하기",
+  //       onTap: _ingredientViewModel.updateIngredient,
+  //     ));
 }
