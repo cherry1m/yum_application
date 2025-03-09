@@ -6,7 +6,7 @@ import 'package:yum_application/src/data/ingredient/repository/ingredient_reposi
 import 'package:yum_application/src/ui/challenge/widget/challenge_list.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import '../../common/mock_navigator_observer.dart';
-import '../../ingredient/view/home_view_test.mocks.dart';
+import 'challenge_list_view_test.mocks.dart';
 
 @GenerateNiceMocks([MockSpec<IngredientRepository>()])
 void main() {
