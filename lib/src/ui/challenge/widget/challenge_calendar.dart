@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:yum_application/src/ui/challenge/widget/challenge_check_list.dart';
 
-// Challenge Storage ( 보관함 )
-// Git의 잔디 심기처럼 이 앱을 사용했던 기록을 기반해 점점 진해지는 컨테이너를 달력 형식으로 보여줌.
-
 class ChallengeCalendar extends StatefulWidget {
   const ChallengeCalendar({super.key});
 
@@ -14,18 +11,28 @@ class ChallengeCalendar extends StatefulWidget {
 
 class _ChallengeCalendarState extends State<ChallengeCalendar> {
   DateTime _currentDate = DateTime.now();
+  DateTime _selectedDate = DateTime.now();
+  bool _isDateSelected = false;
 
-  // 이전 달로 이동하는 함수
   void _previousMonth() {
     setState(() {
       _currentDate = DateTime(_currentDate.year, _currentDate.month - 1, 1);
     });
   }
 
-  // 다음 달로 이동하는 함수
   void _nextMonth() {
+    if (_currentDate.month < DateTime.now().month ||
+        _currentDate.year < DateTime.now().year) {
+      setState(() {
+        _currentDate = DateTime(_currentDate.year, _currentDate.month + 1, 1);
+      });
+    }
+  }
+
+  void _selectDate(int day) {
     setState(() {
-      _currentDate = DateTime(_currentDate.year, _currentDate.month + 1, 1);
+      _selectedDate = DateTime(_currentDate.year, _currentDate.month, day);
+      _isDateSelected = true;
     });
   }
 
@@ -54,7 +61,6 @@ class _ChallengeCalendarState extends State<ChallengeCalendar> {
               ),
             ),
           ),
-          // 챌린지 달력 컨테이너
           Container(
             width: double.infinity,
             padding: const EdgeInsets.all(16),
@@ -65,12 +71,12 @@ class _ChallengeCalendarState extends State<ChallengeCalendar> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // 월 변경을 위한 네비게이션 바
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      // 왼쪽 아이콘 버튼
                       IconButton(
                         icon: Icon(
                           Icons.arrow_back_ios,
@@ -78,21 +84,31 @@ class _ChallengeCalendarState extends State<ChallengeCalendar> {
                         ),
                         onPressed: _previousMonth,
                       ),
+
+                      // 중앙 텍스트
                       Text(
                         currentMonth,
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
-                      IconButton(
-                        icon: Icon(
-                          Icons.arrow_forward_ios,
-                          color: Theme.of(context).colorScheme.onTertiary,
-                        ),
-                        onPressed: _nextMonth,
-                      ),
+
+                      // 오른쪽 버튼: 현재 월일 때는 Container로 변경
+                      _currentDate.month < DateTime.now().month ||
+                              _currentDate.year < DateTime.now().year
+                          ? IconButton(
+                              icon: Icon(
+                                Icons.arrow_forward_ios,
+                                color: Theme.of(context).colorScheme.onTertiary,
+                              ),
+                              onPressed: _nextMonth,
+                            )
+                          : const SizedBox(
+                              // 오른쪽 버튼을 컨테이너로 대체
+                              width: 48, // 적당한 너비 지정
+                              height: 48, // 적당한 높이 지정
+                            ),
                     ],
                   ),
                 ),
-                // 캘린더 그리드
                 GridView.builder(
                   padding: EdgeInsets.zero,
                   shrinkWrap: true,
@@ -104,7 +120,6 @@ class _ChallengeCalendarState extends State<ChallengeCalendar> {
                   ),
                   itemCount: 7 + daysInMonth + startWeekday,
                   itemBuilder: (context, index) {
-                    // 요일 헤더 생성
                     if (index < 7) {
                       List<String> weekdays = [
                         "일",
@@ -127,37 +142,38 @@ class _ChallengeCalendarState extends State<ChallengeCalendar> {
                         return const SizedBox();
                       }
                       int day = dayIndex + 1;
-                      bool isToday =
-                          (_currentDate.year == DateTime.now().year &&
-                              _currentDate.month == DateTime.now().month &&
-                              day == DateTime.now().day);
+                      bool isSelected = _selectedDate.day == day &&
+                          _selectedDate.month == _currentDate.month;
                       double opacity = opacities[dayIndex % opacities.length];
 
-                      // 날짜별 컨테이너 스타일링
-                      return Container(
-                        decoration: BoxDecoration(
-                          color: isToday
-                              ? Theme.of(context).colorScheme.onPrimaryContainer
-                              : dayCompletion[dayIndex]
-                                  ? Theme.of(context)
-                                      .colorScheme
-                                      .secondary
-                                      .withOpacity(opacity)
-                                  : Theme.of(context).colorScheme.scrim,
-                          borderRadius: BorderRadius.circular(5),
-                          border: isToday
-                              ? Border.all(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary,
-                                  width: 2,
+                      return GestureDetector(
+                        onTap: () => _selectDate(day),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: isSelected
+                                ? Colors.white
+                                : dayCompletion[dayIndex]
+                                    ? Theme.of(context)
+                                        .colorScheme
+                                        .secondary
+                                        .withOpacity(opacity)
+                                    : Theme.of(context).colorScheme.scrim,
+                            borderRadius: BorderRadius.circular(5),
+                            border: isSelected
+                                ? Border.all(
+                                    color: Colors.orange,
+                                    width: 2,
+                                  )
+                                : null,
+                          ),
+                          alignment: Alignment.center,
+                          child: isSelected
+                              ? Text(
+                                  "$day",
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 )
                               : null,
                         ),
-                        alignment: Alignment.center,
-                        child: isToday
-                            ? Text("$day",
-                                style: Theme.of(context).textTheme.bodyMedium)
-                            : null,
                       );
                     }
                   },
@@ -165,11 +181,11 @@ class _ChallengeCalendarState extends State<ChallengeCalendar> {
               ],
             ),
           ),
-          // 챌린지 체크리스트 추가
-          const Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: ChallengeCheckList(),
-          ),
+          if (_isDateSelected)
+            const Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: ChallengeCheckList(),
+            ),
         ],
       ),
     );
