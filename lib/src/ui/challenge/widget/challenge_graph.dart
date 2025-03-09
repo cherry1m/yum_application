@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yum_application/src/ui/challenge/widget/challenge_help_modal.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
 
 class ChallengeGraph extends StatelessWidget {
@@ -87,7 +88,9 @@ class ChallengeGraph extends StatelessWidget {
                       style: Theme.of(context).textTheme.headlineSmall,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        const ChallengeHelpModal().show(context);
+                      },
                       child: SizedBox(
                         width: 20,
                         height: 20,
