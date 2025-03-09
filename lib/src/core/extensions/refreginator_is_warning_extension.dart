@@ -9,7 +9,10 @@ extension IsWarningExtension on RefreginatorIngredient {
   bool get isWarning {
     final now = DateTime.now();
     final th = DateTime(now.year, now.month, now.day);
-    final diff = endAt.difference(th).inDays;
+    if (endAt == null) {
+      return false;
+    }
+    final diff = endAt!.difference(th).inDays;
     if (diff <= 3) {
       return true;
     } else {

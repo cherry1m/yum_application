@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
 import 'package:yum_application/src/ui/ingredient/view/ingredient_add_button_view.dart';
 import 'package:yum_application/src/ui/ingredient/view/ingredient_add_description_view.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
@@ -12,44 +13,52 @@ class IngredientAddView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: theme.onPrimaryContainer,
-        foregroundColor: theme.onSecondary,
-        elevation: 0.0,
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0))),
-        title: Text(
-          "새로운 식재료",
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-        bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(250),
-            child: SizedBox(
-              height: 250,
-              child: Center(
-                /// 선택한 재료가 있는 경우
-                ///
-                /// 현재 선택된 재료 이미지를 볼 수 있음.
-                child: SelectIngredientImage(
-                  ingredient: context
-                      .watch<NewRefreginatorIngredientViewModel>()
-                      .selectedIngredient,
-                  width: 300,
+    return PopScope(
+      onPopInvokedWithResult: (didPop, result) {
+        context
+            .read<NewRefreginatorIngredientViewModel>()
+            .onEvent(UnSelectedNewIngredientEvent());
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: theme.onPrimaryContainer,
+          foregroundColor: theme.onSecondary,
+          elevation: 0.0,
+          shape: const RoundedRectangleBorder(
+              borderRadius:
+                  BorderRadius.vertical(bottom: Radius.circular(20.0))),
+          title: Text(
+            "새로운 식재료",
+            style: Theme.of(context).textTheme.headlineLarge,
+          ),
+          bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(250),
+              child: SizedBox(
+                height: 250,
+                child: Center(
+                  /// 선택한 재료가 있는 경우
+                  ///
+                  /// 현재 선택된 재료 이미지를 볼 수 있음.
+                  child: SelectIngredientImage(
+                    ingredient: context
+                        .watch<NewRefreginatorIngredientViewModel>()
+                        .selectedIngredient,
+                    width: 300,
+                  ),
                 ),
-              ),
-            )),
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _toggle(),
-            _description(),
-          ],
+              )),
         ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              _toggle(),
+              _description(),
+            ],
+          ),
+        ),
+        bottomNavigationBar: _button(),
       ),
-      bottomNavigationBar: _button(),
     );
   }
 

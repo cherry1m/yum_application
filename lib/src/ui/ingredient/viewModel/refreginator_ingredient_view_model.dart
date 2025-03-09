@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
@@ -40,9 +42,10 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
     }
   }
 
-  void onEvent(RefreginatorIngredientListEvent event) {
+  void onEvent(RefreginatorIngredientListEvent event) async {
     switch (event) {
       case ToggleIsWarningFilterEvent():
+        log("toggleIsWarningFilterEvent");
         if ((_state as LoadedState).isWaringFilterOn) {
           _state = (state as LoadedState).copyWith(
             isWaringFilterOn: false,
@@ -51,18 +54,18 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
           _state = (state as LoadedState).copyWith(isWaringFilterOn: true);
         }
       case CreateRefreginatorIngredientEvent():
-        createNewIngredient(event.ingredient);
+        log("createIngredient");
+        await createNewIngredient(event.ingredient);
       case UpdateRefreginatorIngredientEvent():
-        updateIngredient(event.ingredient);
+        log("updateIngredient");
+        await updateIngredient(event.ingredient);
       case DeleteRegreginatorIngredientEvent():
+        log("deleteIngredient");
         deleteIngredient(event.ingredient);
     }
 
     notifyListeners();
   }
-
-  final bool _notInfinity = true;
-  bool get notINF => _notInfinity;
 
   /// 세로운 재료를 생성하는 API 호출 메소드입니다.
   ///
@@ -72,22 +75,13 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
     try {
       final prevIngredients = (_state as LoadedState).ingredients;
 
-      _state = (_state as LoadedState).copyWith(ingredients: [
-        ...prevIngredients,
-        newIngredient,
-      ]);
-
-      notifyListeners();
-
       // api 호출 이전에 기존 재료 List에 생성될 재료를 잠시 추가
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        final context = GlobalVariable.naviagatorState.currentContext!;
-        Navigator.of(context).pop();
-      });
+
       _state = (_state as LoadedState).copyWith(ingredients: [
         ...prevIngredients,
         await ingredientRepository.createNewIngredient(newIngredient)
       ]);
+
       // 선택 재료 초기화 및 화면 갱신
     } on Exception catch (e) {
       _state = ErrorState();
@@ -97,23 +91,8 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
 
   Future<void> updateIngredient(RefreginatorIngredient ingredient) async {
     try {
-      // 선택한 재료를 타겟으로 설정
-      // 기존 냉장고 재료 목록에서 해당 재료를 찾아 수정
       final currState = (_state as LoadedState);
-      _state = currState.copyWith(
-          ingredients: currState.ingredients.map((i) {
-        if (i.id == ingredient.id) {
-          return ingredient;
-        } else {
-          return i;
-        }
-      }).toList());
-      notifyListeners();
 
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        final context = GlobalVariable.naviagatorState.currentContext!;
-        Navigator.of(context).pop();
-      });
       // Api를 통해 재료 수정
       final result = await ingredientRepository.updateIngredient(ingredient);
       _state = currState.copyWith(
@@ -128,6 +107,7 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
       _state = ErrorState();
       rethrow;
     }
+    print(_state);
   }
 
   /// 재료 삭제 API 호출 메소드
@@ -140,10 +120,6 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
       _state = currState.copyWith(
           ingredients:
               currState.ingredients.where((i) => ingredient != i).toList());
-      SchedulerBinding.instance.addPostFrameCallback((_) {
-        final context = GlobalVariable.naviagatorState.currentContext!;
-        Navigator.of(context).pop();
-      });
     } on Exception catch (e) {
       _state = ErrorState();
       rethrow;

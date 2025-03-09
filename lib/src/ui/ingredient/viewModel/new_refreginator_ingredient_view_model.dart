@@ -20,7 +20,14 @@ class NewRefreginatorIngredientViewModel extends ChangeNotifier {
       case UnSelectedNewIngredientEvent():
         log("unselect");
         _state = _state.copyWith(
-            selectedIngredient: null, overrideSelectedIngredient: true);
+            id: null,
+            selectedIngredient: null,
+            overrideSelectedIngredient: true,
+            startAt: DateTime.now(),
+            endAt: DateTime.now(),
+            type: SelectType.create,
+            isINF: false,
+            isFreezed: false);
 
       case SelectNewIngredientEvent():
         log("select");
@@ -45,16 +52,21 @@ class NewRefreginatorIngredientViewModel extends ChangeNotifier {
         final prevIngredient = event.prevIngredient;
         final prevBasicIngredient = BasicIngredient.fromEntity(prevIngredient);
         _state = _state.copyWith(
+          id: prevIngredient.id,
           selectedIngredient: prevBasicIngredient,
           name: prevIngredient.name,
           isFreezed: prevIngredient.isFreezed,
           startAt: prevIngredient.startAt,
           endAt: prevIngredient.endAt,
+          overrideSelectedIngredient: true,
+          isINF: (prevIngredient.endAt == null) ? true : false,
           type: SelectType.update,
         );
       case ToggleSelectedIngredientIsINF():
         log("toggleNewIngredientIsINF");
-        _state = _state.copyWith(isINF: event.isINF);
+        _state = _state.copyWith(
+            isINF: event.isINF, endAt: null, overrideEndAt: true);
+        print(_state);
     }
 
     notifyListeners();
