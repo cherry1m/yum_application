@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/basic_bottom_sheet.dart';
 import 'package:yum_application/src/ui/common/widgets/delete_dialog.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_edit_view.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_expiration_date_chart.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_image.dart';

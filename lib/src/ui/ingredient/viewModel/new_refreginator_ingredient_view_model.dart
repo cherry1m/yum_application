@@ -40,6 +40,21 @@ class NewRefreginatorIngredientViewModel extends ChangeNotifier {
       case ToggleSelectedIngredientIsFreezed():
         log("toggleIsFreezed");
         _state = _state.copyWith(isFreezed: !_state.isFreezed);
+      case MoveToUpdatePrevIngredient():
+        log("moveToUpdatePrevIngredient");
+        final prevIngredient = event.prevIngredient;
+        final prevBasicIngredient = BasicIngredient.fromEntity(prevIngredient);
+        _state = _state.copyWith(
+          selectedIngredient: prevBasicIngredient,
+          name: prevIngredient.name,
+          isFreezed: prevIngredient.isFreezed,
+          startAt: prevIngredient.startAt,
+          endAt: prevIngredient.endAt,
+          type: SelectType.update,
+        );
+      case ToggleSelectedIngredientIsINF():
+        log("toggleNewIngredientIsINF");
+        _state = _state.copyWith(isINF: event.isINF);
     }
 
     notifyListeners();

@@ -1,12 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:yum_application/src/ui/ingredient/model/model.dart';
 
+enum SelectType { create, update }
+
 final class SelectedNewRefreginatorIngredient extends Equatable {
   final BasicIngredient? selectedIngredient;
   final bool isFreezed;
   final String name;
   final DateTime startAt;
   final DateTime endAt;
+  final SelectType type;
+  final bool isINF;
 
   SelectedNewRefreginatorIngredient({
     this.selectedIngredient,
@@ -14,6 +18,8 @@ final class SelectedNewRefreginatorIngredient extends Equatable {
     this.name = "",
     DateTime? startAt,
     DateTime? endAt,
+    this.type = SelectType.create,
+    this.isINF = false,
   })  : startAt = startAt ?? DateTime.now(),
         endAt = endAt ?? DateTime.now();
 
@@ -24,6 +30,8 @@ final class SelectedNewRefreginatorIngredient extends Equatable {
     String? name,
     DateTime? startAt,
     DateTime? endAt,
+    SelectType? type,
+    bool? isINF,
   }) {
     return SelectedNewRefreginatorIngredient(
       selectedIngredient: overrideSelectedIngredient
@@ -33,6 +41,8 @@ final class SelectedNewRefreginatorIngredient extends Equatable {
       name: name ?? this.name,
       startAt: startAt ?? this.startAt,
       endAt: endAt ?? this.endAt,
+      type: type ?? this.type,
+      isINF: isINF ?? this.isINF,
     );
   }
 

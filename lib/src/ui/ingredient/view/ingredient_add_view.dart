@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yum_application/src/ui/common/widgets/date_picker_widget.dart';
-import 'package:yum_application/src/ui/common/widgets/scroll_date_dialog.dart';
-import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
+import 'package:yum_application/src/ui/ingredient/view/ingredient_add_button_view.dart';
 import 'package:yum_application/src/ui/ingredient/view/ingredient_add_description_view.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
-import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/view/select_ingredient_image.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_add_view_toggle_widget.dart';
-import 'package:yum_application/src/ui/ingredient/widget/single_button.dart';
-
-import '../refreginator_model.dart';
 
 class IngredientAddView extends StatelessWidget {
   const IngredientAddView({super.key});
@@ -68,16 +62,6 @@ class IngredientAddView extends StatelessWidget {
   Widget _button() => Padding(
       padding: const EdgeInsets.only(top: 24.0, bottom: 40.0),
       child: Builder(builder: (context) {
-        return SingleButton(
-          text: "등록하기",
-          onTap: () {
-            final newIngredient = context
-                .read<NewRefreginatorIngredientViewModel>()
-                .state
-                .toNewIngredient();
-            context.read<RefreginatorIngredientViewModel>().onEvent(
-                CreateRefreginatorIngredientEvent(ingredient: newIngredient));
-          },
-        );
+        return const IngredientAddButtonView();
       }));
 }

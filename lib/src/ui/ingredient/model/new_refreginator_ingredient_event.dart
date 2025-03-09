@@ -54,3 +54,24 @@ final class ToggleSelectedIngredientIsFreezed
   @override
   List<Object?> get props => [];
 }
+
+final class MoveToUpdatePrevIngredient extends NewRefreginatorIngredientEvent {
+  final RefreginatorIngredient prevIngredient;
+
+  MoveToUpdatePrevIngredient({required this.prevIngredient});
+  @override
+  List<Object?> get props => [
+        prevIngredient,
+      ];
+}
+
+final class ToggleSelectedIngredientIsINF
+    extends NewRefreginatorIngredientEvent {
+  final bool isINF;
+
+  ToggleSelectedIngredientIsINF({required this.isINF});
+  @override
+  List<Object?> get props => [
+        isINF,
+      ];
+}

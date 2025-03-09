@@ -1,4 +1,5 @@
 import 'package:yum_application/src/data/ingredient/entity/ingredient_category.dart';
+import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
 
 final class BasicIngredient {
   /// [BasicIngredient]의 기본 이름입니다.
@@ -43,6 +44,11 @@ final class BasicIngredient {
         isFavorite: isFavorite ?? this.isFavorite,
         category: category ?? this.category,
         type: type);
+  }
+
+  factory BasicIngredient.fromEntity(RefreginatorIngredient ingredient) {
+    return BasicIngredient(
+        name: ingredient.name, category: ingredient.category);
   }
 }
 

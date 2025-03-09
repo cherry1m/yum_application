@@ -62,6 +62,7 @@ class IngredientAddDescriptionView extends StatelessWidget {
   Widget _ingredientPeriod() => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          // 구매 날짜
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -117,6 +118,7 @@ class IngredientAddDescriptionView extends StatelessWidget {
               ),
             ],
           ),
+          // 소비기한
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -130,19 +132,18 @@ class IngredientAddDescriptionView extends StatelessWidget {
                           "소비기한",
                           style: Theme.of(context).textTheme.headlineSmall,
                         ),
-                        // Consumer<RefreginatorIngredientViewModel>(
-                        //   builder: (context, provider, child) {
-                        //     return Switch(
-                        //       // value: false,
-                        //       value: provider.notINF &&
-                        //           provider.selectedIngredient != null,
-                        //       onChanged: provider.toggleNotInfinity,
-                        //       activeColor:
-                        //           Theme.of(context).colorScheme.secondary,
-                        //       inactiveThumbColor: Colors.grey,
-                        //     );
-                        //   },
-                        // ),
+                        Consumer<NewRefreginatorIngredientViewModel>(
+                          builder: (context, provider, child) {
+                            return Switch(
+                              value: provider.state.isINF,
+                              onChanged: (isINF) => provider.onEvent(
+                                  ToggleSelectedIngredientIsINF(isINF: isINF)),
+                              activeColor:
+                                  Theme.of(context).colorScheme.secondary,
+                              inactiveThumbColor: Colors.grey,
+                            );
+                          },
+                        ),
                       ],
                     ),
                   );
@@ -157,7 +158,7 @@ class IngredientAddDescriptionView extends StatelessWidget {
                       // if (provider.notInfinity) {
                       return DatePickerWidget(
                         time: provider.state.endAt,
-                        notINF: true,
+                        isINF: provider.state.isINF,
                         onTap: () {
                           showModalBottomSheet(
                               isDismissible: false,
