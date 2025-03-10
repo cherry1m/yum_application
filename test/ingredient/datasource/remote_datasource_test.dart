@@ -5,7 +5,6 @@ import 'package:mockito/annotations.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
 import 'package:yum_application/src/data/ingredient/datasource/remote_datasource.dart';
-import 'package:yum_application/src/ui/ingredient/model/model.dart';
 
 import 'remote_datasource_test.mocks.dart';
 

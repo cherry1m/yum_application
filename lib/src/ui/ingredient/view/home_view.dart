@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yum_application/src/ui/common/enums/status.dart';
 import 'package:yum_application/src/ui/common/widgets/loading_progress_indicator.dart';
+import 'package:yum_application/src/ui/ingredient/refreginator_ingredient_list_model.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_filter_check_box.dart';
 import 'package:yum_application/src/ui/ingredient/widget/refreginator_container.dart';
@@ -13,35 +13,33 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<RefreginatorIngredientViewModel>(
         builder: (context, provider, child) {
-      if (provider.status == Status.error) {
+      final state = provider.state;
+      if (state is ErrorState) {
         return _error();
+      } else if (state is LoadingState) {
+        return _loading();
       }
-      return Stack(
-        children: [
-          Scaffold(
-            body: SafeArea(
-              top: true,
-              bottom: false,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    // 헤더 영역
-                    _header(),
-                    // 기간임박 필터 토글 버튼
-                    _toggleWarning(),
-                    // 냉동칸
-                    _freezer(),
-                    // 냉장칸
-                    _fridge(),
-                  ],
-                ),
-              ),
+      return Scaffold(
+        body: SafeArea(
+          top: true,
+          bottom: false,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                // 헤더 영역
+                _header(),
+                // 기간임박 필터 토글 버튼
+                _toggleWarning(),
+                // 냉동칸
+                _freezer(),
+                // 냉장칸
+                _fridge(),
+              ],
             ),
           ),
-          if (provider.status == Status.loading) ..._loading(),
-        ],
+        ),
       );
     });
   }
@@ -76,7 +74,8 @@ class HomeView extends StatelessWidget {
       child: Consumer<RefreginatorIngredientViewModel>(
           builder: (context, provider, child) {
         return RefreginatorContainer(
-            label: "냉동 보관", children: provider.myFreezedIngredients);
+            label: "냉동 보관",
+            children: (provider.state as LoadedState).myFreezedIngredients);
       }),
     );
   }
@@ -93,20 +92,14 @@ class HomeView extends StatelessWidget {
         return RefreginatorContainer(
             label: "냉장 보관",
             rowCount: 3,
-            children: provider.myUnfreezedIngredients);
+            children: (provider.state as LoadedState).myUnfreezedIngredients);
       }),
     );
   }
 
-  List<Widget> _loading() => [
-        ModalBarrier(
-          color: Colors.white.withOpacity(0.2),
-          dismissible: false,
-        ),
-        const Center(
-          child: LoadingProgressIndicator(),
-        )
-      ];
+  Widget _loading() => const Center(
+        child: LoadingProgressIndicator(),
+      );
 
   /// 에러 위젯
   ///
@@ -141,9 +134,10 @@ class HomeView extends StatelessWidget {
             Consumer<RefreginatorIngredientViewModel>(
                 builder: (context, provider, child) {
               return IngredientFilterCheckBox(
-                  value: provider.isWarningFilterOn,
+                  value: (provider.state as LoadedState).isWaringFilterOn,
                   label: "기간 임박",
-                  onChanged: provider.toggleWarning);
+                  onChanged: (value) =>
+                      provider.onEvent(ToggleIsWarningFilterEvent()));
             })
           ],
         ),

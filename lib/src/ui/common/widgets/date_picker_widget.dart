@@ -3,14 +3,19 @@ import 'package:flutter/material.dart';
 class DatePickerWidget extends StatelessWidget {
   final void Function()? onTap;
   final DateTime? time;
-  final bool notINF;
-  const DatePickerWidget({super.key, this.onTap, this.time, this.notINF = true})
-      : assert(onTap != null, "onTap 함수 지정해라 이준호");
+  final bool isINF;
+
+  const DatePickerWidget({
+    super.key,
+    this.onTap,
+    this.time,
+    this.isINF = false,
+  }) : assert(onTap != null, "onTap 함수 지정해라 이준호");
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: onTap, child: (!notINF) ? _infWidget() : _basicPicker());
+        onTap: onTap, child: (isINF) ? _infWidget() : _basicPicker());
   }
 
   Widget _infWidget() => Builder(builder: (context) {

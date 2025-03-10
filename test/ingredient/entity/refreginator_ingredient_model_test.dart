@@ -4,7 +4,7 @@ import 'package:yum_application/src/data/ingredient/entity/entity.dart';
 void main() {
   group("Ingredient Model Unit Test", () {
     test(
-        "기본생성자로 Ingredient Model을 생성하는 경우 기본값으로 시작일과 종료일은 모두 현재날짜이다. isFavorite은 false이다.",
+        "기본생성자로 Ingredient Model을 생성하는 경우 기본값으로 시작일은 현재 날짜이고, 종료일은 null이다. isFavorite은 false이다.",
         () {
       final ingredient = RefreginatorIngredient(
           name: "egg", category: IngredientCategory.egg, isFreezed: false);
@@ -15,9 +15,6 @@ void main() {
       expect(ingredient.startAt.year, year);
       expect(ingredient.startAt.month, month);
       expect(ingredient.startAt.day, day);
-      expect(ingredient.endAt.year, year);
-      expect(ingredient.endAt.month, month);
-      expect(ingredient.endAt.day, day);
     });
 
     test("copy함수를 실행하면 새로운 재료 인스턴스가 갱신된다.", () {

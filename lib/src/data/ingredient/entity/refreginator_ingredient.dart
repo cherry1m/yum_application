@@ -30,7 +30,7 @@ final class RefreginatorIngredient extends Equatable {
   /// [RefreginatorIngredient]의 유통기한입니다.
   ///
   /// 기본값으로 오늘날짜가 지정됩니다.
-  final DateTime endAt;
+  final DateTime? endAt;
 
   /// [RefreginatorIngredient]의 기본 생성자입니다.
   ///
@@ -41,9 +41,8 @@ final class RefreginatorIngredient extends Equatable {
     required this.category,
     required this.isFreezed,
     DateTime? startAt,
-    DateTime? endAt,
-  })  : startAt = startAt ?? DateTime.now(),
-        endAt = endAt ?? DateTime.now();
+    this.endAt,
+  }) : startAt = startAt ?? DateTime.now();
 
   /// [Ingredient]의 Deserializes 메소드입니다.
   ///
@@ -55,7 +54,7 @@ final class RefreginatorIngredient extends Equatable {
       isFreezed: json["isFreezed"],
       category: IngredientCategory.fromString(json["category"]),
       startAt: DateTime.parse(json["startAt"]),
-      endAt: DateTime.parse(json["endAt"]),
+      endAt: (json["endAt"] != null) ? DateTime.parse(json["endAt"]) : null,
     );
   }
 
@@ -70,7 +69,7 @@ final class RefreginatorIngredient extends Equatable {
         "isFreezed": isFreezed,
         "category": category.name,
         "startAt": startAt.toyyyyMMdd(),
-        "endAt": endAt.toyyyyMMdd(),
+        "endAt": (endAt != null) ? endAt!.toyyyyMMdd() : null,
       };
 
   /// [Ingredient]의 copy를 반환하는 메소드입니다.
@@ -89,7 +88,7 @@ final class RefreginatorIngredient extends Equatable {
       category: category ?? this.category,
       isFreezed: isFreezed ?? this.isFreezed,
       startAt: startAt ?? this.startAt,
-      endAt: endAt ?? this.endAt,
+      endAt: endAt,
     );
   }
 

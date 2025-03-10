@@ -3,7 +3,7 @@ import 'dart:math';
 
 class IngredientExprationDateChart extends CustomPainter {
   final DateTime startAt;
-  final DateTime endAt;
+  final DateTime? endAt;
 
   IngredientExprationDateChart({
     required this.startAt,
@@ -12,9 +12,12 @@ class IngredientExprationDateChart extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    if (endAt == null) {
+      return;
+    }
     final now = DateTime.now();
-    final total = (endAt.difference(startAt).inHours).ceil();
-    final rest = (endAt.difference(now).inHours).ceil();
+    final total = (endAt!.difference(startAt).inHours).ceil();
+    final rest = (endAt!.difference(now).inHours).ceil();
     if (rest < 0) {
       return;
     } else {
