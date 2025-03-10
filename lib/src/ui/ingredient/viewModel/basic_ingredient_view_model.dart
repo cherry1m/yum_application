@@ -189,7 +189,7 @@ class BasicIngredientViewModel extends ChangeNotifier {
   ///
   /// [BasicIngredientViewModel]이 생성되는 단계에서
   /// 서버로부터 사용자의 즐겨찾기 데이터를 가져옵니다.
-  void fetchData() async {
+  Future<void> fetchData() async {
     try {
       final result = await ingredientRepository.getMyFavoriteIngredient();
 
