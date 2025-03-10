@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/auth/view/login_button_view.dart';
 import 'package:yum_application/src/ui/auth/view/login_logo_view.dart';
+import 'package:yum_application/src/ui/auth/viewModel/login_view_model.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -32,12 +34,16 @@ class LoginView extends StatelessWidget {
   }
 
   /// 로그인 로고 뷰입니다.
-  Widget _logoView() => const LoginLogoView();
+  Widget _logoView() => const LoginLogoView(
+        key: Key("login-view-logo-view"),
+      );
 
   /// 각 로그인 버튼을 담당하는 로그인 버튼뷰입니다.
   ///
   /// google, apple, kakao, email 로그인 버튼을 지정합니다.
-  Widget _loginButtonView() => const LoginButtonView();
+  Widget _loginButtonView() => const LoginButtonView(
+        key: Key("login-view-login-button-view"),
+      );
 
   Widget _resister() => SizedBox(
         width: 350,
@@ -50,8 +56,9 @@ class LoginView extends StatelessWidget {
               GestureDetector(
                 /// 사용자가 위젯을 탭하면
                 /// 회원가입 UI로 이동합니다.
-                onTap: () {},
+                onTap: context.read<LoginViewModel>().moveToSignUp,
                 child: Text(
+                  key: const Key("login-view-resister-text-button"),
                   "회원 가입",
                   style: textTheme,
                 ),

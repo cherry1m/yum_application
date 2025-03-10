@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yum_application/src/ui/common/widgets/app_logo.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
 
 class LoginLogoView extends StatelessWidget {
@@ -11,10 +12,7 @@ class LoginLogoView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        ImageWidget(
-          path: LogoIconPath.logo,
-          width: 200,
-        ),
+        const AppLogo(),
         const SizedBox(
           height: 21,
         ),

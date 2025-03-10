@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/ui/auth/view/login_text_field_view.dart';
-import 'package:yum_application/src/ui/auth/view/logo_view.dart';
+import 'package:yum_application/src/ui/auth/view/email_login_logo_view.dart';
 import 'package:yum_application/src/ui/auth/view/next_button_view.dart';
 import 'package:yum_application/src/ui/auth/view/option_view.dart';
 
@@ -16,32 +16,40 @@ class EmailLoginView extends StatelessWidget {
     return GestureDetector(
       onTap: FocusScope.of(context).unfocus,
       child: Scaffold(
+        appBar: AppBar(
+          elevation: 0.0,
+          foregroundColor: Theme.of(context).colorScheme.primary,
+          backgroundColor: Colors.white,
+        ),
         backgroundColor: Colors.white,
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // 로그인 로고
-              _loginLogo(),
-              const SizedBox(
-                height: 68,
-              ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // 로그인 로고
+                _loginLogo(),
+                const SizedBox(
+                  height: 68,
+                ),
 
-              // 사용자 계정 정보 입력 필드
-              _loginTextFields(),
-              const SizedBox(
-                height: 39,
-              ),
+                // 사용자 계정 정보 입력 필드
+                _loginTextFields(),
+                const SizedBox(
+                  height: 23,
+                ),
 
-              // 아이디 찾기, 비밀번호 찾기
-              _options(),
-              const SizedBox(
-                height: 58,
-              ),
+                // 아이디 찾기, 비밀번호 찾기
+                _options(),
+                const SizedBox(
+                  height: 74,
+                ),
 
-              // 로그인 버튼
-              _button(),
-            ],
+                // 로그인 버튼
+                _button(),
+              ],
+            ),
           ),
         ),
       ),
@@ -52,7 +60,7 @@ class EmailLoginView extends StatelessWidget {
   ///
   /// [LogoView]에서 자세하게 정의합니다.
   Widget _loginLogo() =>
-      const LogoView(key: Key("email-login-view-logo"), label: "로그인");
+      const EmailLoginLogoView(key: Key("email-login-view-logo"), label: "로그인");
 
   /// 사용자 계정 입력 텍스트 필드
   ///

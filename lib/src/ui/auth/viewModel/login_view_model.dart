@@ -3,6 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/ui/app/page/app_page.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
 import 'package:yum_application/src/ui/auth/page/email_login_page.dart';
+import 'package:yum_application/src/ui/auth/page/resister_page.dart';
 
 enum LoginType { google, apple, kakao, email }
 
@@ -24,12 +25,16 @@ class LoginViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void moveToSignUp() {
+    moveTo(const ResisterPage());
+    notifyListeners();
+  }
+
   void moveTo(Widget page) {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       final context = GlobalVariable.naviagatorState.currentContext!;
 
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (context) => page));
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => page));
     });
   }
 }

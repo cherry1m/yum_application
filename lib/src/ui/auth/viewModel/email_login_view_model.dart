@@ -1,29 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
-import 'package:yum_application/src/core/utils/login_validator.dart';
+import 'package:yum_application/src/core/extensions/login_validator.dart';
 import 'package:yum_application/src/ui/app/page/app_page.dart';
 
 class EmailLoginViewModel extends ChangeNotifier {
-  final LoginValidator validator;
-
-  EmailLoginViewModel({required this.validator});
-
-  final _formKey = GlobalKey<FormState>();
-
-  GlobalKey<FormState> get formKey => _formKey;
-
+  // 이메일
   String email = "";
-
-  late final TextEditingController _emailController = TextEditingController();
-
+  final TextEditingController _emailController = TextEditingController();
   TextEditingController get emailController => _emailController;
 
+  // 비밀번호
   String password = "";
-
-  late final TextEditingController _passwordController =
-      TextEditingController();
-
+  final TextEditingController _passwordController = TextEditingController();
   TextEditingController get passwordController => _passwordController;
 
   // 이메일 검증 결과 메시지
@@ -41,7 +30,7 @@ class EmailLoginViewModel extends ChangeNotifier {
   /// 이메일 형식에 맞지 않으면 검증 메시지가 반환됩니다.
   /// 이메일이 비어있는 경우에는 예외로 메시지가 반환되지 않습니다.
   void validateEmail(String email) {
-    final validMessage = validator.validateEmail(email) ?? "";
+    final validMessage = email.validateEmail() ?? "";
     _emailValidLabel = validMessage;
     notifyListeners();
   }
@@ -51,7 +40,7 @@ class EmailLoginViewModel extends ChangeNotifier {
   /// 비밀번호 형식에 맞지 않으면 검증 메시지가 반환됩니다.
   /// 비밀빈호가 비어있는 경우에는 예외로 메시지가 반환되지 않습니다.
   void validatePassword(String password) {
-    final validMessage = validator.validatePassword(password) ?? "";
+    final validMessage = password.validatePassword() ?? "";
     _passwordValidLabel = validMessage;
     notifyListeners();
   }

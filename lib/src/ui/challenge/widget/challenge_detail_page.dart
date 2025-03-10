@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yum_application/src/ui/challenge/widget/challenge_graph.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
 import 'package:yum_application/src/ui/ingredient/widget/single_button.dart';
 
@@ -112,64 +113,8 @@ Widget _header(String imagePath) => Builder(builder: (context) {
 // 앞으로 몇 단계가 남았는지 그래프로 사용자에게 알려줌.
 // 로직을 구성해야함.
 Widget _body() {
-  return SliverToBoxAdapter(
-    child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      child: Builder(builder: (context) {
-        return Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.onPrimaryContainer,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 16, left: 16.51),
-                child: Text(
-                  "3단계 도전중",
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 4, left: 16.51),
-                child: Text(
-                  "3개 달성! 다음 단계까지 2개 남았어요",
-                  style: Theme.of(context).textTheme.labelSmall,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                    left: 16, right: 16, top: 20, bottom: 41),
-                child: Stack(
-                  children: [
-                    Container(
-                      width: double.infinity,
-                      height: 20,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).colorScheme.secondaryContainer,
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      bottom: 0,
-                      child: CircleAvatar(
-                        radius: 10,
-                        backgroundColor:
-                            Theme.of(context).colorScheme.secondary,
-                      ),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        );
-      }),
-    ),
+  return const ChallengeGraph(
+    totalCount: 9,
   );
 }
 

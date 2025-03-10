@@ -1,0 +1,54 @@
+/// 로그인 정보를 validation하는 클래스
+extension LoginValidator on String {
+  /// 사용자 이메일 validation을 수행합니다.
+  ///
+  /// 사용자의 이메일 형식은 정규표현식과 같아야합니다.
+  String? validateEmail() {
+    if (isEmpty) {
+      return '이메일을 입력하세요.';
+    } else if (!RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+        .hasMatch(this)) {
+      return '잘못된 이메일 형식입니다.';
+    }
+    return null;
+  }
+
+  /// 사용자의 비밀번호 validation을 수행합니다.
+  ///
+  /// 사용자의 비밀번호는 영대소문자, 숫자, 특수문자를 포함한 10자 이상입니다.
+  String? validatePassword() {
+    if (isEmpty) {
+      return "비밀번호를 입력하세요.";
+    } else if (!RegExp(
+            r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$')
+        .hasMatch(this)) {
+      return "잘못된 비밀번호 형식입니다.";
+    }
+    return null;
+  }
+
+  /// 사용자의 비밀번호 확인 Validation을 수행합니다.
+  ///
+  /// 전달받은 비밀번호와 입력되는 비밀번호가 다른 경우
+  /// 메시지를 출력합니다. 또한, 입력이 없는 경우에도 메시지가 출력됩니다.
+  String? validatePasswordAgain(password) {
+    if (isEmpty) {
+      return "비밀번호 확인을 입력하세요.";
+    } else if (password != this) {
+      return "비밀번호가 서로 다릅니다.";
+    }
+    return null;
+  }
+
+  /// 사용자 닉네임 Validation을 수행합니다.
+  ///
+  /// 사용자의 닉네임은 공백이 될 수 없습니다.
+  String? validateNickName() {
+    if (isEmpty) {
+      return "닉네임을 입력하세요.";
+    } else if (RegExp(r'\s').hasMatch(this)) {
+      return "닉네임에 공백은 사용할 수 없습니다.";
+    }
+    return null;
+  }
+}
