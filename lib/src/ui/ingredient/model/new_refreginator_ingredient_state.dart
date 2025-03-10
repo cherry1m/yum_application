@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:yum_application/src/ui/ingredient/model/model.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
 
 enum SelectType { create, update }
 

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/basic_bottom_sheet.dart';
-import 'package:yum_application/src/ui/ingredient/model/basic_ingredient.dart';
+import 'package:yum_application/src/data/ingredient/entity/basic_ingredient.dart';
+import 'package:yum_application/src/ui/ingredient/view/favorite_basic_ingredient_view.dart';
 import 'package:yum_application/src/ui/ingredient/view/ingredient_grid_view.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/basic_ingredient_view_model.dart';
 
-class IngredientAddBottomSheet extends StatelessWidget {
-  const IngredientAddBottomSheet({super.key});
+class BasicIngredientBottomSheet extends StatelessWidget {
+  const BasicIngredientBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +37,15 @@ class IngredientAddBottomSheet extends StatelessWidget {
   }
 
   /// 사용자의 즐겨찾기 재료 데이터 렌더링 뷰
-  Widget _favorite() {
-    return Builder(builder: (context) {
-      final ingredients = context.watch<BasicIngredientViewModel>().favorites;
-      return IngredientGridView(ingredients: ingredients, label: "즐겨찾기");
-    });
-  }
+  Widget _favorite() => const FavoriteBasicIngredientView();
 
   /// 사용자가 선택가능한 모든 기본 재료를 카테고리별 및 label로 렌더링을 담당하는 뷰
   Widget _buildLabelAndImages(String label, IngredientType type) {
     return Builder(builder: (context) {
-      final ingredients =
-          context.watch<BasicIngredientViewModel>().getBasicIngredientBy(type);
+      final ingredients = context
+          .watch<BasicIngredientViewModel>()
+          .state
+          .getBasicIngredientBy(type);
       return (ingredients.isNotEmpty)
           ? IngredientGridView(ingredients: ingredients, label: label)
           : Container();

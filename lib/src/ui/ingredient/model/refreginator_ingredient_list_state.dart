@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:yum_application/src/core/extensions/refreginator_is_warning_extension.dart';
-import 'package:yum_application/src/ui/ingredient/model/model.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
 
 // 냉장고 식재료 뷰 State
 abstract base class RefreginatorListState extends Equatable {}

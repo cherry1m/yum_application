@@ -1,12 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
 import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart';
-import 'package:yum_application/src/core/utils/global_variable.dart';
 
-import '../refreginator_model.dart';
+import '../refreginator_ingredient_list_model.dart';
 
 class RefreginatorIngredientViewModel extends ChangeNotifier {
   final IngredientRepository ingredientRepository;
