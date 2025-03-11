@@ -19,7 +19,6 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
 
   RefreginatorIngredientViewModel({required this.ingredientRepository}) {
     fetchData();
-    print("재료 뷰모델 생성");
   }
 
   /// 사용자가 자신의 모든 재료를 READ하는 메소드
@@ -40,7 +39,7 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
     }
   }
 
-  void onEvent(RefreginatorIngredientListEvent event) async {
+  Future<void> onEvent(RefreginatorIngredientListEvent event) async {
     switch (event) {
       case ToggleIsWarningFilterEvent():
         log("toggleIsWarningFilterEvent");
@@ -73,8 +72,6 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
     try {
       final prevIngredients = (_state as LoadedState).ingredients;
 
-      // api 호출 이전에 기존 재료 List에 생성될 재료를 잠시 추가
-
       _state = (_state as LoadedState).copyWith(ingredients: [
         ...prevIngredients,
         await ingredientRepository.createNewIngredient(newIngredient)
@@ -105,13 +102,12 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
       _state = ErrorState();
       rethrow;
     }
-    print(_state);
   }
 
   /// 재료 삭제 API 호출 메소드
   ///
   /// 사용자가 자신의 재료를 삭제하는 경우 이 메소드를 통해서 삭제할 수 있습니다.
-  void deleteIngredient(RefreginatorIngredient ingredient) {
+  Future<void> deleteIngredient(RefreginatorIngredient ingredient) async {
     try {
       ingredientRepository.deleteIngredient(ingredient.id!);
       final currState = (_state as LoadedState);

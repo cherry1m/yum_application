@@ -189,7 +189,7 @@ class BasicIngredientViewModel extends ChangeNotifier {
   ///
   /// [BasicIngredientViewModel]이 생성되는 단계에서
   /// 서버로부터 사용자의 즐겨찾기 데이터를 가져옵니다.
-  void fetchData() async {
+  Future<void> fetchData() async {
     try {
       final result = await ingredientRepository.getMyFavoriteIngredient();
 
@@ -214,7 +214,7 @@ class BasicIngredientViewModel extends ChangeNotifier {
   /// 초기 재료의 즐겨찾기 토글 함수
   ///
   /// 이 함수를 통해서 해당 재료의 즐겨찾기를 활성화 또는 비활성화 할 수 있습니다.
-  void toggleIsFavorite(IngredientCategory category) async {
+  void toggleIsFavorite(IngredientCategory category) {
     final currState = (_state as LoadedState);
     if (currState.categories.contains(category)) {
       deleteFavoriteIngredient(category);

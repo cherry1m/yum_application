@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/ui/ingredient/refreginator_ingredient_model.dart';
 
 import '../new_refreginator_ingredient_model.dart';
 
@@ -66,7 +66,6 @@ class NewRefreginatorIngredientViewModel extends ChangeNotifier {
         log("toggleNewIngredientIsINF");
         _state = _state.copyWith(
             isINF: event.isINF, endAt: null, overrideEndAt: true);
-        print(_state);
     }
 
     notifyListeners();

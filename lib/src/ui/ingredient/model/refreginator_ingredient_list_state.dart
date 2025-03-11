@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:yum_application/src/core/extensions/refreginator_is_warning_extension.dart';
-import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/ui/ingredient/refreginator_ingredient_model.dart';
 
 // 냉장고 식재료 뷰 State
 abstract base class RefreginatorListState extends Equatable {}
@@ -30,12 +30,12 @@ final class LoadedState extends RefreginatorListState {
   });
 
   List<RefreginatorIngredient> get myFreezedIngredients => ingredients
-      .where((ingredients) => ingredients.isFreezed)
+      .where((ingredient) => ingredient.isFreezed)
       .where((ingredient) => !isWaringFilterOn || ingredient.isWarning)
       .toList();
 
   List<RefreginatorIngredient> get myUnfreezedIngredients => ingredients
-      .where((ingredients) => !ingredients.isFreezed)
+      .where((ingredient) => !ingredient.isFreezed)
       .where((ingredient) => !isWaringFilterOn || ingredient.isWarning)
       .toList();
 
@@ -45,6 +45,7 @@ final class LoadedState extends RefreginatorListState {
   }) {
     return LoadedState(
       ingredients: ingredients ?? this.ingredients,
+      isWaringFilterOn: isWaringFilterOn ?? this.isWaringFilterOn,
     );
   }
 

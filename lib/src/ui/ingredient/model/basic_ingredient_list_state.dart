@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/ui/ingredient/refreginator_ingredient_model.dart';
 
 sealed class BasicIngredientState extends Equatable {
   final List<BasicIngredient> ingredients;
