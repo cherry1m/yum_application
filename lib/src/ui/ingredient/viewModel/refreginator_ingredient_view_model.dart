@@ -9,6 +9,9 @@ import '../refreginator_ingredient_list_model.dart';
 class RefreginatorIngredientViewModel extends ChangeNotifier {
   final IngredientRepository ingredientRepository;
 
+  @visibleForTesting
+  DateTime Function() nowProvider = DateTime.now;
+
   /// 냉장고 식재료 상태 모델
   ///
   /// 현재 냉장고 식재료 리스트의 상태를 나타냅니다.
@@ -19,7 +22,6 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
 
   RefreginatorIngredientViewModel({required this.ingredientRepository}) {
     fetchData();
-    print("재료 뷰모델 생성");
   }
 
   /// 사용자가 자신의 모든 재료를 READ하는 메소드
@@ -40,7 +42,7 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
     }
   }
 
-  void onEvent(RefreginatorIngredientListEvent event) async {
+  Future<void> onEvent(RefreginatorIngredientListEvent event) async {
     switch (event) {
       case ToggleIsWarningFilterEvent():
         log("toggleIsWarningFilterEvent");
@@ -103,7 +105,6 @@ class RefreginatorIngredientViewModel extends ChangeNotifier {
       _state = ErrorState();
       rethrow;
     }
-    print(_state);
   }
 
   /// 재료 삭제 API 호출 메소드

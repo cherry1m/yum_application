@@ -30,12 +30,12 @@ final class LoadedState extends RefreginatorListState {
   });
 
   List<RefreginatorIngredient> get myFreezedIngredients => ingredients
-      .where((ingredients) => ingredients.isFreezed)
+      .where((ingredient) => ingredient.isFreezed)
       .where((ingredient) => !isWaringFilterOn || ingredient.isWarning)
       .toList();
 
   List<RefreginatorIngredient> get myUnfreezedIngredients => ingredients
-      .where((ingredients) => !ingredients.isFreezed)
+      .where((ingredient) => !ingredient.isFreezed)
       .where((ingredient) => !isWaringFilterOn || ingredient.isWarning)
       .toList();
 
@@ -45,6 +45,7 @@ final class LoadedState extends RefreginatorListState {
   }) {
     return LoadedState(
       ingredients: ingredients ?? this.ingredients,
+      isWaringFilterOn: isWaringFilterOn ?? this.isWaringFilterOn,
     );
   }
 
