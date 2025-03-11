@@ -66,7 +66,6 @@ class NewRefreginatorIngredientViewModel extends ChangeNotifier {
         log("toggleNewIngredientIsINF");
         _state = _state.copyWith(
             isINF: event.isINF, endAt: null, overrideEndAt: true);
-        print(_state);
     }
 
     notifyListeners();
