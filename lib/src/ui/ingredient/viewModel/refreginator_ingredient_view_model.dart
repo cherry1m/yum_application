@@ -9,9 +9,6 @@ import '../refreginator_ingredient_list_model.dart';
 class RefreginatorIngredientViewModel extends ChangeNotifier {
   final IngredientRepository ingredientRepository;
 
-  @visibleForTesting
-  DateTime Function() nowProvider = DateTime.now;
-
   /// 냉장고 식재료 상태 모델
   ///
   /// 현재 냉장고 식재료 리스트의 상태를 나타냅니다.
