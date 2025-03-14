@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:yum_application/src/ui/main_page.dart';
 import 'package:yum_application/src/ui/auth/model/sign_up.dart';
 import 'package:yum_application/src/ui/auth/page/email_login_page.dart';
 import 'package:yum_application/src/ui/auth/page/login_page.dart';
@@ -9,7 +10,7 @@ import 'package:yum_application/src/ui/auth/page/resister_complete_page.dart';
 import 'package:yum_application/src/ui/auth/view/email_login_view.dart';
 import 'package:yum_application/src/ui/auth/view/resister_complete_view.dart';
 
-import 'src/core/providers/app/app_provider.dart';
+import 'src/core/providers/app_provider.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -27,6 +28,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         navigatorKey: GlobalVariable.naviagatorState,
         theme: light,
-        home: const LoginPage());
+        home: const MainPage());
   }
 }

@@ -7,7 +7,7 @@ import 'package:yum_application/src/core/utils/global_variable.dart';
 
 enum Page { ingredient, recipe, challenge, mypage }
 
-class AppViewModel extends ChangeNotifier {
+class MainUIViewModel extends ChangeNotifier {
   final GlobalKey<NavigatorState> _ingredientNavigatorKey =
       GlobalKey<NavigatorState>();
 

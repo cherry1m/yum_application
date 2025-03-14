@@ -5,61 +5,13 @@ import 'package:yum_application/src/ui/common/widgets/scroll_date_dialog.dart';
 import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
 
-class IngredientAddDescriptionView extends StatelessWidget {
-  const IngredientAddDescriptionView({super.key});
+class IngredientAddExpirationDateView extends StatelessWidget {
+  const IngredientAddExpirationDateView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      _ingredientName(),
-      _ingredientPeriod(),
-    ]);
-  }
-
-  Widget _ingredientName() => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0, bottom: 8.0),
-            child: Builder(builder: (context) {
-              return Text(
-                "재료 이름",
-                style: Theme.of(context).textTheme.headlineSmall,
-              );
-            }),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: SizedBox(
-              width: 155,
-              height: 44,
-              child: Builder(builder: (context) {
-                final viewModel =
-                    context.read<NewRefreginatorIngredientViewModel>();
-                return TextField(
-                  onChanged: (value) => viewModel
-                      .onEvent(UpdateSelectedIngredientName(newName: value)),
-                  decoration: InputDecoration(
-                    // 재료가 선택되면 선택한 기본재료의 이름이 hintLabel로 지정됨.
-                    hintText: viewModel.selectedIngredient?.name ?? "",
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 15),
-                    filled: true,
-                    fillColor: Theme.of(context).colorScheme.onPrimaryContainer,
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  style: Theme.of(context).textTheme.bodyMedium,
-                );
-              }),
-            ),
-          )
-        ],
-      );
-
-  Widget _ingredientPeriod() => Row(
+      Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // 구매 날짜
@@ -178,24 +130,6 @@ class IngredientAddDescriptionView extends StatelessWidget {
                                   ));
                         },
                       );
-                      // }
-                      // return Container(
-                      //   padding: const EdgeInsets.only(
-                      //       top: 10.0, bottom: 10.0, right: 16.0),
-                      //   height: 40,
-                      //   width: 163,
-                      //   decoration: BoxDecoration(
-                      //     color: Theme.of(context)
-                      //         .colorScheme
-                      //         .onPrimaryContainer,
-                      //     borderRadius: BorderRadius.circular(12),
-                      //   ),
-                      //   child: Center(
-                      //       child: Text(
-                      //     "무제한",
-                      //     style: Theme.of(context).textTheme.labelSmall,
-                      //   )),
-                      // );
                     }),
                     Opacity(
                       opacity: 0.0,
@@ -217,5 +151,7 @@ class IngredientAddDescriptionView extends StatelessWidget {
             ],
           ),
         ],
-      );
+      )
+    ]);
+  }
 }

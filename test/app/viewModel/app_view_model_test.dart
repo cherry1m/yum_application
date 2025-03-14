@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yum_application/src/ui/app/viewModel/app_view_model.dart';
+import 'package:yum_application/src/ui/main_ui_view_model.dart';
 
 void main() {
-  late AppViewModel viewModel;
+  late MainUIViewModel viewModel;
   group("App View Model Unit Test", () {
     setUp(() {
-      viewModel = AppViewModel();
+      viewModel = MainUIViewModel();
     });
     test("초기 index 는 0이다.", () {
       expect(viewModel.pageIndex, 0);

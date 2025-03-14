@@ -23,15 +23,22 @@ class NewRefreginatorIngredientViewModel extends ChangeNotifier {
             id: null,
             selectedIngredient: null,
             overrideSelectedIngredient: true,
-            startAt: DateTime.now(),
-            endAt: DateTime.now(),
-            type: SelectType.create,
-            isINF: false,
-            isFreezed: false);
+            startAt: _state.startAt,
+            endAt: _state.endAt,
+            overrideEndAt: true,
+            type: _state.type,
+            isINF: _state.isINF,
+            isFreezed: _state.isFreezed);
 
       case SelectNewIngredientEvent():
         log("select");
-        _state = _state.copyWith(selectedIngredient: event.selectIngredient);
+        _state = _state.copyWith(
+            selectedIngredient: event.selectIngredient,
+            isFreezed: _state.isFreezed,
+            startAt: _state.startAt,
+            endAt: _state.endAt,
+            overrideEndAt: true,
+            isINF: _state.isINF);
 
       case UpdateSelectedIngredientName():
         log("updatename");
@@ -67,6 +74,7 @@ class NewRefreginatorIngredientViewModel extends ChangeNotifier {
         _state = _state.copyWith(
             isINF: event.isINF, endAt: null, overrideEndAt: true);
     }
+    print(_state);
 
     notifyListeners();
   }

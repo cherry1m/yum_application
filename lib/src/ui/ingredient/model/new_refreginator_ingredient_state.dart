@@ -3,7 +3,7 @@ import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_
 
 enum SelectType { create, update }
 
-final class SelectedNewRefreginatorIngredient extends Equatable {
+base class SelectedNewRefreginatorIngredient extends Equatable {
   final BasicIngredient? selectedIngredient;
   final int? id;
   final bool isFreezed;
