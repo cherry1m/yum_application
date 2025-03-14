@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
 import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart';
 
-import '../refreginator_ingredient_list_model.dart';
+import '../model/refreginator_ingredient_list_model.dart';
 
 class RefreginatorIngredientViewModel extends ChangeNotifier {
   final IngredientRepository ingredientRepository;

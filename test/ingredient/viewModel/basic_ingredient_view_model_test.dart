@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart';
-import 'package:yum_application/src/ui/ingredient/basic_ingredient_model.dart';
-import 'package:yum_application/src/ui/ingredient/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/ui/ingredient/model/basic_ingredient_model.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/basic_ingredient_view_model.dart';
 
 import 'basic_ingredient_view_model_test.mocks.dart';

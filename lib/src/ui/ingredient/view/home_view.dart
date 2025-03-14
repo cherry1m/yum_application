@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/loading_progress_indicator.dart';
-import 'package:yum_application/src/ui/ingredient/refreginator_ingredient_list_model.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_list_model.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_filter_check_box.dart';
 import 'package:yum_application/src/ui/ingredient/widget/refreginator_container.dart';
