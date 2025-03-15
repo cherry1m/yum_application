@@ -27,8 +27,6 @@ class AppProvider extends StatelessWidget {
 
         /// [Ingredient]관련 뷰모델 초기 주입
         ingredientViewModelProvider,
-        // baiscIngredientViewModelProvider,
-        // newRefreginatorIngredientViewModelProvider,
 
         /// [Recipe]관련 뷰모델 초기 주입
         recipeViewModelProvider,
