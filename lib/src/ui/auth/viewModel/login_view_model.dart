@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:yum_application/src/ui/app/page/app_page.dart';
+import 'package:yum_application/src/ui/main_page.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
 import 'package:yum_application/src/ui/auth/page/email_login_page.dart';
 import 'package:yum_application/src/ui/auth/page/resister_page.dart';
@@ -17,7 +17,7 @@ class LoginViewModel extends ChangeNotifier {
       case LoginType.google:
       case LoginType.apple:
       case LoginType.kakao:
-        moveTo(const AppPage());
+        moveTo(const MainPage());
 
       case LoginType.email:
         moveTo(const EmailLoginPage());

@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:yum_application/src/ui/ingredient/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
 
 enum SelectType { create, update }
 
-final class SelectedNewRefreginatorIngredient extends Equatable {
+base class SelectedNewRefreginatorIngredient extends Equatable {
   final BasicIngredient? selectedIngredient;
   final int? id;
   final bool isFreezed;

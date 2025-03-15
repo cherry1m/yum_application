@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_add_view.dart';
+import 'package:yum_application/src/ui/ingredient_create_update_ui.dart';
 import 'package:yum_application/src/ui/recipe/view/recipe_%20register_view.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
 
 enum Page { ingredient, recipe, challenge, mypage }
 
-class AppViewModel extends ChangeNotifier {
+class MainUIViewModel extends ChangeNotifier {
   final GlobalKey<NavigatorState> _ingredientNavigatorKey =
       GlobalKey<NavigatorState>();
 
@@ -54,7 +54,7 @@ class AppViewModel extends ChangeNotifier {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const IngredientAddView()));
+                  builder: (context) => const IngredientCreateUpdateUI()));
         case Page.recipe:
           Navigator.push(
               context,

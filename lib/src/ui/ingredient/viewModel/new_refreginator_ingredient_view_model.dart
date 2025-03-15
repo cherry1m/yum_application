@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/ui/ingredient/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
 
-import '../new_refreginator_ingredient_model.dart';
+import '../model/new_refreginator_ingredient_model.dart';
 
 class NewRefreginatorIngredientViewModel extends ChangeNotifier {
   SelectedNewRefreginatorIngredient _state =
@@ -23,15 +23,22 @@ class NewRefreginatorIngredientViewModel extends ChangeNotifier {
             id: null,
             selectedIngredient: null,
             overrideSelectedIngredient: true,
-            startAt: DateTime.now(),
-            endAt: DateTime.now(),
-            type: SelectType.create,
-            isINF: false,
-            isFreezed: false);
+            startAt: _state.startAt,
+            endAt: _state.endAt,
+            overrideEndAt: true,
+            type: _state.type,
+            isINF: _state.isINF,
+            isFreezed: _state.isFreezed);
 
       case SelectNewIngredientEvent():
         log("select");
-        _state = _state.copyWith(selectedIngredient: event.selectIngredient);
+        _state = _state.copyWith(
+            selectedIngredient: event.selectIngredient,
+            isFreezed: _state.isFreezed,
+            startAt: _state.startAt,
+            endAt: _state.endAt,
+            overrideEndAt: true,
+            isINF: _state.isINF);
 
       case UpdateSelectedIngredientName():
         log("updatename");

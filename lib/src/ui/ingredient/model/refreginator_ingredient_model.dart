@@ -1,2 +1,2 @@
 export 'package:yum_application/src/data/ingredient/entity/entity.dart';
-export '../../data/ingredient/entity/basic_ingredient.dart';
+export '../../../core/constants/basic_ingredient.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/basic_bottom_sheet.dart';
-import 'package:yum_application/src/data/ingredient/entity/basic_ingredient.dart';
+import 'package:yum_application/src/core/constants/basic_ingredient.dart';
 import 'package:yum_application/src/ui/ingredient/view/favorite_basic_ingredient_view.dart';
 import 'package:yum_application/src/ui/ingredient/view/ingredient_grid_view.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/basic_ingredient_view_model.dart';

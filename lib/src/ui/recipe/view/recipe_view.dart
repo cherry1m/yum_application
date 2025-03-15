@@ -21,7 +21,7 @@ class _RecipeViewState extends State<RecipeView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      // floatingActionButton: _floating(),
+      floatingActionButton: FloatingActionButton(onPressed: () {}),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       body: SingleChildScrollView(
         child: Column(

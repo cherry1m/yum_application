@@ -4,7 +4,7 @@ import 'package:yum_application/src/ui/common/widgets/loading_progress_indicator
 import 'package:yum_application/src/ui/ingredient/view/ingredient_grid_view.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/basic_ingredient_view_model.dart';
 
-import '../basic_ingredient_model.dart';
+import '../model/basic_ingredient_model.dart';
 
 class FavoriteBasicIngredientView extends StatelessWidget {
   const FavoriteBasicIngredientView({super.key});

@@ -1,39 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yum_application/src/ui/app/viewModel/app_view_model.dart';
+import 'package:yum_application/src/ui/main_ui_view_model.dart';
 import 'package:yum_application/src/ui/challenge/view/challenge_view.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
-import 'package:yum_application/src/ui/ingredient/view/home_view.dart';
+import 'package:yum_application/src/ui/my_refreginator_ui.dart';
 import 'package:yum_application/src/ui/recipe/view/recipe_view.dart';
 import 'package:yum_application/src/ui/user/view/mypage_view.dart';
 
-class AppView extends StatelessWidget {
-  const AppView({super.key});
+class MainUI extends StatelessWidget {
+  const MainUI({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: _body(),
       bottomNavigationBar: _bottomNav(),
-      floatingActionButton: _fab(),
+      // floatingActionButton: _fab(),
     );
   }
 
-  Widget _body() => Consumer<AppViewModel>(builder: (context, provider, child) {
+  Widget _body() =>
+      Consumer<MainUIViewModel>(builder: (context, provider, child) {
         return IndexedStack(
           key: const Key("app view body"),
           index: provider.pageIndex,
-          children: const [
-            HomeView(
-              key: Key("app view ingredient view"),
-            ),
-            RecipeView(
+          children: [
+            Navigator(
+                key: provider.ingredientNavigatorKey,
+                onGenerateRoute: (settings) => MaterialPageRoute(
+                      builder: (context) => const MyRefreginatorUI(),
+                    )),
+            const RecipeView(
               key: Key("app view recipe view"),
             ),
-            ChallengeView(
+            const ChallengeView(
               key: Key("app view challenge view"),
             ),
-            MyPageView(
+            const MyPageView(
               key: Key("app view mypage view"),
             ),
           ],
@@ -41,7 +44,7 @@ class AppView extends StatelessWidget {
       });
 
   Widget _bottomNav() =>
-      Consumer<AppViewModel>(builder: (context, provider, child) {
+      Consumer<MainUIViewModel>(builder: (context, provider, child) {
         return BottomNavigationBar(
             key: const Key("app view bottom nav"),
             type: BottomNavigationBarType.fixed,
@@ -81,7 +84,8 @@ class AppView extends StatelessWidget {
             ]);
       });
 
-  Widget _fab() => Consumer<AppViewModel>(builder: (context, provider, child) {
+  Widget _fab() =>
+      Consumer<MainUIViewModel>(builder: (context, provider, child) {
         if (provider.pageIndex < 2) {
           return FloatingActionButton(
               key: const Key("fab"),
