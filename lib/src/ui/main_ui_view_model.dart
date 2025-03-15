@@ -54,7 +54,7 @@ class MainUIViewModel extends ChangeNotifier {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const IngredientAddView()));
+                  builder: (context) => const IngredientCreateUpdateUI()));
         case Page.recipe:
           Navigator.push(
               context,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_state.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
-import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 
 class IngredientCreateUpdateHeaderView extends StatelessWidget {
   const IngredientCreateUpdateHeaderView({super.key});

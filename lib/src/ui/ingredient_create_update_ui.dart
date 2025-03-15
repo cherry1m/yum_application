@@ -6,8 +6,8 @@ import 'package:yum_application/src/ui/ingredient/view/ingredient_add_name_view.
 import 'package:yum_application/src/ui/ingredient/view/ingredient_create_update_header_view.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_add_view_toggle_widget.dart';
 
-class IngredientAddView extends StatelessWidget {
-  const IngredientAddView({super.key});
+class IngredientCreateUpdateUI extends StatelessWidget {
+  const IngredientCreateUpdateUI({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +49,7 @@ class IngredientAddView extends StatelessWidget {
 
   Widget _expiration() => const IngredientAddExpirationDateView();
 
-  Widget _button() => Padding(
-      padding: const EdgeInsets.only(top: 24.0, bottom: 40.0),
-      child: Builder(builder: (context) {
-        return const IngredientAddButtonView();
-      }));
+  Widget _button() => const Padding(
+      padding: EdgeInsets.only(top: 24.0, bottom: 40.0),
+      child: IngredientAddButtonView());
 }

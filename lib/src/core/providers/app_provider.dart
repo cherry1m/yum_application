@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/core/providers/common/client_provider.dart';
-import 'package:yum_application/src/core/providers/ingredient/basic_ingredient_view_model_provider.dart';
 import 'package:yum_application/src/core/providers/ingredient/ingredient_repository_provider.dart';
 import 'package:yum_application/src/core/providers/ingredient/ingredient_view_model_provider.dart';
-import 'package:yum_application/src/core/providers/ingredient/new_refreginator_ingredient_view_model_provider.dart';
 import 'package:yum_application/src/core/providers/recipe/recipe_repository_provider.dart';
 import 'package:yum_application/src/core/providers/recipe/recipe_view_model_provider.dart';
 
@@ -29,8 +27,8 @@ class AppProvider extends StatelessWidget {
 
         /// [Ingredient]관련 뷰모델 초기 주입
         ingredientViewModelProvider,
-        baiscIngredientViewModelProvider,
-        newRefreginatorIngredientViewModelProvider,
+        // baiscIngredientViewModelProvider,
+        // newRefreginatorIngredientViewModelProvider,
 
         /// [Recipe]관련 뷰모델 초기 주입
         recipeViewModelProvider,

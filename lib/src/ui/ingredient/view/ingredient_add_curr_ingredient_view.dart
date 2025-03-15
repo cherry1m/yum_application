@@ -13,11 +13,13 @@ class IngredientAddCurrIngredientView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<NewRefreginatorIngredientViewModel>();
-    final currIngredient = viewModel.state.selectedIngredient;
-    return switch (currIngredient) {
+    final state = context.select(
+        (NewRefreginatorIngredientViewModel viewModel) =>
+            viewModel.state.selectedIngredient);
+    // final currIngredient = viewModel.state.selectedIngredient;
+    return switch (state) {
       BasicIngredient() => SelectIngredientImage(
-          ingredient: currIngredient,
+          ingredient: state,
           width: 250,
         ),
       _ => const UnSelectIngredientImage(),

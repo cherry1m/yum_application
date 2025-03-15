@@ -15,7 +15,7 @@ class MainUI extends StatelessWidget {
     return Scaffold(
       body: _body(),
       bottomNavigationBar: _bottomNav(),
-      floatingActionButton: _fab(),
+      // floatingActionButton: _fab(),
     );
   }
 
@@ -24,17 +24,19 @@ class MainUI extends StatelessWidget {
         return IndexedStack(
           key: const Key("app view body"),
           index: provider.pageIndex,
-          children: const [
-            MyRefreginatorUI(
-              key: Key("app view ingredient view"),
-            ),
-            RecipeView(
+          children: [
+            Navigator(
+                key: provider.ingredientNavigatorKey,
+                onGenerateRoute: (settings) => MaterialPageRoute(
+                      builder: (context) => const MyRefreginatorUI(),
+                    )),
+            const RecipeView(
               key: Key("app view recipe view"),
             ),
-            ChallengeView(
+            const ChallengeView(
               key: Key("app view challenge view"),
             ),
-            MyPageView(
+            const MyPageView(
               key: Key("app view mypage view"),
             ),
           ],

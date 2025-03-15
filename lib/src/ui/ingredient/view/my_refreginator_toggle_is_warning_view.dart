@@ -13,15 +13,17 @@ class MyRefreginatorToggleIsWarningView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.watch<RefreginatorIngredientViewModel>();
-    final state = viewModel.state as LoadedState;
+    final viewModel = context.read<RefreginatorIngredientViewModel>();
+    final state = context.select((RefreginatorIngredientViewModel viewModel) =>
+        (viewModel.state as LoadedState).isWaringFilterOn);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           IngredientFilterCheckBox(
-              value: state.isWaringFilterOn,
+              value: state,
               label: "기간 임박",
               onChanged: (value) =>
                   viewModel.onEvent(ToggleIsWarningFilterEvent()))

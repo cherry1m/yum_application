@@ -30,7 +30,7 @@ class _SelectIngredientImageState extends State<SelectIngredientImage>
   void toggle() {
     /// isFreezed의 옵셔널 체이닝을 통해서 null 방지 -> false 부여
     final isFreezed =
-        (context.read<NewRefreginatorIngredientViewModel>().state).isFreezed;
+        (context.watch<NewRefreginatorIngredientViewModel>().state).isFreezed;
 
     if (isFreezed) {
       _backgroundAnimationController.forward().then((_) {
@@ -58,8 +58,14 @@ class _SelectIngredientImageState extends State<SelectIngredientImage>
         reverseCurve: Curves.fastOutSlowIn);
     _foregroundAnimation = CurvedAnimation(
         parent: _foregroundAnimationController, curve: Curves.fastOutSlowIn);
-    toggle();
+
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    toggle();
+    super.didChangeDependencies();
   }
 
   @override
