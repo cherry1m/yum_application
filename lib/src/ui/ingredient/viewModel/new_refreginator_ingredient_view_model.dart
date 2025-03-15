@@ -74,7 +74,6 @@ class NewRefreginatorIngredientViewModel extends ChangeNotifier {
         _state = _state.copyWith(
             isINF: event.isINF, endAt: null, overrideEndAt: true);
     }
-    print(_state);
 
     notifyListeners();
   }

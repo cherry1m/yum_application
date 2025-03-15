@@ -3,6 +3,7 @@ import 'package:yum_application/src/ui/ingredient/view/ingredient_add_button_vie
 import 'package:yum_application/src/ui/ingredient/view/ingredient_add_curr_ingredient_view.dart';
 import 'package:yum_application/src/ui/ingredient/view/ingredient_add_description_view.dart';
 import 'package:yum_application/src/ui/ingredient/view/ingredient_add_name_view.dart';
+import 'package:yum_application/src/ui/ingredient/view/ingredient_create_update_header_view.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_add_view_toggle_widget.dart';
 
 class IngredientAddView extends StatelessWidget {
@@ -18,10 +19,7 @@ class IngredientAddView extends StatelessWidget {
         elevation: 0.0,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(20.0))),
-        title: Text(
-          "새로운 식재료",
-          style: theme.textTheme.headlineLarge,
-        ),
+        title: const IngredientCreateUpdateHeaderView(),
         bottom: const PreferredSize(
             preferredSize: Size.fromHeight(250),
             child: SizedBox(

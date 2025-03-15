@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_add_view.dart';
+import 'package:yum_application/src/ui/ingredient_create_update_ui.dart';
 import 'package:yum_application/src/ui/recipe/view/recipe_%20register_view.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
 

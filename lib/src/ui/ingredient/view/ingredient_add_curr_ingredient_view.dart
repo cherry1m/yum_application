@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/core/constants/basic_ingredient.dart';
-import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
-import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_state.dart';
 import 'package:yum_application/src/ui/ingredient/view/select_ingredient_image.dart';
 import 'package:yum_application/src/ui/ingredient/view/un_select_ingredient_image.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';

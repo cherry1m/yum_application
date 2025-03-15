@@ -14,35 +14,32 @@ class MyRefreginatorUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<RefreginatorIngredientViewModel>(
-        builder: (context, provider, child) {
-      final state = provider.state;
-      if (state is ErrorState) {
-        return _error();
-      } else if (state is LoadingState) {
-        return _loading();
-      }
-      return SafeArea(
-        top: true,
-        bottom: false,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              // 헤더 영역
-              _header(),
-              // 기간임박 필터 토글 버튼
-              _toggleWarning(),
-              // 냉동칸
-              _freezer(),
-              // 냉장칸
-              _fridge(),
-            ],
+    final viewModel = context.watch<RefreginatorIngredientViewModel>();
+    final state = viewModel.state;
+    return switch (state) {
+      ErrorState() => _error(),
+      LoadingState() => _loading(),
+      _ => SafeArea(
+          top: true,
+          bottom: false,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                // 헤더 영역
+                _header(),
+                // 기간임박 필터 토글 버튼
+                _toggleWarning(),
+                // 냉동칸
+                _freezer(),
+                // 냉장칸
+                _fridge(),
+              ],
+            ),
           ),
         ),
-      );
-    });
+    };
   }
 
   /// 헤더 영역입니다.

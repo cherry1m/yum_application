@@ -5,7 +5,6 @@ import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
 import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
 import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
-import 'package:yum_application/src/ui/ingredient/widget/basic_ingredient_bottom_sheet.dart';
 
 /// 사용자가 재료 생성과정에서 선택한 재료를 보여주는 뷰
 ///

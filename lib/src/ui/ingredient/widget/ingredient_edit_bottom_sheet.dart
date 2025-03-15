@@ -5,7 +5,7 @@ import 'package:yum_application/src/ui/common/widgets/delete_dialog.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
 import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
 import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_list_event.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_add_view.dart';
+import 'package:yum_application/src/ui/ingredient_create_update_ui.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_expiration_date_chart.dart';
