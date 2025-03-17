@@ -81,6 +81,7 @@ final class RefreginatorIngredient extends Equatable {
     IngredientCategory? category,
     DateTime? startAt,
     DateTime? endAt,
+    bool overrideEndAt = false,
   }) {
     return RefreginatorIngredient(
       id: id,
@@ -88,7 +89,7 @@ final class RefreginatorIngredient extends Equatable {
       category: category ?? this.category,
       isFreezed: isFreezed ?? this.isFreezed,
       startAt: startAt ?? this.startAt,
-      endAt: endAt,
+      endAt: overrideEndAt ? endAt : this.endAt,
     );
   }
 
