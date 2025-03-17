@@ -20,6 +20,7 @@ void main() async {
       remoteDatasource =
           RemoteDatasourceImpl(apiClient: apiClient, baseUrl: baseUrl);
     });
+
     test("'/api/ingredients' GET요청이 성공하면 사용자의 재료 데이터를 반환한다", () async {
       when(apiClient.get(Uri.parse("$baseUrl/api/ingredients")))
           .thenAnswer((_) async => http.Response('''
@@ -47,6 +48,8 @@ void main() async {
 
       expect(() => remoteDatasource.getMyIngredient(),
           throwsA(isA<Map<String, dynamic>>()));
+
+      verify(apiClient.get(Uri.parse("$baseUrl/api/ingredients"))).called(1);
     });
 
     test("'/api/ingredients' POST요청이 성공하면 사용자의 생성한 재료 데이터를 반환한다", () async {
@@ -97,6 +100,12 @@ void main() async {
 
       expect(() => remoteDatasource.createNewIngredient(testBody),
           throwsA(isA<Map<String, dynamic>>()));
+
+      verify(apiClient.post(
+        Uri.parse("$baseUrl/api/ingredients"),
+        body: jsonEncode(testBody),
+        headers: {"Content-Type": "application/json"},
+      )).called(1);
     });
 
     test("'/api/ingredients PUT 요청이 성공하면 갱신된 재료 데이터를 반환한다.'", () async {
@@ -150,6 +159,12 @@ void main() async {
 
       expect(() => remoteDatasource.updateIngredient(testBody),
           throwsA(isA<Map<String, dynamic>>()));
+
+      verify(apiClient.put(
+        Uri.parse("$baseUrl/api/ingredients"),
+        body: jsonEncode(testBody),
+        headers: {"Content-Type": "application/json"},
+      )).called(1);
     });
 
     test("'/api/ingredients' DELETE요청이 성공하면 204의 응답코드를 반환한다", () {
@@ -159,6 +174,17 @@ void main() async {
       remoteDatasource.deleteIngredient(id);
       expect(apiClient.delete(Uri.parse("$baseUrl/api/ingredients/$id")),
           completes);
+    });
+
+    test("'/api/ingredients' DELETE요청이 실패하면 에러를 반환한다", () {
+      const id = 1;
+      when(apiClient.delete(Uri.parse("$baseUrl/api/ingredients/$id")))
+          .thenAnswer((_) async => http.Response("""
+  {"error":"something went wrong"}
+""", 400));
+
+      expect(() => remoteDatasource.deleteIngredient(id),
+          throwsA(isA<Map<String, dynamic>>()));
     });
 
     test("'/api/ingredients/favorites' GET 요청이 성공하면 200의 응답코드와 즐겨찾기 재료를 반환한다.",
