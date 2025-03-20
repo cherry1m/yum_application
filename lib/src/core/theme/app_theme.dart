@@ -80,6 +80,7 @@ ThemeData get light => ThemeData(
         secondaryContainer: Color(0xffFFE9B7),
         onPrimaryContainer: Color(0xffffffff),
         onSecondaryContainer: Color(0xffd7d7d7),
+        onTertiary: Color(0xffD7D7D7),
         surfaceContainer: Color(0xff2A2A2A),
         tertiary: Color(0xffF3F3F3),
         scrim: Color(0xffF2F2F2),

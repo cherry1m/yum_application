@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/ui/challenge/widget/challenge_detail_view.dart';
+import 'package:yum_application/src/ui/challenge/widget/challenge_detail_page.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
 import 'package:yum_application/src/ui/challenge/widget/challenge_row.dart';
 

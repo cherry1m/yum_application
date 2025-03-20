@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/ingredient_tile.dart';
-import 'package:yum_application/src/ui/ingredient/model/model.dart';
+import 'package:yum_application/src/ui/ingredient/model/basic_ingredient_list_event.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/basic_ingredient_view_model.dart';
-import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
+import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
 
 /// 사용자의 재료 그리드 뷰
 ///
@@ -35,15 +37,17 @@ class IngredientGridView extends StatelessWidget {
             children: ingredients
                 .map((i) => GestureDetector(
                       onTap: () {
+                        // 시트를 닫음.
+                        Navigator.of(context).pop();
+
                         /// 해당 재료를 선택할 경우,
                         /// [RefreginatorIngredientViewModel] 에서 해당 재료를 기본 재료로
                         /// 선택하게 됨.
-                        context
-                            .read<RefreginatorIngredientViewModel>()
-                            .selectIngredient(i);
 
-                        /// 이후 시트를 닫음.
-                        Navigator.of(context).pop();
+                        context
+                            .read<NewRefreginatorIngredientViewModel>()
+                            .onEvent(
+                                SelectNewIngredientEvent(selectIngredient: i));
                       },
                       child: Consumer<BasicIngredientViewModel>(
                           builder: (context, provider, child) {
@@ -54,7 +58,8 @@ class IngredientGridView extends StatelessWidget {
                           ///
                           /// 즐겨찾기가 등록되면 아이콘이 활성화됨.
                           /// 탭을 통해서 즐겨찾기의 true false를 토글링.
-                          onTap: () => provider.toggleIsFavorite(i.category),
+                          onTap: () => provider
+                              .onEvent(ToggleIsFavorite(category: i.category)),
                         );
                       }),
                     ))

@@ -3,10 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:yum_application/src/ui/common/widgets/basic_bottom_sheet.dart';
 import 'package:yum_application/src/ui/common/widgets/delete_dialog.dart';
 import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_edit_view.dart';
+import 'package:yum_application/src/ui/ingredient/model/new_refreginator_ingredient_event.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_list_event.dart';
+import 'package:yum_application/src/ui/ingredient/viewModel/new_refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/refreginator_ingredient_view_model.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_expiration_date_chart.dart';
 import 'package:yum_application/src/ui/ingredient/widget/ingredient_image.dart';
+import 'package:yum_application/src/ui/ingredient_create_update_ui.dart';
 
 class IngredientEditBottomSheet extends StatefulWidget {
   final RefreginatorIngredient ingredient;
@@ -38,6 +41,23 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
     final start = ingredient.startAt;
     final now = DateTime.now();
     final end = ingredient.endAt;
+    if (end == null) {
+      return Padding(
+        key: const Key("Ingredient Edit Bottom Sheet Top"),
+        padding: const EdgeInsets.only(top: 50),
+        child: Column(children: [
+          Text(
+            "소비기한을 지정하지 않았어요",
+            style: Theme.of(context).textTheme.headlineMedium,
+            textAlign: TextAlign.center,
+          ),
+          Text(
+            "${start.year}년 ${start.month}월 ${start.day}일 등록",
+            style: Theme.of(context).textTheme.labelSmall,
+          )
+        ]),
+      );
+    }
     final diff = (end.difference(now).inHours / 24).ceil();
 
     return Padding(
@@ -112,13 +132,12 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
                 fixedSize: Size(width, height),
               ),
               onPressed: () {
-                Provider.of<RefreginatorIngredientViewModel>(context,
+                Provider.of<NewRefreginatorIngredientViewModel>(context,
                         listen: false)
-                    .selectPrevIngredient(widget.ingredient);
+                    .onEvent(MoveToUpdatePrevIngredient(
+                        prevIngredient: widget.ingredient));
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => IngredientUpdateView(
-                          currIngredient: widget.ingredient,
-                        )));
+                    builder: (context) => const IngredientCreateUpdateUI()));
               },
               child: Text(
                 "수정하기",
@@ -139,9 +158,10 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
                     context: context,
                     builder: (context) => DeleteDialog(
                       onConfirm: () {
-                        Provider.of<RefreginatorIngredientViewModel>(context,
-                                listen: false)
-                            .deleteIngredient(widget.ingredient);
+                        context.read<RefreginatorIngredientViewModel>().onEvent(
+                            DeleteRegreginatorIngredientEvent(
+                                ingredient: widget.ingredient));
+                        Navigator.of(context).pop();
                       },
                     ),
                   );

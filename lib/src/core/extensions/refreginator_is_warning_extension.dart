@@ -1,4 +1,4 @@
-import 'package:yum_application/src/ui/ingredient/model/model.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
 
 /// 사용자의 재료는 3일을 기준으로 유통기한 임박을 표시하게 됩니다.
 extension IsWarningExtension on RefreginatorIngredient {
@@ -9,7 +9,10 @@ extension IsWarningExtension on RefreginatorIngredient {
   bool get isWarning {
     final now = DateTime.now();
     final th = DateTime(now.year, now.month, now.day);
-    final diff = endAt.difference(th).inDays;
+    if (endAt == null) {
+      return false;
+    }
+    final diff = endAt!.difference(th).inDays;
     if (diff <= 3) {
       return true;
     } else {

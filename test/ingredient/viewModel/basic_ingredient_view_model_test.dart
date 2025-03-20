@@ -1,106 +1,147 @@
+import 'dart:math';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:yum_application/src/data/ingredient/entity/ingredient_category.dart';
-import 'package:yum_application/src/ui/ingredient/model/basic_ingredient.dart';
 import 'package:yum_application/src/data/ingredient/repository/ingredient_repository.dart';
+import 'package:yum_application/src/ui/ingredient/model/basic_ingredient_model.dart';
+import 'package:yum_application/src/ui/ingredient/model/refreginator_ingredient_model.dart';
 import 'package:yum_application/src/ui/ingredient/viewModel/basic_ingredient_view_model.dart';
 
 import 'basic_ingredient_view_model_test.mocks.dart';
 
-@GenerateNiceMocks([MockSpec<IngredientRepositoryImpl>()])
+@GenerateNiceMocks([MockSpec<IngredientRepository>()])
 void main() {
-  late final MockIngredientRepositoryImpl ingredientRepository;
-  late final BasicIngredientViewModel viewModel;
+  late IngredientRepository ingredientRepository;
+  late BasicIngredientViewModel viewModel;
 
-  group("Basic Ingredient View Model Unit Test", () {
-    setUpAll(() {
-      ingredientRepository = MockIngredientRepositoryImpl();
+  setUp(() {
+    ingredientRepository = MockIngredientRepository();
+    viewModel =
+        BasicIngredientViewModel(ingredientRepository: ingredientRepository);
+    expect(viewModel.state is LoadingState, true);
+  });
+
+  group("BasicIngredientViewModel Unit Test", () {
+    test("viewModel은 생성 시 서버로부터 즐겨찾기 데이터를 가져온다.", () async {
+      final mockFavorites = [
+        IngredientCategory.beef,
+        IngredientCategory.egg,
+      ];
+
       when(ingredientRepository.getMyFavoriteIngredient())
-          .thenAnswer((_) async => []);
-      viewModel =
-          BasicIngredientViewModel(ingredientRepository: ingredientRepository);
-    });
-    test("allIngredients는 전체 재료가 모두 반환된다.", () {
-      final result = viewModel.allBasicIngredients;
-      expect(result.isNotEmpty, true);
-    });
+          .thenAnswer((_) async => mockFavorites);
+      await viewModel.fetchData();
+      expect(viewModel.state is LoadedState, true);
+      expect(
+          (viewModel.state as LoadedState)
+              .categories
+              .contains(IngredientCategory.beef),
+          true);
+      expect(
+          (viewModel.state as LoadedState)
+              .categories
+              .contains(IngredientCategory.egg),
+          true);
 
-    test("carbohydrate를 통해서 밥 빵 면 식재료가 반환된다.", () {
-      final result =
-          viewModel.getBasicIngredientBy(IngredientType.carbohydrate);
-      for (var i in result) {
-        expect(i.type, IngredientType.carbohydrate);
-      }
-    });
-
-    test("vegetables를 통해서 야채 및 과일 식재료가 반환된다.", () {
-      final result = viewModel.getBasicIngredientBy(IngredientType.vegetable);
-      for (var i in result) {
-        expect(i.type, IngredientType.vegetable);
-      }
+      expect((viewModel.state as LoadedState).favorites.length, 2);
     });
 
-    test("meatsAndEggs를 통해서 육류 및 계란 식재료가 반환된다.", () {
-      final result =
-          viewModel.getBasicIngredientBy(IngredientType.meatsAndEggs);
+    test("viewModel은 toggleIsFavorite을 통해서 새로운 즐겨찾기 재료를 추가할 수 있다.", () async {
+      viewModel.fetchData();
+      const category = IngredientCategory.egg;
+      final prevState = viewModel.state as LoadedState;
+      expect(prevState.categories.length, 0);
+      viewModel.toggleIsFavorite(category);
 
-      for (var i in result) {
-        expect(i.type, IngredientType.meatsAndEggs);
-      }
+      final currState = viewModel.state as LoadedState;
+      expect(currState.favorites.length, prevState.categories.length + 1);
+      expect(currState.categories.contains(category), true);
     });
 
-    test("fishAndShrimp를 통해서 생선류 식재료가 반환된다.", () {
-      final result =
-          viewModel.getBasicIngredientBy(IngredientType.fishAndShrimp);
+    test("viewModel은 toggleIsFavorite을 통해서 기존의 즐겨찾기 재료를 삭제할 수 있다.", () async {
+      const category = IngredientCategory.beef;
+      when(ingredientRepository.getMyFavoriteIngredient())
+          .thenAnswer((_) async => [category]);
+      await viewModel.fetchData();
+      final prevState = viewModel.state as LoadedState;
+      expect(prevState.categories.length, 1);
+      expect(prevState.categories.contains(category), true);
 
-      for (var i in result) {
-        expect(i.type, IngredientType.fishAndShrimp);
-      }
+      viewModel.toggleIsFavorite(category);
+      final currState = viewModel.state as LoadedState;
+      expect(currState.categories.length, prevState.categories.length - 1);
+      expect(currState.categories.contains(category), false);
     });
 
-    test("processedFood를 통해서 가공류 식재료가 반환된다.", () {
-      final result =
-          viewModel.getBasicIngredientBy(IngredientType.processedFood);
-      for (var i in result) {
-        expect(i.type, IngredientType.processedFood);
-      }
+    test("viewModel은 즐겨찾기 재료 추가시 서버에게 새로운 재료 생성을 요청한다.", () {
+      const category = IngredientCategory.egg;
+      viewModel.createNewFavoriteIngredient(category);
+
+      verify(ingredientRepository.createNewFavoriteIngredient(category))
+          .called(1);
     });
 
-    test("milkAndNuts를 통해서 유제품 및 견과류 식재료가 반환된다.", () {
-      final result = viewModel.getBasicIngredientBy(IngredientType.milkAndNuts);
-      for (var i in result) {
-        expect(i.type, IngredientType.milkAndNuts);
-      }
+    test("viewModel은 즐겨찾기 재료 삭제시 서버에게 기존 재료 삭제를 요청한다.", () {
+      const category = IngredientCategory.egg;
+      viewModel.deleteFavoriteIngredient(category);
+
+      verify(ingredientRepository.deleteFavoriteIngredient(category)).called(1);
     });
 
-    test("drink를 통해서 주류 식재료가 반환된다.", () {
-      final result = viewModel.getBasicIngredientBy(IngredientType.drink);
-      for (var i in result) {
-        expect(i.type, IngredientType.drink);
-      }
+    test("viewModel은 fetchDate()에서 통신 에러시 ErrorState로 갱신된다.", () async {
+      when(ingredientRepository.getMyFavoriteIngredient())
+          .thenThrow(Exception("서버 통신 에러"));
+
+      await viewModel.fetchData();
+
+      expect(viewModel.state is ErrorState, true);
     });
 
-    test("favorite을 통해서 즐겨찾기 식재료가 반환된다.", () {
-      viewModel.toggleIsFavorite(IngredientCategory.beef);
-      final result = viewModel.favorites;
-      expect(result.length, 1);
-      expect(result.first, isA<BasicIngredient>());
+    test("viewModel은 ToggleIsFavorite 이벤트를 통해서 기존 즐겨찾기 재료를 삭제할 수 있다.",
+        () async {
+      final mockFavorites = [
+        IngredientCategory.beef,
+        IngredientCategory.egg,
+      ];
+
+      when(ingredientRepository.getMyFavoriteIngredient())
+          .thenAnswer((_) async => mockFavorites);
+      await viewModel.fetchData();
+      final prevState = viewModel.state as LoadedState;
+      expect(prevState.categories.length, 2);
+      expect(prevState.categories.contains(IngredientCategory.beef), true);
+      expect(prevState.categories.contains(IngredientCategory.egg), true);
+
+      final event = ToggleIsFavorite(category: IngredientCategory.beef);
+      viewModel.onEvent(event);
+      final currState = viewModel.state as LoadedState;
+      expect(currState.categories.length, 1);
+      expect(currState.categories.contains(IngredientCategory.beef), false);
+      expect(currState.categories.contains(IngredientCategory.egg), true);
     });
 
-    test("toggleIsFavorite을 통해 즐겨찾기 재료가 추가 삭제된다.", () {
-      viewModel.toggleIsFavorite(IngredientCategory.beef);
-      final beef = viewModel.allBasicIngredients
-          .where((ingredient) => ingredient.category == IngredientCategory.beef)
-          .first;
-      expect(beef.isFavorite, false);
-    });
+    test("viewModel은 ToggleIsFavorite 이벤트를 통해서 즐겨찾기 재료를 추가할 수 있다.", () async {
+      final mockFavorites = [
+        IngredientCategory.beef,
+        IngredientCategory.egg,
+      ];
 
-    test("favorite을 통해서 즐겨찾기 식재료가 반환된다.", () {
-      viewModel.toggleIsFavorite(IngredientCategory.beef);
-      final result = viewModel.favorites;
-      expect(result.length, 1);
-      expect(result.first, isA<BasicIngredient>());
+      when(ingredientRepository.getMyFavoriteIngredient())
+          .thenAnswer((_) async => mockFavorites);
+      await viewModel.fetchData();
+      final prevState = viewModel.state as LoadedState;
+      expect(prevState.categories.length, 2);
+      expect(prevState.categories.contains(IngredientCategory.beef), true);
+      expect(prevState.categories.contains(IngredientCategory.egg), true);
+
+      final event = ToggleIsFavorite(category: IngredientCategory.beer);
+      viewModel.onEvent(event);
+      final currState = viewModel.state as LoadedState;
+      expect(currState.categories.length, 3);
+      expect(currState.categories.contains(IngredientCategory.beef), true);
+      expect(currState.categories.contains(IngredientCategory.egg), true);
+      expect(currState.categories.contains(IngredientCategory.beer), true);
     });
   });
 }

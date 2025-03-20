@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:yum_application/src/core/extensions/ice_image_extension.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
-import 'package:yum_application/src/ui/ingredient/view/select_ingredient_image.dart';
 
 class IngredientImage extends StatelessWidget {
   final bool isFreezed;
