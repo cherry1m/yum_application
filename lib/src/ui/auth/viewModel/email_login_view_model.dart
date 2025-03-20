@@ -2,46 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
 import 'package:yum_application/src/core/extensions/login_validator.dart';
+import 'package:yum_application/src/ui/auth/model/email_login_view_event.dart';
+import 'package:yum_application/src/ui/auth/model/email_login_view_state.dart';
 import 'package:yum_application/src/ui/main_page.dart';
 
 class EmailLoginViewModel extends ChangeNotifier {
-  // 이메일
-  String email = "";
-  final TextEditingController _emailController = TextEditingController();
-  TextEditingController get emailController => _emailController;
+  // // 이메일
+  // String email = "";
+  // final TextEditingController _emailController = TextEditingController();
+  // TextEditingController get emailController => _emailController;
 
-  // 비밀번호
-  String password = "";
-  final TextEditingController _passwordController = TextEditingController();
-  TextEditingController get passwordController => _passwordController;
+  // // 비밀번호
+  // String password = "";
+  // final TextEditingController _passwordController = TextEditingController();
+  // TextEditingController get passwordController => _passwordController;
 
-  // 이메일 검증 결과 메시지
-  String _emailValidLabel = "";
+  EmailLoginViewState _state = const EmailLoginViewState();
 
-  String get emailValidLabel => _emailValidLabel;
+  EmailLoginViewState get state => _state;
 
-  // 비밀번호 검증 결과 메시지
-  String _passwordValidLabel = "";
+  void onEvent(EmailLoginViewEvent event) {
+    switch (event) {
+      case ValidateInputEmail():
+        final email = event.email;
+        _state = _state.copyWith(
+            email: email, emailValidLabel: email.validateEmail());
+      case ValidateInputPassword():
+        final password = event.password;
+        _state = _state.copyWith(
+            password: password,
+            passwordValidLabel: password.validatePassword());
 
-  String get passwordValidLabel => _passwordValidLabel;
+      case SignIn():
+        signIn();
+    }
 
-  /// 사용자의 이메일을 검증합니다.
-  ///
-  /// 이메일 형식에 맞지 않으면 검증 메시지가 반환됩니다.
-  /// 이메일이 비어있는 경우에는 예외로 메시지가 반환되지 않습니다.
-  void validateEmail(String email) {
-    final validMessage = email.validateEmail() ?? "";
-    _emailValidLabel = validMessage;
-    notifyListeners();
-  }
-
-  /// 사용자의 비밀번호를 검증합니다.
-  ///
-  /// 비밀번호 형식에 맞지 않으면 검증 메시지가 반환됩니다.
-  /// 비밀빈호가 비어있는 경우에는 예외로 메시지가 반환되지 않습니다.
-  void validatePassword(String password) {
-    final validMessage = password.validatePassword() ?? "";
-    _passwordValidLabel = validMessage;
     notifyListeners();
   }
 
@@ -58,6 +53,5 @@ class EmailLoginViewModel extends ChangeNotifier {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => const MainPage()));
     });
-    notifyListeners();
   }
 }
