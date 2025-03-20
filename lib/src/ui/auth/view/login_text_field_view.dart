@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yum_application/src/ui/auth/model/email_login_view_event.dart';
 import 'package:yum_application/src/ui/auth/viewModel/email_login_view_model.dart';
 import 'package:yum_application/src/ui/auth/widget/login_text_field.dart';
 
@@ -19,14 +20,15 @@ class LoginTextFieldView extends StatelessWidget {
           // 이메일
           LoginTextField(
             key: const Key("email-login-view-email-textfield"),
-            controller: provider.emailController,
+            // controller: provider.emailController,
             hintText: "이메일을 입력해주세요",
             keyboardType: TextInputType.emailAddress,
-            onChanged: provider.validateEmail,
+            onChanged: (email) =>
+                provider.onEvent(ValidateInputEmail(email: email)),
           ),
           // 이메일 Validation 결과 텍스트
           Text(
-            provider.emailValidLabel,
+            provider.state.emailValidLabel,
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
@@ -40,15 +42,16 @@ class LoginTextFieldView extends StatelessWidget {
           // 비밀번호
           LoginTextField(
             key: const Key("email-login-view-password-textfield"),
-            controller: provider.passwordController,
+            // controller: provider.passwordController,
             hintText: "비밀번호를 입력해주세요",
             obscureText: true,
-            onChanged: provider.validatePassword,
+            onChanged: (password) =>
+                provider.onEvent(ValidateInputPassword(password: password)),
           ),
 
           // 비밀번호 Validation 결과 텍스트
           Text(
-            provider.passwordValidLabel,
+            provider.state.passwordValidLabel,
             style: const TextStyle(
               fontSize: 14,
               fontWeight: FontWeight.w400,
