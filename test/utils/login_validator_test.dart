@@ -5,9 +5,9 @@ import 'package:yum_application/src/core/extensions/login_validator.dart';
 // 그 외에 이메일을 입력하세요 혹은 잘못된 이메일 형식입니다 가 반환됨.
 void main() {
   group("Login email Validation Unit Test", () {
-    test("사용자의 이메일 test1234@test.com은 null을 반환한다.", () {
+    test("사용자의 이메일 test1234@test.com은 ''를 반환한다.", () {
       const email = "test1234@test.com";
-      expect(email.validateEmail(), null);
+      expect(email.validateEmail(), "");
     });
 
     test("사용자의 이메일 test1test.com은 '잘못된 이메일 형식입니다.'를 반환한다.", () {
@@ -20,15 +20,15 @@ void main() {
       expect(email.validateEmail(), '잘못된 이메일 형식입니다.');
     });
 
-    test("사용자의 이메일 test-1234@test.com은 null을 반환한다.", () {
+    test("사용자의 이메일 test-1234@test.com은 ''을 반환한다.", () {
       const email = "test-1234@test.com";
-      expect(email.validateEmail(), null);
+      expect(email.validateEmail(), '');
     });
 
     group("Login password Validation Unit Test", () {
-      test("사용자의 비밀번호 QWfas2312!asd은 null을 반환한다.", () {
+      test("사용자의 비밀번호 QWfas2312!asd은 ''을 반환한다.", () {
         const password = "QWfas2312!asd";
-        expect(password.validatePassword(), null);
+        expect(password.validatePassword(), '');
       });
 
       test("사용자의 비밀번호 qwfas2312!asd은 '잘못된 비밀번호 형식입니다.'을 반환한다.", () {
