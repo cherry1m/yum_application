@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -76,7 +74,20 @@ void main() {
 
     test("viewModel은 즐겨찾기 재료 추가시 서버에게 새로운 재료 생성을 요청한다.", () {
       const category = IngredientCategory.egg;
+      when(ingredientRepository.createNewFavoriteIngredient(category))
+          .thenAnswer((_) async {});
       viewModel.createNewFavoriteIngredient(category);
+
+      verify(ingredientRepository.createNewFavoriteIngredient(category))
+          .called(1);
+    });
+
+    test("viewModel은 즐겨찾기 재료 추가 에러시 에러를 반환한다.", () {
+      const category = IngredientCategory.egg;
+      when(ingredientRepository.createNewFavoriteIngredient(category))
+          .thenThrow("에러가 발생했습니다!");
+      expect(() => viewModel.createNewFavoriteIngredient(category),
+          throwsA(isA<Exception>()));
 
       verify(ingredientRepository.createNewFavoriteIngredient(category))
           .called(1);
@@ -84,8 +95,18 @@ void main() {
 
     test("viewModel은 즐겨찾기 재료 삭제시 서버에게 기존 재료 삭제를 요청한다.", () {
       const category = IngredientCategory.egg;
+      when(ingredientRepository.deleteFavoriteIngredient(category))
+          .thenAnswer((_) async {});
       viewModel.deleteFavoriteIngredient(category);
+      verify(ingredientRepository.deleteFavoriteIngredient(category)).called(1);
+    });
 
+    test("viewModel은 즐겨찾기 재료 삭제시 에러시 에러를 반환한다.", () {
+      const category = IngredientCategory.egg;
+      when(ingredientRepository.deleteFavoriteIngredient(category))
+          .thenThrow("에러가 발생했습니다!");
+      expect(() => viewModel.deleteFavoriteIngredient(category),
+          throwsA(isA<Exception>()));
       verify(ingredientRepository.deleteFavoriteIngredient(category)).called(1);
     });
 
