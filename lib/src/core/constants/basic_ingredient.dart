@@ -1,5 +1,5 @@
-import 'package:yum_application/src/data/ingredient/entity/ingredient_category.dart';
-import 'package:yum_application/src/data/ingredient/entity/refreginator_ingredient.dart';
+import 'package:yum_application/src/features/ingredients/data/entity/ingredient_category.dart';
+import 'package:yum_application/src/features/ingredients/data/entity/refreginator_ingredient.dart';
 
 final class BasicIngredient {
   /// [BasicIngredient]의 기본 이름입니다.

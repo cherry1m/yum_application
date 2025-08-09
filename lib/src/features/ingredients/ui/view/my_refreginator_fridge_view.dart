@@ -1,0 +1,25 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:provider/provider.dart';
+import 'package:yum_application/src/features/ingredients/data/model/refreginator_ingredient_list_model.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_view_model.dart';
+import 'package:yum_application/src/features/ingredients/ui/widget/refreginator_container.dart';
+
+class MyRefreginatorFridgeView extends ConsumerWidget {
+  const MyRefreginatorFridgeView({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final viewModel =
+        ref.read(refreginatorIngredientViewModelProvider.notifier);
+    final state =
+        ref.watch(refreginatorIngredientViewModelProvider) as LoadedState;
+    return Padding(
+        key: const Key("fridge"),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8.0),
+        child: RefreginatorContainer(
+            label: "냉장 보관",
+            rowCount: 3,
+            children: state.myUnfreezedIngredients));
+  }
+}

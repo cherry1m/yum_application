@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_add_button_view.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_add_curr_ingredient_view.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_add_description_view.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_add_name_view.dart';
-import 'package:yum_application/src/ui/ingredient/view/ingredient_create_update_header_view.dart';
-import 'package:yum_application/src/ui/ingredient/widget/ingredient_add_view_toggle_widget.dart';
+import 'package:yum_application/src/features/ingredients/ui/view/ingredient_add_button_view.dart';
+import 'package:yum_application/src/features/ingredients/ui/view/ingredient_add_curr_ingredient_view.dart';
+import 'package:yum_application/src/features/ingredients/ui/view/ingredient_add_description_view.dart';
+import 'package:yum_application/src/features/ingredients/ui/view/ingredient_add_name_view.dart';
+import 'package:yum_application/src/features/ingredients/ui/view/ingredient_create_update_header_view.dart';
+import 'package:yum_application/src/features/ingredients/ui/widget/ingredient_add_view_toggle_widget.dart';
 
 class IngredientCreateUpdateUI extends StatelessWidget {
   const IngredientCreateUpdateUI({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/ui/ingredient/widget/single_button.dart';
+import 'package:yum_application/src/features/ingredients/ui/widget/single_button.dart';
 import 'package:yum_application/src/ui/recipe/view/recipe_stepper.dart';
 import 'package:yum_application/src/ui/recipe/view/stepper_view.dart';
 import 'package:yum_application/src/ui/recipe/view/summary_view.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
-import 'package:yum_application/src/ui/ingredient/widget/single_button.dart';
+import 'package:yum_application/src/features/ingredients/ui/widget/single_button.dart';
 
 // Challenge Storage ( 보관함 )
 // 챌린지 달성 시 보상 화면.

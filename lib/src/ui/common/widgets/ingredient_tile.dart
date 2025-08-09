@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/core/constants/basic_ingredient.dart';
-import 'package:yum_application/src/ui/ingredient/widget/ingredient_image.dart';
+import 'package:yum_application/src/features/ingredients/ui/widget/ingredient_image.dart';
 
 class IngredientTile extends StatelessWidget {
   final BasicIngredient ingredient;

@@ -89,6 +89,22 @@ class MockNavigatorObserver extends _i1.Mock implements _i2.NavigatorObserver {
       );
 
   @override
+  void didChangeTop(
+    _i2.Route<dynamic>? topRoute,
+    _i2.Route<dynamic>? previousTopRoute,
+  ) =>
+      super.noSuchMethod(
+        Invocation.method(
+          #didChangeTop,
+          [
+            topRoute,
+            previousTopRoute,
+          ],
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   void didStartUserGesture(
     _i2.Route<dynamic>? route,
     _i2.Route<dynamic>? previousRoute,
