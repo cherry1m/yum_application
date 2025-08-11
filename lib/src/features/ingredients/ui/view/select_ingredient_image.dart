@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/core/extensions/ice_image_extension.dart';
 import 'package:yum_application/src/ui/common/widgets/image_widget.dart';
-import 'package:yum_application/src/features/ingredients/data/model/refreginator_ingredient_model.dart';
-import 'package:yum_application/src/features/ingredients/data/model/new_refreginator_ingredient_event.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/new_refreginator_ingredient_event.dart';
 import 'package:yum_application/src/features/ingredients/ui/viewModel/new_refreginator_ingredient_view_model.dart';
 
 /// 사용자가 재료 생성과정에서 선택한 재료를 보여주는 뷰

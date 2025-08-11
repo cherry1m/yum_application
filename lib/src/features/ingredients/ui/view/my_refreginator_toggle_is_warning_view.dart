@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:provider/provider.dart';
-import 'package:yum_application/src/features/ingredients/data/model/refreginator_ingredient_list_model.dart';
-import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_view_model.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_list_model.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_list_view_model.dart';
 import 'package:yum_application/src/features/ingredients/ui/widget/ingredient_filter_check_box.dart';
 
 /// 사용자의 재료 중 유통기한이 3일 이내로 임박한 [RefreginatorIngredient]를

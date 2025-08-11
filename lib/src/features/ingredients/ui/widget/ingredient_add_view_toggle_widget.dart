@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yum_application/src/features/ingredients/data/model/new_refreginator_ingredient_event.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/new_refreginator_ingredient_event.dart';
 import 'package:yum_application/src/features/ingredients/ui/viewModel/new_refreginator_ingredient_view_model.dart';
 
 class IngredientAddViewToggleWidget extends StatelessWidget {

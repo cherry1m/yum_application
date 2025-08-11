@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:yum_application/src/features/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:yum_application/src/ui/common/widgets/basic_bottom_sheet.dart';
 import 'package:yum_application/src/ui/common/widgets/delete_dialog.dart';
-import 'package:yum_application/src/features/ingredients/data/entity/refreginator_ingredient.dart';
-import 'package:yum_application/src/features/ingredients/data/model/new_refreginator_ingredient_event.dart';
-import 'package:yum_application/src/features/ingredients/data/model/refreginator_ingredient_list_event.dart';
+import 'package:yum_application/src/features/ingredients/data/model/ingredient.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/new_refreginator_ingredient_event.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_list_event.dart';
 import 'package:yum_application/src/features/ingredients/ui/viewModel/new_refreginator_ingredient_view_model.dart';
-import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_view_model.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_list_view_model.dart';
 import 'package:yum_application/src/features/ingredients/ui/widget/ingredient_expiration_date_chart.dart';
 import 'package:yum_application/src/features/ingredients/ui/widget/ingredient_image.dart';
 import 'package:yum_application/src/ui/ingredient_create_update_ui.dart';
 
 class IngredientEditBottomSheet extends StatefulWidget {
-  final RefreginatorIngredient ingredient;
+  final IngredientEntity ingredient;
   const IngredientEditBottomSheet({super.key, required this.ingredient});
 
   @override
@@ -158,9 +159,9 @@ class _IngredientEditBottomSheetState extends State<IngredientEditBottomSheet> {
                     context: context,
                     builder: (context) => DeleteDialog(
                       onConfirm: () {
+                        if (widget.ingredient.id == null) return;
                         context.read<RefreginatorIngredientViewModel>().onEvent(
-                            DeleteRegreginatorIngredientEvent(
-                                ingredient: widget.ingredient));
+                            IngredientDeleteRequest(id: widget.ingredient.id!));
                         Navigator.of(context).pop();
                       },
                     ),

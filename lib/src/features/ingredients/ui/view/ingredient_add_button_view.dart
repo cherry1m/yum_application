@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yum_application/src/features/ingredients/data/model/new_refreginator_ingredient_state.dart';
-import 'package:yum_application/src/features/ingredients/data/model/refreginator_ingredient_list_event.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/new_refreginator_ingredient_state.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_list_event.dart';
 import 'package:yum_application/src/features/ingredients/ui/viewModel/new_refreginator_ingredient_view_model.dart';
-import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_view_model.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_list_view_model.dart';
 import 'package:yum_application/src/features/ingredients/ui/widget/single_button.dart';
 
 class IngredientAddButtonView extends StatelessWidget {

@@ -1,17 +1,11 @@
-import 'package:yum_application/src/features/ingredients/data/entity/refreginator_ingredient.dart';
+import 'package:yum_application/src/features/ingredients/data/model/ingredient.dart';
 
 abstract class IngredientApi {
-  Stream<List<RefreginatorIngredient>> getMyIngredient();
+  Stream<List<Ingredient>> getMyIngredient();
 
-  Future<Map<String, dynamic>> createNewIngredient(Map<String, dynamic> json);
+  Future<Ingredient> createNewIngredient(Ingredient ingredient);
 
-  Future<Map<String, dynamic>> updateIngredient(Map<String, dynamic> json);
+  Future<void> updateIngredient(Ingredient ingredient);
 
-  Future<List<Map<String, dynamic>>> getMyFavoriteIngredient();
-
-  Future<void> deleteIngredient(int id);
-
-  Future<void> createNewFavoriteIngredient(Map<String, dynamic> json);
-
-  Future<void> deleteFavoriteIngredient(Map<String, dynamic> json);
+  Future<void> deleteIngredient(String id);
 }

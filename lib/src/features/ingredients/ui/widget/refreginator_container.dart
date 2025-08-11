@@ -1,13 +1,13 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:yum_application/src/core/extensions/refreginator_is_warning_extension.dart';
-import 'package:yum_application/src/features/ingredients/data/entity/refreginator_ingredient.dart';
+import 'package:yum_application/src/features/ingredients/domain/entities/ingredient_entity.dart';
 import 'package:yum_application/src/features/ingredients/ui/widget/ingredient_edit_bottom_sheet.dart';
 import 'package:yum_application/src/features/ingredients/ui/widget/ingredient_image.dart';
 import 'package:yum_application/src/features/ingredients/ui/widget/page_indicator.dart';
 
 class RefreginatorContainer extends StatefulWidget {
-  final List<RefreginatorIngredient> children;
+  final List<IngredientEntity> children;
   final int rowCount;
   final String label;
   const RefreginatorContainer({
@@ -45,7 +45,7 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
   ///
   /// 위젯에 전달된 children에 대하여 3차원 배열로 변환합니다.
   /// 만약 정해진만큼 공간을 차지하지 못하면, empty가 채워집니다.
-  List<List<List<dynamic>>> convertTo3D(List<RefreginatorIngredient> children) {
+  List<List<List<dynamic>>> convertTo3D(List<IngredientEntity> children) {
     final oneDArray = children.map((i) => _buildItem(i)).toList();
     int groupSize = widget.rowCount * 4;
 
@@ -213,7 +213,7 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
         ],
       );
 
-  Widget _buildItem(RefreginatorIngredient item) => GestureDetector(
+  Widget _buildItem(IngredientEntity item) => GestureDetector(
         onTap: () {
           showModalBottomSheet(
               shape: const RoundedRectangleBorder(
@@ -288,7 +288,7 @@ class _RefreginatorContainerState extends State<RefreginatorContainer>
 }
 
 class AnimatedRefreginatorItem extends StatefulWidget {
-  final RefreginatorIngredient item;
+  final IngredientEntity item;
   final double width;
   const AnimatedRefreginatorItem(
       {super.key, required this.item, required this.width});
@@ -350,7 +350,7 @@ class _AnimatedRefreginatorItemState extends State<AnimatedRefreginatorItem>
             child: IngredientImage(
               path: widget.item.category.imagePath,
               isFreezed: widget.item.isFreezed,
-              isWarning: widget.item.isWarning,
+              isWarning: widget.item.isWarning(DateTime.now()),
             )),
         SizedBox(
           width: widget.width,
@@ -374,7 +374,7 @@ class _AnimatedRefreginatorItemState extends State<AnimatedRefreginatorItem>
 ///
 /// [IsWarningExtension]을 참조합니다.
 class RefreginatorItem extends StatelessWidget {
-  final RefreginatorIngredient item;
+  final IngredientEntity item;
 
   const RefreginatorItem({super.key, required this.item});
 
@@ -387,7 +387,7 @@ class RefreginatorItem extends StatelessWidget {
             child: IngredientImage(
               path: item.category.imagePath,
               isFreezed: item.isFreezed,
-              isWarning: item.isWarning,
+              isWarning: item.isWarning(DateTime.now()),
             )),
         Text(
           item.name,

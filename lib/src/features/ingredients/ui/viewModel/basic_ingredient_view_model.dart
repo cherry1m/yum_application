@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/features/ingredients/data/repository/ingredient_repository.dart';
-import 'package:yum_application/src/features/ingredients/data/model/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/features/ingredients/domain/entities/ingredient_category.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/features/ingredients/domain/repositories/ingredient_repository.dart';
 
-import '../../data/model/basic_ingredient_model.dart';
+import 'basic_ingredient_model.dart';
 
 class BasicIngredientViewModel extends ChangeNotifier {
   final IngredientRepository ingredientRepository;

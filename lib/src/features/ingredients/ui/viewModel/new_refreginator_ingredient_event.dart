@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:yum_application/src/features/ingredients/data/model/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_model.dart';
 
 // 식재료 생성 이벤트
 sealed class NewRefreginatorIngredientEvent extends Equatable {}

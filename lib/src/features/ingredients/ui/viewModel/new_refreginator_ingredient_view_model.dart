@@ -1,9 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/features/ingredients/data/model/refreginator_ingredient_model.dart';
+import 'package:yum_application/src/features/ingredients/ui/viewModel/refreginator_ingredient_model.dart';
 
-import '../../data/model/new_refreginator_ingredient_model.dart';
+import 'new_refreginator_ingredient_model.dart';
 
 class NewRefreginatorIngredientViewModel extends ChangeNotifier {
   SelectedNewRefreginatorIngredient _state =

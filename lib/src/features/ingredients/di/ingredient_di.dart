@@ -1,8 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:yum_application/src/core/di/app_provider.dart';
-import 'package:yum_application/src/features/ingredients/data/datasource/remote_ingredient_api.dart';
-import 'package:yum_application/src/features/ingredients/data/repository/ingredient_repository.dart';
+import 'package:yum_application/src/features/ingredients/data/datasource/remotes/remote_ingredient_api.dart';
+import 'package:yum_application/src/features/ingredients/data/repository/ingredient_repository_impl.dart';
+import 'package:yum_application/src/features/ingredients/domain/repositories/ingredient_repository.dart';
+import 'package:yum_application/src/features/ingredients/domain/usecases/create_user_ingredient.dart';
+import 'package:yum_application/src/features/ingredients/domain/usecases/delete_user_ingredient.dart';
+import 'package:yum_application/src/features/ingredients/domain/usecases/get_user_ingredients.dart';
+import 'package:yum_application/src/features/ingredients/domain/usecases/update_user_ingredient.dart';
 
 part 'ingredient_di.g.dart';
 
@@ -15,4 +20,28 @@ RemoteIngredientApi remoteIngredientApi(Ref ref) {
 IngredientRepository ingredientRepository(Ref ref) {
   return IngredientRepositoryImpl(
       remoteDatasource: ref.read(remoteIngredientApiProvider));
+}
+
+@riverpod
+GetUserIngredients getUserIngredients(Ref ref) {
+  return GetUserIngredientsImpl(
+      ingredientRepository: ref.read(ingredientRepositoryProvider));
+}
+
+@riverpod
+CreateUserIngredient createUserIngredient(Ref ref) {
+  return CreateUserIngredientImpl(
+      ingredientRepository: ref.read(ingredientRepositoryProvider));
+}
+
+@riverpod
+DeleteUserIngredient deleteUserIngredient(Ref ref) {
+  return DeleteUserIngredientImpl(
+      ingredientRepository: ref.read(ingredientRepositoryProvider));
+}
+
+@riverpod
+UpdateUserIngredient updateUserIngredient(Ref ref) {
+  return UpdateUserIngredientImpl(
+      ingredientRepository: ref.read(ingredientRepositoryProvider));
 }
