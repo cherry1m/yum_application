@@ -5,5 +5,5 @@ abstract class FavoriteCategoryRepository {
 
   Future<IngredientCategory> createFavorite(IngredientCategory category);
 
-  Future<void> deleteFavorite(String id);
+  Future<void> deleteFavorite(IngredientCategory category);
 }

@@ -43,22 +43,4 @@ class RemoteIngredientApi extends IngredientApi {
         .doc(ingredient.id)
         .update(ingredient.toJson());
   }
-
-  @override
-  Future<void> createNewFavoriteIngredient(Map<String, dynamic> json) {
-    // TODO: implement createNewFavoriteIngredient
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> deleteFavoriteIngredient(Map<String, dynamic> json) {
-    // TODO: implement deleteFavoriteIngredient
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<List<Map<String, dynamic>>> getMyFavoriteIngredient() {
-    // TODO: implement getMyFavoriteIngredient
-    throw UnimplementedError();
-  }
 }

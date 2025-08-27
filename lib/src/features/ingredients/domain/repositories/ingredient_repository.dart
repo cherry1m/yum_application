@@ -1,4 +1,4 @@
-import 'package:yum_application/src/features/ingredients/domain/entities/ingredient_entity.dart';
+import 'package:yum_application/src/features/ingredients/domain/entities/refreginator_ingredient.dart';
 
 abstract class IngredientRepository {
   Stream<List<RefreginatorIngredient>> getMyIngredient();

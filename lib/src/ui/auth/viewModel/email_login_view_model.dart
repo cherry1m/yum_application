@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:yum_application/src/core/utils/global_variable.dart';
 import 'package:yum_application/src/core/extensions/login_validator.dart';
-import 'package:yum_application/src/ui/main_page.dart';
 
 class EmailLoginViewModel extends ChangeNotifier {
   // 이메일
@@ -55,8 +54,6 @@ class EmailLoginViewModel extends ChangeNotifier {
     /// 추후에 삭제되고 로그인 API로 마이그레이션 예정
     SchedulerBinding.instance.addPostFrameCallback((_) {
       final context = GlobalVariable.naviagatorState.currentContext!;
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const MainPage()));
     });
     notifyListeners();
   }

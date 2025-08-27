@@ -1,5 +1,5 @@
 import 'package:yum_application/src/features/ingredients/data/datasource/remotes/remote_ingredient_api.dart';
-import 'package:yum_application/src/features/ingredients/domain/entities/ingredient_entity.dart';
+import 'package:yum_application/src/features/ingredients/domain/entities/refreginator_ingredient.dart';
 import 'package:yum_application/src/features/ingredients/domain/repositories/ingredient_repository.dart';
 
 class IngredientRepositoryImpl implements IngredientRepository {

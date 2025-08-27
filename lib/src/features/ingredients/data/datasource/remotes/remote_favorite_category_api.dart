@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
-import 'package:yum_application/src/core/di/app_provider.dart';
 import 'package:yum_application/src/features/ingredients/data/datasource/favorite_category_api.dart';
 import 'package:yum_application/src/features/ingredients/data/model/favorite_category.dart';
 
@@ -29,22 +28,16 @@ class RemoteFavoriteCategoryApi extends FavoriteCategoryApi {
   ///
   ///
   @override
-  Future<FavoriteCategory> createFavorite(FavoriteCategory favorite) {
-    return _firestore
-        .collection(collections)
-        .add(favorite.toFirestore())
-        .then((documentSnapshot) {
-      final id = documentSnapshot.id;
-      final newFavorite = favorite.copyWith(id: id);
-      return newFavorite;
-    });
+  Future<FavoriteCategory> createFavorite(FavoriteCategory favorite) async {
+    await _firestore.collection(collections).doc(favorite.category).set({});
+    return favorite;
   }
 
   /// 사용자 즐겨찾기 식재료 삭제
   ///
   ///
   @override
-  Future<void> deleteFavorite(String id) async {
-    await _firestore.collection(collections).doc(id).delete();
+  Future<void> deleteFavorite(FavoriteCategory favorite) async {
+    await _firestore.collection(collections).doc(favorite.category).delete();
   }
 }

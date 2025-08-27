@@ -70,8 +70,8 @@ final class Ingredient extends Equatable {
         'name': name,
         "isFreezed": isFreezed,
         "category": category,
-        "startAt": startAt.toyyyyMMdd(),
-        if (endAt != null) 'endAt': endAt!.toyyyyMMdd(),
+        "startAt": startAt,
+        if (endAt != null) 'endAt': endAt!,
       };
 
   Ingredient copyWith({

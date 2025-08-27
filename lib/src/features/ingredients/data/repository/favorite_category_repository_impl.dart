@@ -9,11 +9,20 @@ class FavoriteCategoryRepositoryImpl extends FavoriteCategoryRepository {
     required RemoteFavoriteCategoryApi remoteDatasource,
   }) : _remoteDatasource = remoteDatasource;
 
+  List<IngredientCategory> _cached = [];
+
   @override
   Future<List<IngredientCategory>> getFavorites() async {
-    return _remoteDatasource.getFavorites().then((response) => response
-        .map((favorite) => IngredientCategory.fromString(favorite.category))
-        .toList());
+    final response = await _remoteDatasource.getFavorites().then((response) =>
+        response
+            .map((favorite) => IngredientCategory.fromString(favorite.category))
+            .toList());
+    if (response.isNotEmpty) {
+      _cached = response;
+      return _cached;
+    } else {
+      return [];
+    }
   }
 
   @override
@@ -24,7 +33,7 @@ class FavoriteCategoryRepositoryImpl extends FavoriteCategoryRepository {
   }
 
   @override
-  Future<void> deleteFavorite(String id) async {
-    return _remoteDatasource.deleteFavorite(id);
+  Future<void> deleteFavorite(IngredientCategory category) async {
+    return _remoteDatasource.deleteFavorite(category.toFavorite());
   }
 }

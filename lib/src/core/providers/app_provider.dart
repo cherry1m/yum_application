@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yum_application/src/core/providers/common/client_provider.dart';
-import 'package:yum_application/src/core/providers/ingredient/ingredient_view_model_provider.dart';
 import 'package:yum_application/src/core/providers/recipe/recipe_repository_provider.dart';
 import 'package:yum_application/src/core/providers/recipe/recipe_view_model_provider.dart';
 

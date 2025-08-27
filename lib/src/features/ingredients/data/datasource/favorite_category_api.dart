@@ -5,5 +5,5 @@ abstract class FavoriteCategoryApi {
 
   Future<FavoriteCategory> createFavorite(FavoriteCategory favorite);
 
-  Future<void> deleteFavorite(String id);
+  Future<void> deleteFavorite(FavoriteCategory favorite);
 }

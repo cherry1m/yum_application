@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/core/constants/basic_ingredient.dart';
-import 'package:yum_application/src/features/ingredients/ui/widget/ingredient_image.dart';
+import 'package:yum_application/src/features/ingredients/domain/entities/basic_ingredient.dart';
+import 'package:yum_application/src/features/ingredients/ui/widgets/ingredient_image.dart';
 
 class IngredientTile extends StatelessWidget {
   final BasicIngredient ingredient;
   final void Function()? onTap;
+  final bool isFavorite;
   const IngredientTile({
     super.key,
     required this.ingredient,
     required this.onTap,
+    required this.isFavorite,
   });
 
   @override
@@ -36,21 +38,14 @@ class IngredientTile extends StatelessWidget {
             ],
           ),
           Positioned(
-            top: 2.0,
-            right: 2.0,
-            child: GestureDetector(
-                onTap: onTap,
-                child: (ingredient.isFavorite)
-                    ? Icon(
-                        Icons.favorite,
-                        color: Theme.of(context).colorScheme.secondary,
-                      )
-                    : Icon(
-                        Icons.favorite_outline,
-                        color:
-                            Theme.of(context).colorScheme.onSecondaryContainer,
-                      )),
-          )
+              top: 2.0,
+              right: 2.0,
+              child: GestureDetector(
+                  onTap: onTap,
+                  child: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_outline,
+                    color: Theme.of(context).colorScheme.secondary,
+                  )))
         ],
       ),
     );

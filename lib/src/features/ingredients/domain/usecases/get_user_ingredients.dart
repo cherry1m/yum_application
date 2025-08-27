@@ -1,4 +1,4 @@
-import 'package:yum_application/src/features/ingredients/domain/entities/ingredient_entity.dart';
+import 'package:yum_application/src/features/ingredients/domain/entities/refreginator_ingredient.dart';
 import 'package:yum_application/src/features/ingredients/domain/repositories/ingredient_repository.dart';
 
 /// 사용자 냉장고 재료 조회 Usecase

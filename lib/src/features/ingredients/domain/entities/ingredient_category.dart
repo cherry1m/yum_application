@@ -53,6 +53,6 @@ enum IngredientCategory {
   }
 
   FavoriteCategory toFavorite() {
-    return FavoriteCategory(id: null, category: name);
+    return FavoriteCategory(category: name);
   }
 }
