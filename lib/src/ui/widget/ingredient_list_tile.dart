@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class IngredientTileRow extends StatelessWidget {
+class IngredientListTile extends StatelessWidget {
   final String name;
   final int count;
   final String date;
@@ -8,7 +8,7 @@ class IngredientTileRow extends StatelessWidget {
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
-  const IngredientTileRow({
+  const IngredientListTile({
     super.key,
     required this.name,
     required this.count,

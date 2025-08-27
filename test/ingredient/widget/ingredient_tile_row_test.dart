@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yum_application/src/ui/widget/ingredient_tile_row.dart';
+import 'package:yum_application/src/ui/widget/ingredient_list_tile.dart';
 
 void main() {
   const name = '양파';
@@ -11,7 +11,7 @@ void main() {
       {required VoidCallback onEdit, required VoidCallback onDelete}) {
     return MaterialApp(
       home: Scaffold(
-        body: IngredientTileRow(
+        body: IngredientListTile(
           name: name,
           count: count,
           date: date,
