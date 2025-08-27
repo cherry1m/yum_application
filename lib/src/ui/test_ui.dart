@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yum_application/src/ui/widget/item_card.dart';
+import 'package:yum_application/src/ui/widget/ingredient_tile_row.dart';
 
 class TestUi extends StatelessWidget {
   const TestUi({super.key});
@@ -8,7 +8,7 @@ class TestUi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ItemCard(
+        child: IngredientTileRow(
           name: "양파",
           count: 2,
           date: '2025-09-30',

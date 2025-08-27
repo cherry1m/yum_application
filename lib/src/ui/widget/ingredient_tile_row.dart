@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ItemCard extends StatelessWidget {
+class IngredientTileRow extends StatelessWidget {
   final String name;
   final int count;
   final String date;
@@ -8,7 +8,7 @@ class ItemCard extends StatelessWidget {
   final VoidCallback onEdit;
   final VoidCallback onDelete;
 
-  const ItemCard({
+  const IngredientTileRow({
     super.key,
     required this.name,
     required this.count,
@@ -22,7 +22,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      constraints: const BoxConstraints(maxHeight: 100),
+      constraints: const BoxConstraints(maxHeight: 69),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
         color: const Color(0xffF1F1F1),
@@ -41,7 +41,8 @@ class ItemCard extends StatelessWidget {
                       Text(
                         name,
                         style: const TextStyle(
-                          fontSize: 16,
+                          fontSize: 12,
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -58,7 +59,7 @@ class ItemCard extends StatelessWidget {
                             '기간 임박',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 12,
+                              fontSize: 10,
                             ),
                           ),
                         ),
@@ -69,12 +70,14 @@ class ItemCard extends StatelessWidget {
                     children: [
                       Text(
                         '$count개',
-                        style: const TextStyle(color: Colors.grey),
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 10),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         date,
-                        style: const TextStyle(color: Colors.grey),
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 10),
                       ),
                     ],
                   ),
@@ -83,11 +86,17 @@ class ItemCard extends StatelessWidget {
             ),
             IconButton(
               onPressed: onEdit,
-              icon: const Icon(Icons.edit),
+              icon: const Icon(
+                Icons.edit,
+                size: 20,
+              ),
             ),
             IconButton(
               onPressed: onDelete,
-              icon: const Icon(Icons.delete),
+              icon: const Icon(
+                Icons.delete,
+                size: 20,
+              ),
             ),
           ],
         ),
