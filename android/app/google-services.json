@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "880071648086",
+    "project_id": "yum-project-a749f",
+    "storage_bucket": "yum-project-a749f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880071648086:android:a24a406fcb0a0fbcc2acf7",
+        "android_client_info": {
+          "package_name": "com.example.yum_application"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3x44HRbLdC377uErNa9d_lUnzCDBp6gk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
