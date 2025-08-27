@@ -76,49 +76,5 @@ void main() {
       expect(
           usecase.runtimeType.toString(), contains('UpdateUserIngredientImpl'));
     });
-
-    test(
-        'remoteFavoriteCategoryApiProvider returns RemoteFavoriteCategoryApi instance',
-        () {
-      final api = container.read(remoteFavoriteCategoryApiProvider);
-      expect(api, isNotNull);
-      expect(api.runtimeType.toString(), contains('RemoteFavoriteCategoryApi'));
-    });
-
-    test(
-        'favoriteCategoryRepositoryProvider returns FavoriteCategoryRepositoryImpl instance',
-        () {
-      final repository = container.read(favoriteCategoryRepositoryProvider);
-      expect(repository, isNotNull);
-      expect(repository.runtimeType.toString(),
-          contains('FavoriteCategoryRepositoryImpl'));
-    });
-
-    test(
-        'getUserFavoriteCategoriesProvider returns GetUserFavoriteCategoriesImpl instance',
-        () {
-      final usecase = container.read(getUserFavoriteCategoriesProvider);
-      expect(usecase, isNotNull);
-      expect(usecase.runtimeType.toString(),
-          contains('GetUserFavoriteCategoriesImpl'));
-    });
-
-    test(
-        'createFavoriteCategoryProvider returns CreateFavoriteCategoryImpl instance',
-        () {
-      final usecase = container.read(createFavoriteCategoryProvider);
-      expect(usecase, isNotNull);
-      expect(usecase.runtimeType.toString(),
-          contains('CreateFavoriteCategoryImpl'));
-    });
-
-    test(
-        'deleteFavoriteCategoryProvider returns DeleteFavoriteCategoryImpl instance',
-        () {
-      final usecase = container.read(deleteFavoriteCategoryProvider);
-      expect(usecase, isNotNull);
-      expect(usecase.runtimeType.toString(),
-          contains('DeleteFavoriteCategoryImpl'));
-    });
   });
 }

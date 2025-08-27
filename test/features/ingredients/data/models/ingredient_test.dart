@@ -54,7 +54,7 @@ void main() {
         endAt: DateTime(2023, 1, 10),
       );
 
-      final json = ingredient.toJson();
+      final json = ingredient.toFirestore();
 
       expect(json['id'], 'uuid');
       expect(json['name'], 'Apple');

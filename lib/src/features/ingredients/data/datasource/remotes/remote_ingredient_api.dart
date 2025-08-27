@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/widgets.dart';
-import 'package:yum_application/src/features/ingredients/data/datasource/ingredient_api.dart';
+import 'package:yum_application/src/features/ingredients/data/datasource/remotes/ingredient_api.dart';
 import 'package:yum_application/src/features/ingredients/data/model/ingredient.dart';
 
 class RemoteIngredientApi extends IngredientApi {
@@ -23,7 +23,7 @@ class RemoteIngredientApi extends IngredientApi {
   Future<Ingredient> createNewIngredient(Ingredient ingredient) {
     return _firestore
         .collection(collecion)
-        .add(ingredient.toJson())
+        .add(ingredient.toFirestore())
         .then((documentSnapshot) {
       final id = documentSnapshot.id;
       final newIngredient = ingredient.copyWith(id: id);
@@ -41,6 +41,6 @@ class RemoteIngredientApi extends IngredientApi {
     return _firestore
         .collection(collecion)
         .doc(ingredient.id)
-        .update(ingredient.toJson());
+        .update(ingredient.toFirestore());
   }
 }

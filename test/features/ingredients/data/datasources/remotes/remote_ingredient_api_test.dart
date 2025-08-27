@@ -95,7 +95,7 @@ void main() {
       const generatedId = 'abc123';
 
       // add() 호출 시 DocumentReference 반환
-      when(mockCollection.add(ingredient.toJson()))
+      when(mockCollection.add(ingredient.toFirestore()))
           .thenAnswer((_) async => mockDocumentRef);
       when(mockDocumentRef.id).thenReturn(generatedId);
 
@@ -105,7 +105,7 @@ void main() {
       // then
       expect(result.id, generatedId);
       expect(result.name, 'Tomato');
-      verify(mockCollection.add(ingredient.toJson())).called(1);
+      verify(mockCollection.add(ingredient.toFirestore())).called(1);
     });
 
     test('should call delete with correct id', () async {
@@ -138,14 +138,14 @@ void main() {
         endAt: null,
       );
 
-      when(mockDocumentRef.update(ingredient.toJson()))
+      when(mockDocumentRef.update(ingredient.toFirestore()))
           .thenAnswer((_) async => mockDocumentRef);
 
       await api.updateIngredient(ingredient);
 
       verify(mockFirestore.collection(collection)).called(1);
       verify(mockCollection.doc('uuid')).called(1);
-      verify(mockDocumentRef.update(ingredient.toJson())).called(1);
+      verify(mockDocumentRef.update(ingredient.toFirestore())).called(1);
     });
   });
 }

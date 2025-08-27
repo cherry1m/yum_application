@@ -65,7 +65,7 @@ final class Ingredient extends Equatable {
   ///
   /// 재료의 id 필드가 지정되지 않은 경우에는 재료가 새롭게 create되며,
   /// id가 존재하는 경우에는 update됩니다.
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toFirestore() => {
         if (id != null) 'id': id,
         'name': name,
         "isFreezed": isFreezed,

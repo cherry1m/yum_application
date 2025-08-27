@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yum_application/firebase_options.dart';
-import 'package:yum_application/src/core/theme/app_theme.dart';
-import 'package:yum_application/src/core/utils/global_variable.dart';
 import 'package:yum_application/src/core/utils/provider_observer.dart';
-import 'package:yum_application/src/features/ingredients/ui/views/my_refreginator_ui.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -29,9 +26,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        navigatorKey: GlobalVariable.naviagatorState,
-        theme: light,
-        home: const MyRefreginatorUI());
+    return MaterialApp(home: Container());
   }
 }
