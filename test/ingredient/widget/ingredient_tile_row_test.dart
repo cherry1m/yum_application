@@ -82,4 +82,28 @@ void main() {
       expect(deleteTapped, isTrue);
     });
   });
+
+  group('Ingredient Tile Row 골든 테스트', () {
+    testWidgets('골든 테스트 - 기본 UI', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: IngredientListTile(
+              name: name,
+              count: count,
+              date: date,
+              isExpiring: true,
+              onEdit: () {},
+              onDelete: () {},
+            ),
+          ),
+        ),
+      );
+
+      await expectLater(
+        find.byType(IngredientListTile),
+        matchesGoldenFile('goldens/ingredient_list_tile.png'),
+      );
+    });
+  });
 }

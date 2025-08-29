@@ -50,7 +50,9 @@ class IngredientListTile extends StatelessWidget {
                       if (isExpiring)
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 4),
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
                           decoration: BoxDecoration(
                             color: Colors.red,
                             borderRadius: BorderRadius.circular(12),
@@ -70,14 +72,18 @@ class IngredientListTile extends StatelessWidget {
                     children: [
                       Text(
                         '$count개',
-                        style:
-                            const TextStyle(color: Colors.grey, fontSize: 10),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 10,
+                        ),
                       ),
                       const SizedBox(width: 8),
                       Text(
                         date,
-                        style:
-                            const TextStyle(color: Colors.grey, fontSize: 10),
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 10,
+                        ),
                       ),
                     ],
                   ),
