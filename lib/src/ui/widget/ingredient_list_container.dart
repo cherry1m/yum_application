@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'ingredient_list_tile.dart';
 
-class IngredientKategori extends StatelessWidget {
+class IngredientListContainer extends StatelessWidget {
   final String title;
   final List<IngredientListTile> children;
 
-  const IngredientKategori({
+  const IngredientListContainer({
     super.key,
     required this.title,
     required this.children,
