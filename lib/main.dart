@@ -4,6 +4,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:yum_application/firebase_options.dart';
 import 'package:yum_application/src/core/utils/provider_observer.dart';
+import 'package:yum_application/src/ui/recipe/pages/recipe_recommand_view.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
@@ -26,6 +27,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Container());
+    return MaterialApp(home: RecipeRecommandView());
   }
 }
