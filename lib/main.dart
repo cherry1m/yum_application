@@ -27,6 +27,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: RecipeRecommandView());
+    return const MaterialApp(home: Scaffold());
   }
 }

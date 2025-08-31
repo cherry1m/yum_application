@@ -51,6 +51,7 @@ dependencies:
   riverpod_annotation: ^2.6.1
   firebase_core: ^4.0.0
   cloud_firestore: ^6.0.0
+  riverpod: ^2.6.1
 
 dev_dependencies:
   flutter_test:
