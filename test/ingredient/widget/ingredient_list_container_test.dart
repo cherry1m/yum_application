@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:yum_application/src/ui/widget/ingredient_kategorie.dart';
+import 'package:yum_application/src/ui/widget/ingredient_list_container.dart';
 import 'package:yum_application/src/ui/widget/ingredient_list_tile.dart';
 
 void main() {
@@ -9,7 +9,7 @@ void main() {
   Widget buildTestWidget(List<IngredientListTile> children) {
     return MaterialApp(
       home: Scaffold(
-        body: IngredientKategori(
+        body: IngredientListContainer(
           title: kategoriTitle,
           children: children,
         ),
@@ -110,7 +110,7 @@ void main() {
       ]));
 
       await expectLater(
-        find.byType(IngredientKategori),
+        find.byType(IngredientListContainer),
         matchesGoldenFile('goldens/ingredient_kategori.png'),
       );
     });
