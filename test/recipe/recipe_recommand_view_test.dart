@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:yum_application/src/ui/recipe/pages/recipe_recommand_view.dart';
 
 void main() {
-  group('RecipeRecommandView Function Tests', () {
+  group('should user button tap count decrease corectly', () {
     testWidgets('버튼 클릭 시 remainingCount 감소', (tester) async {
       await tester.pumpWidget(const MaterialApp(home: RecipeRecommandView()));
 
