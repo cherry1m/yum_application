@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PrimaryThemeButton extends StatelessWidget {
-  final String text;
+  final String? text;
   final double? width;
   final double height;
   final VoidCallback? onPressed;
@@ -12,7 +12,7 @@ class PrimaryThemeButton extends StatelessWidget {
 
   const PrimaryThemeButton({
     super.key,
-    required this.text,
+    this.text,
     this.width,
     this.height = 50,
     this.onPressed,
@@ -37,7 +37,7 @@ class PrimaryThemeButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          text,
+          text ?? '',
           style: textStyle ??
               TextStyle(
                 fontSize: 16,
